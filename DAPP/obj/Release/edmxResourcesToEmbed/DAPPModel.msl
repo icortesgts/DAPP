@@ -1,0 +1,787 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DAPPBDModelStoreContainer" CdmEntityContainer="DAPP_BDEntities">
+    <FunctionImportMapping FunctionImportName="BuscarCliente" FunctionName="DAPPBDModel.Store.BuscarCliente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.BuscarCliente_Result">
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BuscarTercero" FunctionName="DAPPBDModel.Store.BuscarTercero">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.BuscarTercero_Result">
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PasswordChange" FunctionName="DAPPBDModel.Store.PasswordChange" />
+    <FunctionImportMapping FunctionImportName="PasswordGet" FunctionName="DAPPBDModel.Store.PasswordGet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.PasswordGet_Result">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="fecha_password" ColumnName="fecha_password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Buscar_lista" FunctionName="DAPPBDModel.Store.Buscar_lista">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.Buscar_lista_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proceso" ColumnName="proceso" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Alerta_Archivo" FunctionName="DAPPBDModel.Store.Alerta_Archivo" />
+    <FunctionImportMapping FunctionImportName="Alerta_correspondencia" FunctionName="DAPPBDModel.Store.Alerta_correspondencia" />
+    <FunctionImportMapping FunctionImportName="Alerta_Listas" FunctionName="DAPPBDModel.Store.Alerta_Listas" />
+    <FunctionImportMapping FunctionImportName="Alerta_prestamo" FunctionName="DAPPBDModel.Store.Alerta_prestamo" />
+    <FunctionImportMapping FunctionImportName="ClaseDoc_ubicacion" FunctionName="DAPPBDModel.Store.ClaseDoc_ubicacion" />
+    <FunctionImportMapping FunctionImportName="Folios_ubicacion" FunctionName="DAPPBDModel.Store.Folios_ubicacion" />
+    <FunctionImportMapping FunctionImportName="TiposDoc_ubicacion" FunctionName="DAPPBDModel.Store.TiposDoc_ubicacion" />
+    <FunctionImportMapping FunctionImportName="GetStickerCorrespondencia" FunctionName="DAPPBDModel.Store.GetStickerCorrespondencia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.GetStickerCorrespondencia_Result">
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="NumeroRadicado" ColumnName="NumeroRadicado" />
+          <ScalarProperty Name="Remitente" ColumnName="Remitente" />
+          <ScalarProperty Name="Destinatarios" ColumnName="Destinatarios" />
+          <ScalarProperty Name="Anexos" ColumnName="Anexos" />
+          <ScalarProperty Name="Folios" ColumnName="Folios" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarDocumentos" FunctionName="DAPPBDModel.Store.ActualizarDocumentos" />
+    <FunctionImportMapping FunctionImportName="ActualizarMetricasListaChequeoSeguros" FunctionName="DAPPBDModel.Store.ActualizarMetricasListaChequeoSeguros" />
+    <FunctionImportMapping FunctionImportName="ActualizarMetricasSegurosRamos" FunctionName="DAPPBDModel.Store.ActualizarMetricasSegurosRamos" />
+    <FunctionImportMapping FunctionImportName="ActualizarMetricasWorkflow" FunctionName="DAPPBDModel.Store.ActualizarMetricasWorkflow" />
+    <FunctionImportMapping FunctionImportName="ActualizarMetricasWorkflowAnexos" FunctionName="DAPPBDModel.Store.ActualizarMetricasWorkflowAnexos" />
+    <FunctionImportMapping FunctionImportName="ActualizarNegociosLeasing" FunctionName="DAPPBDModel.Store.ActualizarNegociosLeasing" />
+    <FunctionImportMapping FunctionImportName="AdicionarCuentaCliente" FunctionName="DAPPBDModel.Store.AdicionarCuentaCliente" />
+    <FunctionImportMapping FunctionImportName="AgregarURL" FunctionName="DAPPBDModel.Store.AgregarURL" />
+    <FunctionImportMapping FunctionImportName="canRemoveRamo" FunctionName="DAPPBDModel.Store.canRemoveRamo" />
+    <FunctionImportMapping FunctionImportName="Cubo_PolizasSileasing" FunctionName="DAPPBDModel.Store.Cubo_PolizasSileasing" />
+    <FunctionImportMapping FunctionImportName="Cubo_PolizasSistema" FunctionName="DAPPBDModel.Store.Cubo_PolizasSistema" />
+    <FunctionImportMapping FunctionImportName="CuboMetricasSegurosRamos" FunctionName="DAPPBDModel.Store.CuboMetricasSegurosRamos" />
+    <FunctionImportMapping FunctionImportName="EliminarDocumentos" FunctionName="DAPPBDModel.Store.EliminarDocumentos" />
+    <FunctionImportMapping FunctionImportName="EliminarURL" FunctionName="DAPPBDModel.Store.EliminarURL" />
+    <FunctionImportMapping FunctionImportName="ExportarEstados" FunctionName="DAPPBDModel.Store.ExportarEstados" />
+    <FunctionImportMapping FunctionImportName="ExportarProceso" FunctionName="DAPPBDModel.Store.ExportarProceso" />
+    <FunctionImportMapping FunctionImportName="getDatosCargaArchivo" FunctionName="DAPPBDModel.Store.getDatosCargaArchivo" />
+    <FunctionImportMapping FunctionImportName="getDocsByIdRelacionado" FunctionName="DAPPBDModel.Store.getDocsByIdRelacionado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DAPPBDModel.getDocsByIdRelacionado_Result">
+          <ScalarProperty Name="MSYSID" ColumnName="MSYSID" />
+          <ScalarProperty Name="Docs_Cubo_" ColumnName="Docs_Cubo_" />
+          <ScalarProperty Name="Docs_Tabla_Cubo_" ColumnName="Docs_Tabla_Cubo_" />
+          <ScalarProperty Name="Docs_Nombre_" ColumnName="Docs_Nombre_" />
+          <ScalarProperty Name="Docs_Programa_Documento_" ColumnName="Docs_Programa_Documento_" />
+          <ScalarProperty Name="Docs_MsysId_Cubo_" ColumnName="Docs_MsysId_Cubo_" />
+          <ScalarProperty Name="Docs_Fecha_Ingreso_" ColumnName="Docs_Fecha_Ingreso_" />
+          <ScalarProperty Name="Docs_Url_Documento_" ColumnName="Docs_Url_Documento_" />
+          <ScalarProperty Name="Docs_Usuario_" ColumnName="Docs_Usuario_" />
+          <ScalarProperty Name="Ref1" ColumnName="Ref1" />
+          <ScalarProperty Name="Ref2" ColumnName="Ref2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getDocsCliente" FunctionName="DAPPBDModel.Store.getDocsCliente" />
+    <FunctionImportMapping FunctionImportName="getEstadosProceso" FunctionName="DAPPBDModel.Store.getEstadosProceso" />
+    <FunctionImportMapping FunctionImportName="getFestivos" FunctionName="DAPPBDModel.Store.getFestivos" />
+    <FunctionImportMapping FunctionImportName="getMacroProcesosBySegmento" FunctionName="DAPPBDModel.Store.getMacroProcesosBySegmento" />
+    <FunctionImportMapping FunctionImportName="getRamosByNitOrAll" FunctionName="DAPPBDModel.Store.getRamosByNitOrAll" />
+    <FunctionImportMapping FunctionImportName="getURLByEstado" FunctionName="DAPPBDModel.Store.getURLByEstado" />
+    <FunctionImportMapping FunctionImportName="QryDocumentos" FunctionName="DAPPBDModel.Store.QryDocumentos" />
+    <FunctionImportMapping FunctionImportName="UpdateRamo" FunctionName="DAPPBDModel.Store.UpdateRamo" />
+    <FunctionImportMapping FunctionImportName="UpdateReporte" FunctionName="DAPPBDModel.Store.UpdateReporte" />
+    <FunctionImportMapping FunctionImportName="UpdateUsuariosEquipo" FunctionName="DAPPBDModel.Store.UpdateUsuariosEquipo" />
+    <EntitySetMapping Name="Admin_AliasMenu">
+      <EntityTypeMapping TypeName="DAPPBDModel.Admin_AliasMenu">
+        <MappingFragment StoreEntitySet="Admin_AliasMenu">
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Ciudades">
+      <EntityTypeMapping TypeName="DAPPBDModel.Admin_Ciudades">
+        <MappingFragment StoreEntitySet="Admin_Ciudades">
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Menu">
+      <EntityTypeMapping TypeName="DAPPBDModel.Admin_Menu">
+        <MappingFragment StoreEntitySet="Admin_Menu">
+          <ScalarProperty Name="label" ColumnName="label" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="nivel" ColumnName="nivel" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="item" ColumnName="item" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin_Perfiles">
+      <EntityTypeMapping TypeName="DAPPBDModel.Admin_Perfiles">
+        <MappingFragment StoreEntitySet="Admin_Perfiles">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="MSysID" ColumnName="MSysID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminActividad">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminActividad">
+        <MappingFragment StoreEntitySet="AdminActividad">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminCamposAdicionales">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminCamposAdicionales">
+        <MappingFragment StoreEntitySet="AdminCamposAdicionales">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Campo" ColumnName="Campo" />
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminClaseDocumento">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminClaseDocumento">
+        <MappingFragment StoreEntitySet="AdminClaseDocumento">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="ClaseDoc" ColumnName="ClaseDoc" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminConsecutivo">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminConsecutivo">
+        <MappingFragment StoreEntitySet="AdminConsecutivo">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
+          <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminContacto">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminContacto">
+        <MappingFragment StoreEntitySet="AdminContacto">
+          <ScalarProperty Name="id_succliente" ColumnName="id_succliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminPais">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminPais">
+        <MappingFragment StoreEntitySet="AdminPais">
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminPerfiles">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminPerfiles">
+        <MappingFragment StoreEntitySet="AdminPerfiles">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSucursal">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminSucursal">
+        <MappingFragment StoreEntitySet="AdminSucursal">
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTablasReferencia">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminTablasReferencia">
+        <MappingFragment StoreEntitySet="AdminTablasReferencia">
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+          <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="oficina" ColumnName="oficina" />
+          <ScalarProperty Name="entidad" ColumnName="entidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTipoDocumento">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminTipoDocumento">
+        <MappingFragment StoreEntitySet="AdminTipoDocumento">
+          <ScalarProperty Name="id_clase" ColumnName="id_clase" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTipoTercero">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminTipoTercero">
+        <MappingFragment StoreEntitySet="AdminTipoTercero">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+          <ScalarProperty Name="interno" ColumnName="interno" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTipoUbicacion">
+      <EntityTypeMapping TypeName="DAPPBDModel.AdminTipoUbicacion">
+        <MappingFragment StoreEntitySet="AdminTipoUbicacion">
+          <ScalarProperty Name="id_tipoCapacidad" ColumnName="id_tipoCapacidad" />
+          <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+          <ScalarProperty Name="Alto" ColumnName="Alto" />
+          <ScalarProperty Name="Ancho" ColumnName="Ancho" />
+          <ScalarProperty Name="Largo" ColumnName="Largo" />
+          <ScalarProperty Name="Clase" ColumnName="Clase" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="DAPPBDModel.Areas">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auditoria">
+      <EntityTypeMapping TypeName="DAPPBDModel.Auditoria">
+        <MappingFragment StoreEntitySet="Auditoria">
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="id_tabla" ColumnName="id_tabla" />
+          <ScalarProperty Name="Tabla" ColumnName="Tabla" />
+          <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Backups">
+      <EntityTypeMapping TypeName="DAPPBDModel.Backups">
+        <MappingFragment StoreEntitySet="Backups">
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="fecha_respuesta" ColumnName="fecha_respuesta" />
+          <ScalarProperty Name="Fecha_solicitud" ColumnName="Fecha_solicitud" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campos_Documentos">
+      <EntityTypeMapping TypeName="DAPPBDModel.Campos_Documentos">
+        <MappingFragment StoreEntitySet="Campos_Documentos">
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="id_campo" ColumnName="id_campo" />
+          <ScalarProperty Name="id_doc" ColumnName="id_doc" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="DAPPBDModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comentarios_Correspondencia">
+      <EntityTypeMapping TypeName="DAPPBDModel.Comentarios_Correspondencia">
+        <MappingFragment StoreEntitySet="Comentarios_Correspondencia">
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="id_correspondencia" ColumnName="id_correspondencia" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contratos_Cliente">
+      <EntityTypeMapping TypeName="DAPPBDModel.Contratos_Cliente">
+        <MappingFragment StoreEntitySet="Contratos_Cliente">
+          <ScalarProperty Name="Licencia" ColumnName="Licencia" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo_Pago" />
+          <ScalarProperty Name="Fecha_fin" ColumnName="Fecha_fin" />
+          <ScalarProperty Name="Fecha_inicio" ColumnName="Fecha_inicio" />
+          <ScalarProperty Name="Nro_Contrato" ColumnName="Nro_Contrato" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Correspondencia">
+      <EntityTypeMapping TypeName="DAPPBDModel.Correspondencia">
+        <MappingFragment StoreEntitySet="Correspondencia">
+          <ScalarProperty Name="id_original" ColumnName="id_original" />
+          <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+          <ScalarProperty Name="Fecha_respuesta" ColumnName="Fecha_respuesta" />
+          <ScalarProperty Name="paquetes" ColumnName="paquetes" />
+          <ScalarProperty Name="folios" ColumnName="folios" />
+          <ScalarProperty Name="id_tipodoc" ColumnName="id_tipodoc" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+          <ScalarProperty Name="id_mensajeria" ColumnName="id_mensajeria" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="guia" ColumnName="guia" />
+          <ScalarProperty Name="tipo_envio" ColumnName="tipo_envio" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="sticker" ColumnName="sticker" />
+          <ScalarProperty Name="asunto" ColumnName="asunto" />
+          <ScalarProperty Name="dependencia_remitente" ColumnName="dependencia_remitente" />
+          <ScalarProperty Name="remitente" ColumnName="remitente" />
+          <ScalarProperty Name="tipo_correspondencia" ColumnName="tipo_correspondencia" />
+          <ScalarProperty Name="tipo_ingreso" ColumnName="tipo_ingreso" />
+          <ScalarProperty Name="ciudad_remitente" ColumnName="ciudad_remitente" />
+          <ScalarProperty Name="fecha_sistema" ColumnName="fecha_sistema" />
+          <ScalarProperty Name="fecha_documento" ColumnName="fecha_documento" />
+          <ScalarProperty Name="numero_radicado" ColumnName="numero_radicado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos">
+        <MappingFragment StoreEntitySet="Documentos">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FHistorico" ColumnName="FHistorico" />
+          <ScalarProperty Name="FCentral" ColumnName="FCentral" />
+          <ScalarProperty Name="FGestion" ColumnName="FGestion" />
+          <ScalarProperty Name="fechadoc" ColumnName="fechadoc" />
+          <ScalarProperty Name="extension" ColumnName="extension" />
+          <ScalarProperty Name="folios" ColumnName="folios" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_ubicacion" ColumnName="id_ubicacion" />
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="archivo" ColumnName="archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos_Area">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos_Area">
+        <MappingFragment StoreEntitySet="Documentos_Area">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos_Correspondencia">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos_Correspondencia">
+        <MappingFragment StoreEntitySet="Documentos_Correspondencia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id_correspondencia" ColumnName="id_correspondencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos_Requeridos">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos_Requeridos">
+        <MappingFragment StoreEntitySet="Documentos_Requeridos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos_Solicitud">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos_Solicitud">
+        <MappingFragment StoreEntitySet="Documentos_Solicitud">
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documentos_Terceros">
+      <EntityTypeMapping TypeName="DAPPBDModel.Documentos_Terceros">
+        <MappingFragment StoreEntitySet="Documentos_Terceros">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentosArchigex">
+      <EntityTypeMapping TypeName="DAPPBDModel.DocumentosArchigex">
+        <MappingFragment StoreEntitySet="DocumentosArchigex">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Listas_Tipo">
+      <EntityTypeMapping TypeName="DAPPBDModel.Listas_Tipo">
+        <MappingFragment StoreEntitySet="Listas_Tipo">
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfil_Menu">
+      <EntityTypeMapping TypeName="DAPPBDModel.Perfil_Menu">
+        <MappingFragment StoreEntitySet="Perfil_Menu">
+          <ScalarProperty Name="Consulta" ColumnName="Consulta" />
+          <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+          <ScalarProperty Name="Adicion" ColumnName="Adicion" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Procesos">
+      <EntityTypeMapping TypeName="DAPPBDModel.Procesos">
+        <MappingFragment StoreEntitySet="Procesos">
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="proceso" ColumnName="proceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitudes">
+      <EntityTypeMapping TypeName="DAPPBDModel.Solicitudes">
+        <MappingFragment StoreEntitySet="Solicitudes">
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="duracion" ColumnName="duracion" />
+          <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+          <ScalarProperty Name="id_solicitante" ColumnName="id_solicitante" />
+          <ScalarProperty Name="id_ubicacion" ColumnName="id_ubicacion" />
+          <ScalarProperty Name="fecha_devolucion" ColumnName="fecha_devolucion" />
+          <ScalarProperty Name="Fecha_estimada" ColumnName="Fecha_estimada" />
+          <ScalarProperty Name="Fecha_prestamo" ColumnName="Fecha_prestamo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SucursalTerceros">
+      <EntityTypeMapping TypeName="DAPPBDModel.SucursalTerceros">
+        <MappingFragment StoreEntitySet="SucursalTerceros">
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terceros">
+      <EntityTypeMapping TypeName="DAPPBDModel.Terceros">
+        <MappingFragment StoreEntitySet="Terceros">
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="especial" ColumnName="especial" />
+          <ScalarProperty Name="archfirma" ColumnName="archfirma" />
+          <ScalarProperty Name="pwdfirma" ColumnName="pwdfirma" />
+          <ScalarProperty Name="firmas" ColumnName="firmas" />
+          <ScalarProperty Name="mensajeria" ColumnName="mensajeria" />
+          <ScalarProperty Name="id_jefe" ColumnName="id_jefe" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+          <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terceros_Correspondencia">
+      <EntityTypeMapping TypeName="DAPPBDModel.Terceros_Correspondencia">
+        <MappingFragment StoreEntitySet="Terceros_Correspondencia">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+          <ScalarProperty Name="id_correspondencia" ColumnName="id_correspondencia" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDoc_TablaRetencion">
+      <EntityTypeMapping TypeName="DAPPBDModel.TipoDoc_TablaRetencion">
+        <MappingFragment StoreEntitySet="TipoDoc_TablaRetencion">
+          <ScalarProperty Name="thistorico" ColumnName="thistorico" />
+          <ScalarProperty Name="tcentral" ColumnName="tcentral" />
+          <ScalarProperty Name="tgestion" ColumnName="tgestion" />
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="D" ColumnName="D" />
+          <ScalarProperty Name="Original" ColumnName="Original" />
+          <ScalarProperty Name="historico" ColumnName="historico" />
+          <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_tablaret" ColumnName="id_tablaret" />
+          <ScalarProperty Name="procedimientos" ColumnName="procedimientos" />
+          <ScalarProperty Name="S" ColumnName="S" />
+          <ScalarProperty Name="M" ColumnName="M" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="CT" ColumnName="CT" />
+          <ScalarProperty Name="central" ColumnName="central" />
+          <ScalarProperty Name="gestion" ColumnName="gestion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transferencias">
+      <EntityTypeMapping TypeName="DAPPBDModel.Transferencias">
+        <MappingFragment StoreEntitySet="Transferencias">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="id_destino" ColumnName="id_destino" />
+          <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ubicaciones">
+      <EntityTypeMapping TypeName="DAPPBDModel.Ubicaciones">
+        <MappingFragment StoreEntitySet="Ubicaciones">
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_ubicacion" ColumnName="id_ubicacion" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario_Cliente">
+      <EntityTypeMapping TypeName="DAPPBDModel.Usuario_Cliente">
+        <MappingFragment StoreEntitySet="Usuario_Cliente">
+          <ScalarProperty Name="todas" ColumnName="todas" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario_Sucursal">
+      <EntityTypeMapping TypeName="DAPPBDModel.Usuario_Sucursal">
+        <MappingFragment StoreEntitySet="Usuario_Sucursal">
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios_Areas">
+      <EntityTypeMapping TypeName="DAPPBDModel.Usuarios_Areas">
+        <MappingFragment StoreEntitySet="Usuarios_Areas">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios_Terceros">
+      <EntityTypeMapping TypeName="DAPPBDModel.Usuarios_Terceros">
+        <MappingFragment StoreEntitySet="Usuarios_Terceros">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="Id_tercero" ColumnName="Id_tercero" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ValidadorDocumentos">
+      <EntityTypeMapping TypeName="DAPPBDModel.ValidadorDocumentos">
+        <MappingFragment StoreEntitySet="ValidadorDocumentos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cuantos" ColumnName="cuantos" />
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Version_Documento">
+      <EntityTypeMapping TypeName="DAPPBDModel.Version_Documento">
+        <MappingFragment StoreEntitySet="Version_Documento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="archivo" ColumnName="archivo" />
+          <ScalarProperty Name="version" ColumnName="version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TERCEROS_temp">
+      <EntityTypeMapping TypeName="DAPPBDModel.TERCEROS_temp">
+        <MappingFragment StoreEntitySet="TERCEROS_temp">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="terweb" ColumnName="terweb" />
+          <ScalarProperty Name="TIPO_DE_DOCUMENTO" ColumnName="TIPO DE DOCUMENTO" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="RZN_SOCIAL" ColumnName="RZN SOCIAL" />
+          <ScalarProperty Name="REGIMEN" ColumnName="REGIMEN" />
+          <ScalarProperty Name="terperso" ColumnName="terperso" />
+          <ScalarProperty Name="EMPLEADO" ColumnName="EMPLEADO" />
+          <ScalarProperty Name="CLIENTE" ColumnName="CLIENTE" />
+          <ScalarProperty Name="PROVEEDOR" ColumnName="PROVEEDOR" />
+          <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+          <ScalarProperty Name="paicod" ColumnName="paicod" />
+          <ScalarProperty Name="ciucod" ColumnName="ciucod" />
+          <ScalarProperty Name="APELLIDO_2" ColumnName="APELLIDO 2" />
+          <ScalarProperty Name="APELLIDO_1" ColumnName="APELLIDO 1" />
+          <ScalarProperty Name="NOMBRE_2" ColumnName="NOMBRE 2" />
+          <ScalarProperty Name="NOMBRE_1" ColumnName="NOMBRE 1" />
+          <ScalarProperty Name="terid" ColumnName="terid" />
+          <ScalarProperty Name="EXTERIOR" ColumnName="EXTERIOR" />
+          <ScalarProperty Name="terfax" ColumnName="terfax" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="terdir" ColumnName="terdir" />
+          <ScalarProperty Name="NOMBRE_DE_LA_EMPRESA" ColumnName="NOMBRE DE LA EMPRESA" />
+          <ScalarProperty Name="nit_con_digito_chequeo" ColumnName="nit con digito chequeo" />
+          <ScalarProperty Name="DIGITO_DE_CHEQUEO" ColumnName="DIGITO DE CHEQUEO" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="DAPPBDModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="correspondencia" ColumnName="correspondencia" />
+          <ScalarProperty Name="id_tercero" ColumnName="id_tercero" />
+          <ScalarProperty Name="Terceros" ColumnName="Terceros" />
+          <ScalarProperty Name="Areas" ColumnName="Areas" />
+          <ScalarProperty Name="Todos" ColumnName="Todos" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="fecha_password" ColumnName="fecha_password" />
+          <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

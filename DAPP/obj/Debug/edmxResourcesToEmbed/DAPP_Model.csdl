@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAPP_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DAPP_BDEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="BuscarCliente" ReturnType="Collection(DAPP_BDModel.BuscarCliente_Result)">
+      <Parameter Name="Filtro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PasswordChange">
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="old_password" Mode="In" Type="String" />
+      <Parameter Name="new_password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PasswordGet" ReturnType="Collection(DAPP_BDModel.PasswordGet_Result)">
+      <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarTercero" ReturnType="Collection(DAPP_BDModel.BuscarTercero_Result)">
+      <Parameter Name="Filtro" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Admin_Ciudades" EntityType="DAPP_BDModel.Admin_Ciudades" />
+    <EntitySet Name="AdminActividad" EntityType="DAPP_BDModel.AdminActividad" />
+    <EntitySet Name="AdminClaseDocumento" EntityType="DAPP_BDModel.AdminClaseDocumento" />
+    <EntitySet Name="AdminContacto" EntityType="DAPP_BDModel.AdminContacto" />
+    <EntitySet Name="AdminPais" EntityType="DAPP_BDModel.AdminPais" />
+    <EntitySet Name="AdminPerfiles" EntityType="DAPP_BDModel.AdminPerfiles" />
+    <EntitySet Name="AdminSucursal" EntityType="DAPP_BDModel.AdminSucursal" />
+    <EntitySet Name="AdminTablasReferencia" EntityType="DAPP_BDModel.AdminTablasReferencia" />
+    <EntitySet Name="AdminTipoDocumento" EntityType="DAPP_BDModel.AdminTipoDocumento" />
+    <EntitySet Name="AdminTipoTercero" EntityType="DAPP_BDModel.AdminTipoTercero" />
+    <EntitySet Name="AdminTipoUbicacion" EntityType="DAPP_BDModel.AdminTipoUbicacion" />
+    <EntitySet Name="Areas" EntityType="DAPP_BDModel.Areas" />
+    <EntitySet Name="Auditoria" EntityType="DAPP_BDModel.Auditoria" />
+    <EntitySet Name="Clientes" EntityType="DAPP_BDModel.Clientes" />
+    <EntitySet Name="Documentos" EntityType="DAPP_BDModel.Documentos" />
+    <EntitySet Name="Documentos_Area" EntityType="DAPP_BDModel.Documentos_Area" />
+    <EntitySet Name="Documentos_Requeridos" EntityType="DAPP_BDModel.Documentos_Requeridos" />
+    <EntitySet Name="Documentos_Terceros" EntityType="DAPP_BDModel.Documentos_Terceros" />
+    <EntitySet Name="Procesos" EntityType="DAPP_BDModel.Procesos" />
+    <EntitySet Name="SucursalTerceros" EntityType="DAPP_BDModel.SucursalTerceros" />
+    <EntitySet Name="Terceros" EntityType="DAPP_BDModel.Terceros" />
+    <EntitySet Name="TipoDoc_TablaRetencion" EntityType="DAPP_BDModel.TipoDoc_TablaRetencion" />
+    <EntitySet Name="Ubicaciones" EntityType="DAPP_BDModel.Ubicaciones" />
+    <EntitySet Name="Usuario_Cliente" EntityType="DAPP_BDModel.Usuario_Cliente" />
+    <EntitySet Name="Usuarios" EntityType="DAPP_BDModel.Usuarios" />
+    <EntitySet Name="Version_Documento" EntityType="DAPP_BDModel.Version_Documento" />
+    <AssociationSet Name="FK_AdminActividad_AdminSucursal" Association="DAPP_BDModel.FK_AdminActividad_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminActividad" EntitySet="AdminActividad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Terceros_AdminActividad" Association="DAPP_BDModel.FK_Terceros_AdminActividad">
+      <End Role="AdminActividad" EntitySet="AdminActividad" />
+      <End Role="Terceros" EntitySet="Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminClaseDocumento_AdminSucursal" Association="DAPP_BDModel.FK_AdminClaseDocumento_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminClaseDocumento" EntitySet="AdminClaseDocumento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoDocumento_AdminClaseDocumento" Association="DAPP_BDModel.FK_AdminTipoDocumento_AdminClaseDocumento">
+      <End Role="AdminClaseDocumento" EntitySet="AdminClaseDocumento" />
+      <End Role="AdminTipoDocumento" EntitySet="AdminTipoDocumento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminContacto_SucursalTerceros" Association="DAPP_BDModel.FK_AdminContacto_SucursalTerceros">
+      <End Role="SucursalTerceros" EntitySet="SucursalTerceros" />
+      <End Role="AdminContacto" EntitySet="AdminContacto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminContacto_Terceros" Association="DAPP_BDModel.FK_AdminContacto_Terceros">
+      <End Role="Terceros" EntitySet="Terceros" />
+      <End Role="AdminContacto" EntitySet="AdminContacto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminPerfiles_AdminSucursal" Association="DAPP_BDModel.FK_AdminPerfiles_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminPerfiles" EntitySet="AdminPerfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_AdminPerfiles" Association="DAPP_BDModel.FK_Usuarios_AdminPerfiles">
+      <End Role="AdminPerfiles" EntitySet="AdminPerfiles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminSucursal_Clientes" Association="DAPP_BDModel.FK_AdminSucursal_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTablasReferencia_AdminSucursal" Association="DAPP_BDModel.FK_AdminTablasReferencia_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminTablasReferencia" EntitySet="AdminTablasReferencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoDocumento_AdminSucursal" Association="DAPP_BDModel.FK_AdminTipoDocumento_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminTipoDocumento" EntitySet="AdminTipoDocumento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoTercero_AdminSucursal" Association="DAPP_BDModel.FK_AdminTipoTercero_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminTipoTercero" EntitySet="AdminTipoTercero" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoUbicacion_AdminSucursal" Association="DAPP_BDModel.FK_AdminTipoUbicacion_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="AdminTipoUbicacion" EntitySet="AdminTipoUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_AdminSucursal" Association="DAPP_BDModel.FK_Areas_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Areas" EntitySet="Areas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auditoria_AdminSucursal" Association="DAPP_BDModel.FK_Auditoria_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Auditoria" EntitySet="Auditoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_AdminSucursal" Association="DAPP_BDModel.FK_Documentos_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Terceros_AdminSucursal" Association="DAPP_BDModel.FK_Terceros_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Terceros" EntitySet="Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicaciones_AdminSucursal" Association="DAPP_BDModel.FK_Ubicaciones_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cliente_AdminSucursal" Association="DAPP_BDModel.FK_Usuario_Cliente_AdminSucursal">
+      <End Role="AdminSucursal" EntitySet="AdminSucursal" />
+      <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTablasReferencia_Clientes" Association="DAPP_BDModel.FK_AdminTablasReferencia_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="AdminTablasReferencia" EntitySet="AdminTablasReferencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoDoc_TablaRetencion_AdminTablasReferencia" Association="DAPP_BDModel.FK_TipoDoc_TablaRetencion_AdminTablasReferencia">
+      <End Role="AdminTablasReferencia" EntitySet="AdminTablasReferencia" />
+      <End Role="TipoDoc_TablaRetencion" EntitySet="TipoDoc_TablaRetencion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoDocumento_Clientes" Association="DAPP_BDModel.FK_AdminTipoDocumento_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="AdminTipoDocumento" EntitySet="AdminTipoDocumento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_AdminTipoDocumento" Association="DAPP_BDModel.FK_Documentos_AdminTipoDocumento">
+      <End Role="AdminTipoDocumento" EntitySet="AdminTipoDocumento" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Requeridos_AdminTipoDocumento" Association="DAPP_BDModel.FK_Documentos_Requeridos_AdminTipoDocumento">
+      <End Role="AdminTipoDocumento" EntitySet="AdminTipoDocumento" />
+      <End Role="Documentos_Requeridos" EntitySet="Documentos_Requeridos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Terceros_AdminTipoTercero" Association="DAPP_BDModel.FK_Terceros_AdminTipoTercero">
+      <End Role="AdminTipoTercero" EntitySet="AdminTipoTercero" />
+      <End Role="Terceros" EntitySet="Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AdminTipoUbicacion_AdminTipoUbicacion" Association="DAPP_BDModel.FK_AdminTipoUbicacion_AdminTipoUbicacion">
+      <End Role="AdminTipoUbicacion" EntitySet="AdminTipoUbicacion" />
+      <End Role="AdminTipoUbicacion1" EntitySet="AdminTipoUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_AdminTipoUbicacion" Association="DAPP_BDModel.FK_Ubicacion_AdminTipoUbicacion">
+      <End Role="AdminTipoUbicacion" EntitySet="AdminTipoUbicacion" />
+      <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_Areas" Association="DAPP_BDModel.FK_Areas_Areas">
+      <End Role="Areas" EntitySet="Areas" />
+      <End Role="Areas1" EntitySet="Areas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Areas_Clientes" Association="DAPP_BDModel.FK_Areas_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Areas" EntitySet="Areas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Area_Areas" Association="DAPP_BDModel.FK_Documentos_Area_Areas">
+      <End Role="Areas" EntitySet="Areas" />
+      <End Role="Documentos_Area" EntitySet="Documentos_Area" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Clientes" Association="DAPP_BDModel.FK_Documentos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Procesos_Clientes" Association="DAPP_BDModel.FK_Procesos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Procesos" EntitySet="Procesos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Terceros_Clientes" Association="DAPP_BDModel.FK_Terceros_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Terceros" EntitySet="Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cliente_Clientes" Association="DAPP_BDModel.FK_Usuario_Cliente_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Area_Documentos" Association="DAPP_BDModel.FK_Documentos_Area_Documentos">
+      <End Role="Documentos" EntitySet="Documentos" />
+      <End Role="Documentos_Area" EntitySet="Documentos_Area" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Terceros_Documentos" Association="DAPP_BDModel.FK_Documentos_Terceros_Documentos">
+      <End Role="Documentos" EntitySet="Documentos" />
+      <End Role="Documentos_Terceros" EntitySet="Documentos_Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Ubicacion" Association="DAPP_BDModel.FK_Documentos_Ubicacion">
+      <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+      <End Role="Documentos" EntitySet="Documentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Version_Documento_Documentos" Association="DAPP_BDModel.FK_Version_Documento_Documentos">
+      <End Role="Documentos" EntitySet="Documentos" />
+      <End Role="Version_Documento" EntitySet="Version_Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Requeridos_Procesos" Association="DAPP_BDModel.FK_Documentos_Requeridos_Procesos">
+      <End Role="Procesos" EntitySet="Procesos" />
+      <End Role="Documentos_Requeridos" EntitySet="Documentos_Requeridos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documentos_Terceros_Terceros" Association="DAPP_BDModel.FK_Documentos_Terceros_Terceros">
+      <End Role="Terceros" EntitySet="Terceros" />
+      <End Role="Documentos_Terceros" EntitySet="Documentos_Terceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SucursalTerceros_SucursalTerceros" Association="DAPP_BDModel.FK_SucursalTerceros_SucursalTerceros">
+      <End Role="SucursalTerceros" EntitySet="SucursalTerceros" />
+      <End Role="SucursalTerceros1" EntitySet="SucursalTerceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SucursalTerceros_Terceros" Association="DAPP_BDModel.FK_SucursalTerceros_Terceros">
+      <End Role="Terceros" EntitySet="Terceros" />
+      <End Role="SucursalTerceros" EntitySet="SucursalTerceros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Ubicacion" Association="DAPP_BDModel.FK_Ubicacion_Ubicacion">
+      <End Role="Ubicaciones" EntitySet="Ubicaciones" />
+      <End Role="Ubicaciones1" EntitySet="Ubicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Compania_Usuarios" Association="DAPP_BDModel.FK_Usuario_Compania_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="BuscarCliente_Result">
+    <Property Type="String" Name="tipo_documento" Nullable="false" MaxLength="10" />
+    <Property Type="Int64" Name="numero_documento" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+    <Property Type="Int64" Name="id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PasswordGet_Result">
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="fecha_password" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="BuscarTercero_Result">
+    <Property Type="String" Name="tipo_documento" Nullable="false" MaxLength="10" />
+    <Property Type="Int64" Name="numero_documento" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+    <Property Type="Int64" Name="id" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Admin_Ciudades">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" />
+    <Property Name="ciudad" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AdminActividad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Actividad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="id_sucursal" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminActividad_AdminSucursal" FromRole="AdminActividad" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_Terceros_AdminActividad" FromRole="AdminActividad" ToRole="Terceros" />
+  </EntityType>
+  <EntityType Name="AdminClaseDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaseDoc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_sucursal" Type="Int64" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminClaseDocumento_AdminSucursal" FromRole="AdminClaseDocumento" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTipoDocumento" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_AdminClaseDocumento" FromRole="AdminClaseDocumento" ToRole="AdminTipoDocumento" />
+  </EntityType>
+  <EntityType Name="AdminContacto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cargo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_tercero" Type="Int64" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <NavigationProperty Name="SucursalTerceros" Relationship="DAPP_BDModel.FK_AdminContacto_SucursalTerceros" FromRole="AdminContacto" ToRole="SucursalTerceros" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_AdminContacto_Terceros" FromRole="AdminContacto" ToRole="Terceros" />
+  </EntityType>
+  <EntityType Name="AdminPais">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pais" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AdminPerfiles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminPerfiles_AdminSucursal" FromRole="AdminPerfiles" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Usuarios" Relationship="DAPP_BDModel.FK_Usuarios_AdminPerfiles" FromRole="AdminPerfiles" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="AdminSucursal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sucursal" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AdminActividad" Relationship="DAPP_BDModel.FK_AdminActividad_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminActividad" />
+    <NavigationProperty Name="AdminClaseDocumento" Relationship="DAPP_BDModel.FK_AdminClaseDocumento_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminClaseDocumento" />
+    <NavigationProperty Name="AdminPerfiles" Relationship="DAPP_BDModel.FK_AdminPerfiles_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminPerfiles" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_AdminSucursal_Clientes" FromRole="AdminSucursal" ToRole="Clientes" />
+    <NavigationProperty Name="AdminTablasReferencia" Relationship="DAPP_BDModel.FK_AdminTablasReferencia_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminTablasReferencia" />
+    <NavigationProperty Name="AdminTipoDocumento" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminTipoDocumento" />
+    <NavigationProperty Name="AdminTipoTercero" Relationship="DAPP_BDModel.FK_AdminTipoTercero_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminTipoTercero" />
+    <NavigationProperty Name="AdminTipoUbicacion" Relationship="DAPP_BDModel.FK_AdminTipoUbicacion_AdminSucursal" FromRole="AdminSucursal" ToRole="AdminTipoUbicacion" />
+    <NavigationProperty Name="Areas" Relationship="DAPP_BDModel.FK_Areas_AdminSucursal" FromRole="AdminSucursal" ToRole="Areas" />
+    <NavigationProperty Name="Auditoria" Relationship="DAPP_BDModel.FK_Auditoria_AdminSucursal" FromRole="AdminSucursal" ToRole="Auditoria" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_AdminSucursal" FromRole="AdminSucursal" ToRole="Documentos" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_Terceros_AdminSucursal" FromRole="AdminSucursal" ToRole="Terceros" />
+    <NavigationProperty Name="Ubicaciones" Relationship="DAPP_BDModel.FK_Ubicaciones_AdminSucursal" FromRole="AdminSucursal" ToRole="Ubicaciones" />
+    <NavigationProperty Name="Usuario_Cliente" Relationship="DAPP_BDModel.FK_Usuario_Cliente_AdminSucursal" FromRole="AdminSucursal" ToRole="Usuario_Cliente" />
+  </EntityType>
+  <EntityType Name="AdminTablasReferencia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="entidad" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="oficina" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="responsable" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="fechainicio" Type="DateTime" Precision="3" />
+    <Property Name="fechafin" Type="DateTime" Precision="3" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminTablasReferencia_AdminSucursal" FromRole="AdminTablasReferencia" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_AdminTablasReferencia_Clientes" FromRole="AdminTablasReferencia" ToRole="Clientes" />
+    <NavigationProperty Name="TipoDoc_TablaRetencion" Relationship="DAPP_BDModel.FK_TipoDoc_TablaRetencion_AdminTablasReferencia" FromRole="AdminTablasReferencia" ToRole="TipoDoc_TablaRetencion" />
+  </EntityType>
+  <EntityType Name="AdminTipoDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="id_clase" Type="Int64" />
+    <NavigationProperty Name="AdminClaseDocumento" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_AdminClaseDocumento" FromRole="AdminTipoDocumento" ToRole="AdminClaseDocumento" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_AdminSucursal" FromRole="AdminTipoDocumento" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_Clientes" FromRole="AdminTipoDocumento" ToRole="Clientes" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_AdminTipoDocumento" FromRole="AdminTipoDocumento" ToRole="Documentos" />
+    <NavigationProperty Name="Documentos_Requeridos" Relationship="DAPP_BDModel.FK_Documentos_Requeridos_AdminTipoDocumento" FromRole="AdminTipoDocumento" ToRole="Documentos_Requeridos" />
+  </EntityType>
+  <EntityType Name="AdminTipoTercero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="id_sucursal" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminTipoTercero_AdminSucursal" FromRole="AdminTipoTercero" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_Terceros_AdminTipoTercero" FromRole="AdminTipoTercero" ToRole="Terceros" />
+  </EntityType>
+  <EntityType Name="AdminTipoUbicacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="Clase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Largo" Type="Int32" />
+    <Property Name="Ancho" Type="Int32" />
+    <Property Name="Alto" Type="Int32" />
+    <Property Name="Capacidad" Type="Int32" />
+    <Property Name="id_tipoCapacidad" Type="Int64" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminTipoUbicacion_AdminSucursal" FromRole="AdminTipoUbicacion" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTipoUbicacion1" Relationship="DAPP_BDModel.FK_AdminTipoUbicacion_AdminTipoUbicacion" FromRole="AdminTipoUbicacion" ToRole="AdminTipoUbicacion1" />
+    <NavigationProperty Name="AdminTipoUbicacion2" Relationship="DAPP_BDModel.FK_AdminTipoUbicacion_AdminTipoUbicacion" FromRole="AdminTipoUbicacion1" ToRole="AdminTipoUbicacion" />
+    <NavigationProperty Name="Ubicaciones" Relationship="DAPP_BDModel.FK_Ubicacion_AdminTipoUbicacion" FromRole="AdminTipoUbicacion" ToRole="Ubicaciones" />
+  </EntityType>
+  <EntityType Name="Areas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_area" Type="Int64" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Areas_AdminSucursal" FromRole="Areas" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Areas1" Relationship="DAPP_BDModel.FK_Areas_Areas" FromRole="Areas" ToRole="Areas1" />
+    <NavigationProperty Name="Areas2" Relationship="DAPP_BDModel.FK_Areas_Areas" FromRole="Areas1" ToRole="Areas" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_Areas_Clientes" FromRole="Areas" ToRole="Clientes" />
+    <NavigationProperty Name="Documentos_Area" Relationship="DAPP_BDModel.FK_Documentos_Area_Areas" FromRole="Areas" ToRole="Documentos_Area" />
+  </EntityType>
+  <EntityType Name="Auditoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Operacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tabla" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_tabla" Type="Int64" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Auditoria_AdminSucursal" FromRole="Auditoria" ToRole="AdminSucursal" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_documento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="numero_documento" Type="Int64" Nullable="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="celular" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_AdminSucursal_Clientes" FromRole="Clientes" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTablasReferencia" Relationship="DAPP_BDModel.FK_AdminTablasReferencia_Clientes" FromRole="Clientes" ToRole="AdminTablasReferencia" />
+    <NavigationProperty Name="AdminTipoDocumento" Relationship="DAPP_BDModel.FK_AdminTipoDocumento_Clientes" FromRole="Clientes" ToRole="AdminTipoDocumento" />
+    <NavigationProperty Name="Areas" Relationship="DAPP_BDModel.FK_Areas_Clientes" FromRole="Clientes" ToRole="Areas" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_Clientes" FromRole="Clientes" ToRole="Documentos" />
+    <NavigationProperty Name="Procesos" Relationship="DAPP_BDModel.FK_Procesos_Clientes" FromRole="Clientes" ToRole="Procesos" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_Terceros_Clientes" FromRole="Clientes" ToRole="Terceros" />
+    <NavigationProperty Name="Usuario_Cliente" Relationship="DAPP_BDModel.FK_Usuario_Cliente_Clientes" FromRole="Clientes" ToRole="Usuario_Cliente" />
+  </EntityType>
+  <EntityType Name="Documentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_tipo" Type="Int64" Nullable="false" />
+    <Property Name="id_ubicacion" Type="Int64" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="alias" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="folios" Type="Int64" />
+    <Property Name="extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechadoc" Type="DateTime" Precision="3" />
+    <Property Name="FGestion" Type="DateTime" Precision="3" />
+    <Property Name="FCentral" Type="DateTime" Precision="3" />
+    <Property Name="FHistorico" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Documentos_AdminSucursal" FromRole="Documentos" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTipoDocumento" Relationship="DAPP_BDModel.FK_Documentos_AdminTipoDocumento" FromRole="Documentos" ToRole="AdminTipoDocumento" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_Documentos_Clientes" FromRole="Documentos" ToRole="Clientes" />
+    <NavigationProperty Name="Documentos_Area" Relationship="DAPP_BDModel.FK_Documentos_Area_Documentos" FromRole="Documentos" ToRole="Documentos_Area" />
+    <NavigationProperty Name="Documentos_Terceros" Relationship="DAPP_BDModel.FK_Documentos_Terceros_Documentos" FromRole="Documentos" ToRole="Documentos_Terceros" />
+    <NavigationProperty Name="Ubicaciones" Relationship="DAPP_BDModel.FK_Documentos_Ubicacion" FromRole="Documentos" ToRole="Ubicaciones" />
+    <NavigationProperty Name="Version_Documento" Relationship="DAPP_BDModel.FK_Version_Documento_Documentos" FromRole="Documentos" ToRole="Version_Documento" />
+  </EntityType>
+  <EntityType Name="Documentos_Area">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_area" Type="Int64" Nullable="false" />
+    <Property Name="id_documento" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Areas" Relationship="DAPP_BDModel.FK_Documentos_Area_Areas" FromRole="Documentos_Area" ToRole="Areas" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_Area_Documentos" FromRole="Documentos_Area" ToRole="Documentos" />
+  </EntityType>
+  <EntityType Name="Documentos_Requeridos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_tipo_documento" Type="Int64" Nullable="false" />
+    <Property Name="id_proceso" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="AdminTipoDocumento" Relationship="DAPP_BDModel.FK_Documentos_Requeridos_AdminTipoDocumento" FromRole="Documentos_Requeridos" ToRole="AdminTipoDocumento" />
+    <NavigationProperty Name="Procesos" Relationship="DAPP_BDModel.FK_Documentos_Requeridos_Procesos" FromRole="Documentos_Requeridos" ToRole="Procesos" />
+  </EntityType>
+  <EntityType Name="Documentos_Terceros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_tercero" Type="Int64" Nullable="false" />
+    <Property Name="id_documento" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_Terceros_Documentos" FromRole="Documentos_Terceros" ToRole="Documentos" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_Documentos_Terceros_Terceros" FromRole="Documentos_Terceros" ToRole="Terceros" />
+  </EntityType>
+  <EntityType Name="Procesos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="proceso" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_Procesos_Clientes" FromRole="Procesos" ToRole="Clientes" />
+    <NavigationProperty Name="Documentos_Requeridos" Relationship="DAPP_BDModel.FK_Documentos_Requeridos_Procesos" FromRole="Procesos" ToRole="Documentos_Requeridos" />
+  </EntityType>
+  <EntityType Name="SucursalTerceros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tercero" Type="Int64" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AdminContacto" Relationship="DAPP_BDModel.FK_AdminContacto_SucursalTerceros" FromRole="SucursalTerceros" ToRole="AdminContacto" />
+    <NavigationProperty Name="SucursalTerceros1" Relationship="DAPP_BDModel.FK_SucursalTerceros_SucursalTerceros" FromRole="SucursalTerceros" ToRole="SucursalTerceros1" />
+    <NavigationProperty Name="SucursalTerceros2" Relationship="DAPP_BDModel.FK_SucursalTerceros_SucursalTerceros" FromRole="SucursalTerceros1" ToRole="SucursalTerceros" />
+    <NavigationProperty Name="Terceros" Relationship="DAPP_BDModel.FK_SucursalTerceros_Terceros" FromRole="SucursalTerceros" ToRole="Terceros" />
+  </EntityType>
+  <EntityType Name="Terceros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_documento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="numero_documento" Type="Int64" Nullable="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="celular" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="id_tipo" Type="Int64" />
+    <Property Name="id_actividad" Type="Int64" />
+    <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AdminActividad" Relationship="DAPP_BDModel.FK_Terceros_AdminActividad" FromRole="Terceros" ToRole="AdminActividad" />
+    <NavigationProperty Name="AdminContacto" Relationship="DAPP_BDModel.FK_AdminContacto_Terceros" FromRole="Terceros" ToRole="AdminContacto" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Terceros_AdminSucursal" FromRole="Terceros" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTipoTercero" Relationship="DAPP_BDModel.FK_Terceros_AdminTipoTercero" FromRole="Terceros" ToRole="AdminTipoTercero" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_Terceros_Clientes" FromRole="Terceros" ToRole="Clientes" />
+    <NavigationProperty Name="Documentos_Terceros" Relationship="DAPP_BDModel.FK_Documentos_Terceros_Terceros" FromRole="Terceros" ToRole="Documentos_Terceros" />
+    <NavigationProperty Name="SucursalTerceros" Relationship="DAPP_BDModel.FK_SucursalTerceros_Terceros" FromRole="Terceros" ToRole="SucursalTerceros" />
+  </EntityType>
+  <EntityType Name="TipoDoc_TablaRetencion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gestion" Type="Int32" Nullable="false" />
+    <Property Name="central" Type="Int32" Nullable="false" />
+    <Property Name="CT" Type="Boolean" Nullable="false" />
+    <Property Name="E" Type="Boolean" Nullable="false" />
+    <Property Name="M" Type="Boolean" Nullable="false" />
+    <Property Name="S" Type="Boolean" Nullable="false" />
+    <Property Name="procedimientos" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_tablaret" Type="Int64" Nullable="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoDocumento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="historico" Type="Int32" />
+    <Property Name="Original" Type="Boolean" />
+    <Property Name="D" Type="Boolean" />
+    <NavigationProperty Name="AdminTablasReferencia" Relationship="DAPP_BDModel.FK_TipoDoc_TablaRetencion_AdminTablasReferencia" FromRole="TipoDoc_TablaRetencion" ToRole="AdminTablasReferencia" />
+  </EntityType>
+  <EntityType Name="Ubicaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="ubicacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_tipo" Type="Int64" Nullable="false" />
+    <Property Name="id_sucursal" Type="Int64" Nullable="false" />
+    <Property Name="id_ubicacion" Type="Int64" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Capacidad" Type="Int32" />
+    <Property Name="Archivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Ubicaciones_AdminSucursal" FromRole="Ubicaciones" ToRole="AdminSucursal" />
+    <NavigationProperty Name="AdminTipoUbicacion" Relationship="DAPP_BDModel.FK_Ubicacion_AdminTipoUbicacion" FromRole="Ubicaciones" ToRole="AdminTipoUbicacion" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Documentos_Ubicacion" FromRole="Ubicaciones" ToRole="Documentos" />
+    <NavigationProperty Name="Ubicaciones1" Relationship="DAPP_BDModel.FK_Ubicacion_Ubicacion" FromRole="Ubicaciones" ToRole="Ubicaciones1" />
+    <NavigationProperty Name="Ubicaciones2" Relationship="DAPP_BDModel.FK_Ubicacion_Ubicacion" FromRole="Ubicaciones1" ToRole="Ubicaciones" />
+  </EntityType>
+  <EntityType Name="Usuario_Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_usuario" Type="Int64" Nullable="false" />
+    <Property Name="id_cliente" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int64" />
+    <NavigationProperty Name="AdminSucursal" Relationship="DAPP_BDModel.FK_Usuario_Cliente_AdminSucursal" FromRole="Usuario_Cliente" ToRole="AdminSucursal" />
+    <NavigationProperty Name="Clientes" Relationship="DAPP_BDModel.FK_Usuario_Cliente_Clientes" FromRole="Usuario_Cliente" ToRole="Clientes" />
+    <NavigationProperty Name="Usuarios" Relationship="DAPP_BDModel.FK_Usuario_Compania_Usuarios" FromRole="Usuario_Cliente" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bloqueado" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_password" Type="DateTime" Precision="3" />
+    <Property Name="id_perfil" Type="Int16" Nullable="false" />
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="AdminPerfiles" Relationship="DAPP_BDModel.FK_Usuarios_AdminPerfiles" FromRole="Usuarios" ToRole="AdminPerfiles" />
+    <NavigationProperty Name="Usuario_Cliente" Relationship="DAPP_BDModel.FK_Usuario_Compania_Usuarios" FromRole="Usuarios" ToRole="Usuario_Cliente" />
+  </EntityType>
+  <EntityType Name="Version_Documento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="version" Type="Int32" Nullable="false" />
+    <Property Name="archivo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_documento" Type="Int64" Nullable="false" />
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Documentos" Relationship="DAPP_BDModel.FK_Version_Documento_Documentos" FromRole="Version_Documento" ToRole="Documentos" />
+  </EntityType>
+  <Association Name="FK_AdminActividad_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminActividad" Role="AdminActividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminActividad">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Terceros_AdminActividad">
+    <End Type="DAPP_BDModel.AdminActividad" Role="AdminActividad" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminActividad">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Terceros">
+        <PropertyRef Name="id_actividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminClaseDocumento_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminClaseDocumento" Role="AdminClaseDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminClaseDocumento">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoDocumento_AdminClaseDocumento">
+    <End Type="DAPP_BDModel.AdminClaseDocumento" Role="AdminClaseDocumento" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminTipoDocumento" Role="AdminTipoDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminClaseDocumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminTipoDocumento">
+        <PropertyRef Name="id_clase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminContacto_SucursalTerceros">
+    <End Type="DAPP_BDModel.SucursalTerceros" Role="SucursalTerceros" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminContacto" Role="AdminContacto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SucursalTerceros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminContacto">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminContacto_Terceros">
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminContacto" Role="AdminContacto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terceros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminContacto">
+        <PropertyRef Name="id_tercero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminPerfiles_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminPerfiles" Role="AdminPerfiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminPerfiles">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_AdminPerfiles">
+    <End Type="DAPP_BDModel.AdminPerfiles" Role="AdminPerfiles" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminPerfiles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="id_perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminSucursal_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminSucursal">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTablasReferencia_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminTablasReferencia" Role="AdminTablasReferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminTablasReferencia">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoDocumento_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminTipoDocumento" Role="AdminTipoDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminTipoDocumento">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoTercero_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminTipoTercero" Role="AdminTipoTercero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminTipoTercero">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoUbicacion_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminTipoUbicacion" Role="AdminTipoUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminTipoUbicacion">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Areas" Role="Areas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Areas">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auditoria_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Auditoria" Role="Auditoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Auditoria">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Terceros_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Terceros">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicaciones_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Ubicaciones" Role="Ubicaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicaciones">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cliente_AdminSucursal">
+    <End Type="DAPP_BDModel.AdminSucursal" Role="AdminSucursal" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Usuario_Cliente" Role="Usuario_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminSucursal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario_Cliente">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTablasReferencia_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminTablasReferencia" Role="AdminTablasReferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminTablasReferencia">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoDoc_TablaRetencion_AdminTablasReferencia">
+    <End Type="DAPP_BDModel.AdminTablasReferencia" Role="AdminTablasReferencia" Multiplicity="1" />
+    <End Type="DAPP_BDModel.TipoDoc_TablaRetencion" Role="TipoDoc_TablaRetencion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTablasReferencia">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoDoc_TablaRetencion">
+        <PropertyRef Name="id_tablaret" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoDocumento_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.AdminTipoDocumento" Role="AdminTipoDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminTipoDocumento">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_AdminTipoDocumento">
+    <End Type="DAPP_BDModel.AdminTipoDocumento" Role="AdminTipoDocumento" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTipoDocumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="id_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Requeridos_AdminTipoDocumento">
+    <End Type="DAPP_BDModel.AdminTipoDocumento" Role="AdminTipoDocumento" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Requeridos" Role="Documentos_Requeridos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTipoDocumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Requeridos">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Terceros_AdminTipoTercero">
+    <End Type="DAPP_BDModel.AdminTipoTercero" Role="AdminTipoTercero" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTipoTercero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Terceros">
+        <PropertyRef Name="id_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AdminTipoUbicacion_AdminTipoUbicacion">
+    <End Type="DAPP_BDModel.AdminTipoUbicacion" Role="AdminTipoUbicacion" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.AdminTipoUbicacion" Role="AdminTipoUbicacion1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTipoUbicacion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AdminTipoUbicacion1">
+        <PropertyRef Name="id_tipoCapacidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_AdminTipoUbicacion">
+    <End Type="DAPP_BDModel.AdminTipoUbicacion" Role="AdminTipoUbicacion" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Ubicaciones" Role="Ubicaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTipoUbicacion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ubicaciones">
+        <PropertyRef Name="id_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_Areas">
+    <End Type="DAPP_BDModel.Areas" Role="Areas" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Areas" Role="Areas1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Areas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Areas1">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Areas_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Areas" Role="Areas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Areas">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Area_Areas">
+    <End Type="DAPP_BDModel.Areas" Role="Areas" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Area" Role="Documentos_Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Areas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Area">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Procesos_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Procesos" Role="Procesos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Procesos">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Terceros_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Terceros">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cliente_Clientes">
+    <End Type="DAPP_BDModel.Clientes" Role="Clientes" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Usuario_Cliente" Role="Usuario_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario_Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Area_Documentos">
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Area" Role="Documentos_Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Area">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Terceros_Documentos">
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Terceros" Role="Documentos_Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Terceros">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Ubicacion">
+    <End Type="DAPP_BDModel.Ubicaciones" Role="Ubicaciones" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ubicaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos">
+        <PropertyRef Name="id_ubicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Version_Documento_Documentos">
+    <End Type="DAPP_BDModel.Documentos" Role="Documentos" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Version_Documento" Role="Version_Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Version_Documento">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Requeridos_Procesos">
+    <End Type="DAPP_BDModel.Procesos" Role="Procesos" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Requeridos" Role="Documentos_Requeridos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Procesos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Requeridos">
+        <PropertyRef Name="id_proceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documentos_Terceros_Terceros">
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Documentos_Terceros" Role="Documentos_Terceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terceros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Documentos_Terceros">
+        <PropertyRef Name="id_tercero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SucursalTerceros_SucursalTerceros">
+    <End Type="DAPP_BDModel.SucursalTerceros" Role="SucursalTerceros" Multiplicity="1" />
+    <End Type="DAPP_BDModel.SucursalTerceros" Role="SucursalTerceros1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SucursalTerceros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SucursalTerceros1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SucursalTerceros_Terceros">
+    <End Type="DAPP_BDModel.Terceros" Role="Terceros" Multiplicity="1" />
+    <End Type="DAPP_BDModel.SucursalTerceros" Role="SucursalTerceros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terceros">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SucursalTerceros">
+        <PropertyRef Name="id_tercero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Ubicacion">
+    <End Type="DAPP_BDModel.Ubicaciones" Role="Ubicaciones" Multiplicity="0..1" />
+    <End Type="DAPP_BDModel.Ubicaciones" Role="Ubicaciones1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ubicaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ubicaciones1">
+        <PropertyRef Name="id_ubicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Compania_Usuarios">
+    <End Type="DAPP_BDModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+    <End Type="DAPP_BDModel.Usuario_Cliente" Role="Usuario_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuario_Cliente">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

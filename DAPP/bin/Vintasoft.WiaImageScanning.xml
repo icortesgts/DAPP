@@ -1,0 +1,3411 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vintasoft.WiaImageScanning</name>
+    </assembly>
+    <members>
+        <member name="T:Vintasoft.WiaImageScanning.WiaAcquiredImage">
+            <summary>
+            Represents an image that is acquired from WIA device.
+            </summary>
+            <example>This C#/VB.NET code shows how to acquire images from WIA device and process images.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires images from WIA image scanning device and processes images.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireImagesFromWiaDeviceAndProcessImages()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+            
+                                ' process acquired image
+                                ProcessWiaAcquiredImage(acquiredImage)
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            
+            ''' &lt;summary&gt;
+            ''' Processes image, which is acquired from WIA device.
+            ''' &lt;/summary&gt;
+            Private Sub ProcessWiaAcquiredImage(acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage)
+                Try
+                    ' subscribe to the processing events
+                    AddHandler acquiredImage.Processing, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs)(AddressOf acquiredImage_Processing)
+                    AddHandler acquiredImage.Progress, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs)(AddressOf acquiredImage_Progress)
+                    AddHandler acquiredImage.Processed, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs)(AddressOf acquiredImage_Processed)
+            
+                    ' despeckle image
+                    acquiredImage.Despeckle(8, 25, 30, 400)
+                    ' deskew image
+                    acquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor.AutoDetect, 1, 1)
+                    ' detect border of image
+                    acquiredImage.DetectBorder(5)
+                Catch ex As System.Exception
+                    System.Console.WriteLine("Error: " &amp; ex.Message)
+                Finally
+                    ' unsubscribe from the processing events
+                    RemoveHandler acquiredImage.Processing, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs)(AddressOf acquiredImage_Processing)
+                    RemoveHandler acquiredImage.Progress, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs)(AddressOf acquiredImage_Progress)
+                    RemoveHandler acquiredImage.Processed, New System.EventHandler(Of Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs)(AddressOf acquiredImage_Processed)
+                End Try
+            End Sub
+            
+            ''' &lt;summary&gt;
+            ''' Image processing is started.
+            ''' &lt;/summary&gt;
+            Private Sub acquiredImage_Processing(sender As Object, e As Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs)
+                System.Console.Write(e.Action.ToString() &amp; " ")
+            End Sub
+            
+            ''' &lt;summary&gt;
+            ''' Image processing is in progress.
+            ''' &lt;/summary&gt;
+            Private Sub acquiredImage_Progress(sender As Object, e As Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs)
+                System.Console.Write(".")
+            End Sub
+            
+            ''' &lt;summary&gt;
+            ''' Image processing is finished.
+            ''' &lt;/summary&gt;
+            Private Sub acquiredImage_Processed(sender As Object, e As Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs)
+                System.Console.WriteLine(" finished")
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires images from WIA image scanning device and processes images.
+            /// &lt;/summary&gt;
+            public void AcquireImagesFromWiaDeviceAndProcessImages()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+            
+                                // process acquired image
+                                ProcessWiaAcquiredImage(acquiredImage);
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            
+            /// &lt;summary&gt;
+            /// Processes image, which is acquired from WIA device.
+            /// &lt;/summary&gt;
+            private void ProcessWiaAcquiredImage(Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage)
+            {
+                try
+                {
+                    // subscribe to the processing events
+                    acquiredImage.Processing += new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs&gt;(acquiredImage_Processing);
+                    acquiredImage.Progress += new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs&gt;(acquiredImage_Progress);
+                    acquiredImage.Processed += new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs&gt;(acquiredImage_Processed);
+            
+                    // despeckle image
+                    acquiredImage.Despeckle(8, 25, 30, 400);
+                    // deskew image
+                    acquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor.AutoDetect, 1, 1);
+                    // detect border of image
+                    acquiredImage.DetectBorder(5);
+                }
+                catch (System.Exception ex)
+                {
+                    System.Console.WriteLine("Error: " + ex.Message);
+                }
+                finally
+                {
+                    // unsubscribe from the processing events
+                    acquiredImage.Processing -= new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs&gt;(acquiredImage_Processing);
+                    acquiredImage.Progress -= new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs&gt;(acquiredImage_Progress);
+                    acquiredImage.Processed -= new System.EventHandler&lt;Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs&gt;(acquiredImage_Processed);
+                }
+            }
+            
+            /// &lt;summary&gt;
+            /// Image processing is started.
+            /// &lt;/summary&gt;
+            private void acquiredImage_Processing(object sender, Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs e)
+            {
+                System.Console.Write(e.Action.ToString() + " ");
+            }
+            
+            /// &lt;summary&gt;
+            /// Image processing is in progress.
+            /// &lt;/summary&gt;
+            private void acquiredImage_Progress(object sender, Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs e)
+            {
+                System.Console.Write(".");
+            }
+            
+            /// &lt;summary&gt;
+            /// Image processing is finished.
+            /// &lt;/summary&gt;
+            private void acquiredImage_Processed(object sender, Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs e)
+            {
+                System.Console.WriteLine(" finished");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaAcquiredImage.Width">
+            <summary>
+            Gets an image width.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaAcquiredImage.Height">
+            <summary>
+            Gets an image height.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaAcquiredImage.BitDepth">
+            <summary>
+            Gets a number of bits per sample.
+            </summary>
+            <value>
+            Possible values are 1, 8 or 16.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaAcquiredImage.BitPerPixel">
+            <summary>
+            Gets a number of bits per pixel.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaAcquiredImage.Resolution">
+            <summary>
+            Gets an image resolution.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String)">
+            <summary>
+            Saves this image to a file.
+            </summary>
+            <param name="filename">Name of file, where image must be saved.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>filename</i> is <b>null</b>.</exception>
+            <remarks>
+            Image can be:<br />
+            - saved as image file (BMP, JPEG, PNG, TIFF)<br />
+            - added to multipage TIFF file<br />
+            - saved into new PDF or PDF/A document<br />
+            - added to existing PDF or PDF/A document<br />
+            <br />
+            Available compressions for images saved into TIFF file: <br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Available compressions for images saved into PDF document:<br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Image can be added to PDF document compatible with version 1.4 or earlier of PDF standard.<br />
+            <br />
+            Image will be saved as BMP file if path has a 'bmp' extension.<br />
+            Image will be saved as PNG file if path has a 'png' extension.<br />
+            Image will be saved as new TIFF file or added to existing TIFF file if path has a 'tif' or 'tiff' extension.<br />
+            Image will be saved into new PDF file or added to existing PDF file if path has a 'pdf' extension.<br />
+            Image will be saved as JPEG file for all other extensions.<br />
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <example>This C#/VB.NET code shows how to acquire image from WIA device and save image to a JPEG file.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires image from WIA device and saves image to a JPEG file.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireImageFromWiaDeviceAndSaveImageToJpegFile()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+            
+                                ' create JPEG encoder settings
+                                Dim jpegEncoderSettings As New Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings()
+                                ' specify quality for JPEG image
+                                jpegEncoderSettings.JpegQuality = 70
+            
+                                ' process acquired image
+                                acquiredImage.Save("test.jpg", jpegEncoderSettings)
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires image from WIA device and saves image to a JPEG file.
+            /// &lt;/summary&gt;
+            public void AcquireImageFromWiaDeviceAndSaveImageToJpegFile()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+            
+                                // create JPEG encoder settings
+                                Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings jpegEncoderSettings =
+                                    new Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings();
+                                // specify quality for JPEG image
+                                jpegEncoderSettings.JpegQuality = 70;
+            
+                                // process acquired image
+                                acquiredImage.Save("test.jpg", jpegEncoderSettings);
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)">
+            <summary>
+            Saves this image to a file.
+            </summary>
+            <param name="filename">Name of file where image must be saved.</param>
+            <param name="encoderSettings">Image encoder settings.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>filename</i> is <b>null</b>.</exception>
+            <remarks>
+            Image can be:<br />
+            - saved as image file (BMP, JPEG, PNG, TIFF)<br />
+            - added to multipage TIFF file<br />
+            - saved into new PDF or PDF/A document<br />
+            - added to existing PDF or PDF/A document<br />
+            <br />
+            Available compressions for images saved into TIFF file: <br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Available compressions for images saved into PDF document:<br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Image can be added to a PDF document compatible with version 1.4 or
+            earlier of PDF standard.<br />
+            <br />
+            <br />
+            Image will be saved as BMP file if
+            <ul>
+            <li><i>encoderSettings</i> is <b>null</b> and <i>filename</i> contains 'bmp' extension</li>
+            <li><i>encoderSettings</i> is not <b>null</b> and <i>encoderSettings</i> is an
+            instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaBmpEncoderSettings" /></li>
+            </ul>
+            <br />
+            Image will be saved as JPEG file if
+            <ul>
+            <li><i>encoderSettings</i> is <b>null</b> and <i>filename</i> contains not
+            'bmp', 'png', 'pdf', 'tif' and 'tiff' extension</li>
+            <li><i>encoderSettings</i> is not <b>null</b> and <i>encoderSettings</i> is an
+            instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings" /></li>
+            </ul>
+            <br />
+            Image will be saved as PDF file if
+            <ul>
+            <li><i>encoderSettings</i> is <b>null</b> and <i>filename</i> contains 'pdf' extension</li>
+            <li><i>encoderSettings</i> is not <b>null</b> and <i>encoderSettings</i> is an
+            instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings" /></li>
+            </ul>
+            <br />
+            Image will be saved as PNG file if
+            <ul>
+            <li><i>encoderSettings</i> is <b>null</b> and <i>filename</i> contains 'png' extension</li>
+            <li><i>encoderSettings</i> is not <b>null</b> and <i>encoderSettings</i> is an
+            instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPngEncoderSettings" /></li>
+            </ul>
+            <br />
+            Image will be saved as TIFF file if
+            <ul>
+            <li><i>encoderSettings</i> is <b>null</b> and <i>filename</i> contains
+            'tif' or 'tiff' extension</li>
+            <li><i>encoderSettings</i> is not <b>null</b> and <i>encoderSettings</i> is an
+            instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings" /></li>
+            </ul>
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String)" />
+            <example>This C#/VB.NET code shows how to acquire images from WIA device and save images to a TIFF file.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires images from WIA device and saves images to a TIFF file.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireImagesFromWiaDeviceAndSaveImagesToTiffFile()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+            
+                                ' create TIFF encoder settings
+                                Dim tiffEncoderSettings As New Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings()
+                                ' specify that image must be added to a TIFF file
+                                tiffEncoderSettings.TiffMultiPage = True
+                                ' specify image must be compressed with LZW compression
+                                tiffEncoderSettings.TiffCompression = Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.LZW
+            
+                                ' process acquired image
+                                acquiredImage.Save("test.tif", tiffEncoderSettings)
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires images from WIA device and saves images to a TIFF file.
+            /// &lt;/summary&gt;
+            public void AcquireImagesFromWiaDeviceAndSaveImagesToTiffFile()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+            
+                                // create TIFF encoder settings
+                                Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings tiffEncoderSettings =
+                                    new Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings();
+                                // specify that image must be added to a TIFF file
+                                tiffEncoderSettings.TiffMultiPage = true;
+                                // specify image must be compressed with LZW compression
+                                tiffEncoderSettings.TiffCompression = Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.LZW;
+            
+                                // process acquired image
+                                acquiredImage.Save("test.tif", tiffEncoderSettings);
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)">
+            <summary>
+            Saves this image to a specified stream in the specified format and
+            with specified encoder settings.
+            </summary>
+            <param name="stream">The <see cref="T:System.IO.Stream" /> where the image must be saved.</param>
+            <param name="encoderSettings">Encoder settings.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>stream</i> is <b>null</b> or
+            <i>encoderSettings</i> is <b>null</b>.</exception>
+            <remarks>
+            Image can be:<br />
+            - saved as image file (BMP, JPEG, PNG, TIFF)<br />
+            - added to multipage TIFF file<br />
+            - saved into new PDF or PDF/A document<br />
+            - added to existing PDF or PDF/A document<br />
+            <br />
+            Available compressions for images saved into TIFF file: <br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Available compressions for images saved into PDF document:<br />
+            - without compression<br />
+            - CCITT Group 4 Fax compression<br />
+            - LZW compression<br />
+            - ZIP compression<br />
+            - JPEG compression<br />
+            <br />
+            Image can be added to a PDF document compatible with version 1.4 or
+            earlier of PDF standard.<br />
+            <br />
+            <br />
+            Image will be saved as BMP file if <i>encoderSettings</i> is not <b>null</b> and
+            <i>encoderSettings</i> is an /// instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaBmpEncoderSettings" />.<br />
+            <br />
+            Image will be saved as JPEG file if <i>encoderSettings</i> is not <b>null</b> and
+            <i>encoderSettings</i> is an instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings" />.<br />
+            <br />
+            Image will be saved as PDF file if <i>encoderSettings</i> is not <b>null</b> and
+            <i>encoderSettings</i> is an instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings" />.<br />
+            <br />
+            Image will be saved as PNG file if <i>encoderSettings</i> is not <b>null</b> and
+            <i>encoderSettings</i> is an instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPngEncoderSettings" />.<br />
+            <br />
+            Image will be saved as TIFF file if <i>encoderSettings</i> is not <b>null</b> and
+            <i>encoderSettings</i> is an instance of type <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings" />.<br />
+            </remarks>
+            <example>This C#/VB.NET code shows how to acquire images from WIA device and save images to a PDF file.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires images from WIA device and saves images to a PDF file.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireImagesFromWiaDeviceAndSaveImagesToPdfFile()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+            
+                                ' create TIFF encoder settings
+                                Dim pdfEncoderSettings As New Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings()
+                                ' specify that image must be added to a PDF file
+                                pdfEncoderSettings.PdfMultiPage = True
+                                ' specify image must be compressed with ZIP compression
+                                pdfEncoderSettings.PdfImageCompression = Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.ZIP
+            
+                                ' process acquired image
+                                acquiredImage.Save("test.pdf", pdfEncoderSettings)
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires images from WIA device and saves images to a PDF file.
+            /// &lt;/summary&gt;
+            public void AcquireImagesFromWiaDeviceAndSaveImagesToPdfFile()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+            
+                                // create TIFF encoder settings
+                                Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings pdfEncoderSettings =
+                                    new Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings();
+                                // specify that image must be added to a PDF file
+                                pdfEncoderSettings.PdfMultiPage = true;
+                                // specify image must be compressed with ZIP compression
+                                pdfEncoderSettings.PdfImageCompression = Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.ZIP;
+            
+                                // process acquired image
+                                acquiredImage.Save("test.pdf", pdfEncoderSettings);
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsVintasoftBitmap">
+            <summary>
+            Returns this image as <see cref="T:Vintasoft.Imaging.VintasoftBitmap" /> object.
+            </summary>
+            <returns>This image as <see cref="T:Vintasoft.Imaging.VintasoftBitmap" />.</returns>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)">
+            <summary>
+            Returns this image as Base64-string.
+            </summary>
+            <param name="encoderSettings">Encoder settings.</param>
+            <returns>A Base64-string.</returns>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetThumbnailAsVintasoftBitmap(System.Int32,System.Int32)">
+            <summary>
+            Returns a thumbnail image as <see cref="T:Vintasoft.Imaging.VintasoftBitmap" /> object.
+            </summary>
+            <param name="thumbnailWidth">Thumbnail width.</param>
+            <param name="thumbnailHeight">Thumbnail height.</param>
+            <returns>Thumbnail image as <see cref="T:Vintasoft.Imaging.VintasoftBitmap" /> object.</returns>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetThumbnailAsBase64String(System.Int32,System.Int32)">
+            <summary>
+            Returns a thumbnail image as Base64-string.
+            </summary>
+            <param name="thumbnailWidth">Thumbnail width.</param>
+            <param name="thumbnailHeight">Thumbnail height.</param>
+            <returns>Thumbnail image as Base64-string.</returns>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.IsBlank(System.Single,System.Single@)">
+            <summary>
+            Returns a value indicating whether this image is a blank image.
+            </summary>
+            <param name="maxNoiseLevel">Maximal possible value of noise in image in percents.
+            Optimal value is 0.01 (%).</param>
+            <param name="currentNoiseLevel">Current noise value in image. This value will be set
+            after execution of the method.</param>
+            <returns>
+            <b>true</b> if image is a blank image; otherwise, <b>false</b>.
+            </returns>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Invert">
+            <summary>
+            Inverts the image.
+            </summary>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Rotate(System.Single,Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor)">
+            <summary>
+            Rotates this image to specified angle.
+            </summary>
+            <param name="angle">Rotation angle.</param>
+            <param name="borderColor">Border color.</param>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.ChangeBrightness(System.Int32)">
+            <summary>
+            Changes the brightness of the image.
+            </summary>
+            <param name="brightness">Brightness value. Possible values:
+            <b>from -100 to 0</b> - decrease brightness,
+            <b>0</b> - no effect,
+            <b>from 0 to 100</b> - increase brightness.
+            </param>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.ChangeContrast(System.Int32)">
+            <summary>
+            Changes the contrast of the image.
+            </summary>
+            <param name="contrast">Contrast value. Possible values:
+            <b>from -100 to 0</b> - decrease contrast,
+            <b>0</b> - no effect,
+            <b>from 0 to 100</b> - increase contrast.
+            </param>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Crop(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Crops specified region of an image.
+            </summary>
+            <param name="x">The x-coordinate of the upper-left corner of the crop rectangle.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the crop rectangle.</param>
+            <param name="width">The width of the crop rectangle.</param>
+            <param name="height">The height of the crop rectangle.</param>
+            <returns>
+            <b>true</b> if image is cropped;
+            <b>false</b> if image is not cropped.
+            </returns>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.ResizeCanvas(System.Int32,System.Int32,Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)">
+            <summary>
+            Changes size of image canvas.
+            </summary>
+            <param name="canvasWidth">Width of the image canvas.</param>
+            <param name="canvasHeight">Height of the image canvas.</param>
+            <param name="canvasColor">Color of the image canvas.</param>
+            <param name="imageXPosition">X position of the original image within new image.</param>
+            <param name="imageYPosition">Y position of the original image within new image.</param>
+            <returns>
+            <b>true</b> if the image canvas is changed;
+            <b>false</b> if the image canvas is not changed.
+            </returns>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Removes noise from image.
+            </summary>
+            <param name="level1">Maximal quantity of pixels in small noise. Possible values: 0 - 100.
+            Default value is 8. What is "small noise" see below.</param>
+            <param name="level2">Maximal quantity of pixels in medium noise. Possible values: 0 - 100.
+            Default value is 25. What is "medium noise" see below.</param>
+            <param name="radius">Radius of area around medium noise in which there are no "good objects".
+            Possible values: 0 - 100. Default value is 30. What is "good objects" see below.</param>
+            <param name="level3">Maximal quantity of pixels in "border" noise. Possible values: 0 - 3000.
+            Default value is 400. What is "border noise" see below.</param>
+            <remarks>
+            This method removes noise from image. Current algorithm removes three types of noise:<br />
+            <br />
+            1. Small noise - a set of pixels (non background pixels) with quantity of pixels less than value
+            of <i>level1</i> parameter. This set of pixels will be replaced to background pixels.<br />
+            <br />
+            2. Medium noise - a set of pixels (non background pixels) with quantity of pixels less than value
+            of <i>level2</i> parameter. This set of pixels will be replaced to background pixels if around
+            this set of  pixels in a region with radius of value of <i>radius</i> parameter there is no
+            "good objects". "Good object" - not a noise.<br />
+            <br />
+            3. "Border" noise - a set of pixels (non background pixels) with quantity of pixels less
+            than value of <i>level3</i> parameter. This set of pixels will be replaced to background
+            pixels if at least one pixel from this set of pixels is located on an image border.<br />
+            <br />
+            Here is <b>a "good" sequence of operations for image processing</b>:<br />
+            1. Despeckle an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)" /> method)<br />
+            2. Deskew an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)" /> method)<br />
+            3. Detect image border (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" /> method)<br />
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" />
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)">
+            <summary>
+            Deskew an image, i.e. detects a correct position of image.
+            </summary>
+            <param name="borderColor">Free space around rotated image will be filled with this color.</param>
+            <param name="scanIntervalX">Specifies scan interval for X axis. Recommended value is 1.</param>
+            <param name="scanIntervalY">Specifies scan interval for X axis. Recommended value is 1.</param>
+            <remarks>
+            Here is <b>a "good" sequence of operations for image processing</b>:<br />
+            1. Despeckle an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)" /> method)<br />
+            2. Deskew an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)" /> method)<br />
+            3. Detect image border (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" /> method)<br />
+            <br />
+            Possible values for <em>scanIntervalX</em> and <em>scanIntervalY</em> parameters: 1 - every column
+            (row) will be scanned, 2 - every second column (row) will be scanned, 3 - every third
+            column (row) will be scanned, and so on. Big values of these parameters may speed
+            up deskewing process, but may worsen results.
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" />
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)">
+            <summary>
+            Detects the border around the image.
+            </summary>
+            <param name="borderSize">Size of border around the image. Possible values: 0 - 100.
+            Default value is 5.</param>
+            <remarks>
+            Here is <b>a "good" sequence of operations for image processing</b>:<br />
+            1. Despeckle an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)" /> method)<br />
+            2. Deskew an image (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Deskew(Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor,System.Int32,System.Int32)" /> method)<br />
+            3. Detect image border (<see cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" /> method)<br />
+            <br />
+            Possible values for <em>scanIntervalX</em> and <em>scanIntervalY</em> parameters: 1 - every column
+            (row) will be scanned, 2 - every second column (row) will be scanned, 3 - every third column
+            (row) will be scanned, and so on. Big values of these parameters may speed up deskewing process,
+            but may worsen results.
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Despeckle(System.Int32,System.Int32,System.Int32,System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.DetectBorder(System.Int32)" />
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Processing">
+            <summary>
+            Occurs when image processing starts.
+            </summary>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Progress">
+            <summary>
+            Occurs when image processing is in progress.
+            </summary>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Processed">
+            <summary>
+            Occurs when image processing ends.
+            </summary>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.ProcessingCanceled">
+            <summary>
+            Occurs when image processing is canceled.
+            </summary>
+            <example>Please see example here: <see cref="T:Vintasoft.WiaImageScanning.WiaAcquiredImage" />.</example>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaImageFileFormat">
+            <summary>
+            Specifies available image file formats for image that can be acquired from WIA device.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImageFileFormat.BMP">
+            <summary>
+            WIA device should returns image as BMP file.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImageFileFormat.PNG">
+            <summary>
+            WIA device should returns image as PNG file.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImageFileFormat.GIF">
+            <summary>
+            WIA device should returns image as GIF file.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImageFileFormat.JPEG">
+            <summary>
+            WIA device should returns image as JPEG file.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImageFileFormat.TIFF">
+            <summary>
+            WIA device should returns image as TIFF file.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaImagePixelType">
+            <summary>
+            Specifies available image pixel types for image that is transferred from WIA device.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImagePixelType.BlackWhite">
+            <summary>
+            Black-white image.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImagePixelType.Grayscale">
+            <summary>
+            Grayscale image.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaImagePixelType.RGB">
+            <summary>
+            RGB image.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaPageSize">
+            <summary>
+            Specifies available page sizes for WIA device.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.A4">
+            <summary>
+            8267 x 11692
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.Letter">
+            <summary>
+            8500 x 11000
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.Custom">
+            <summary>
+            Custom.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.USLegal">
+            <summary>
+            8500 x 14000
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.USLedger">
+            <summary>
+            11000 x 17000
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.USStatement">
+            <summary>
+            5500 x 8500
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.BusinessCard">
+            <summary>
+            3543 x 2165
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A0">
+            <summary>
+            33110 x 46811
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A1">
+            <summary>
+            23385 x 33110
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A2">
+            <summary>
+            16535 x 23385
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A3">
+            <summary>
+            11692 x 16535
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A5">
+            <summary>
+            5826 x 8267
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A6">
+            <summary>
+            4133 x 5826
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A7">
+            <summary>
+            2913 x 4133
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A8">
+            <summary>
+            2047 x 2913
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A9">
+            <summary>
+            1456 x 2047
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_A10">
+            <summary>
+            1023 x 1456
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B0">
+            <summary>
+            39370 x 55669
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B1">
+            <summary>
+            27834 x 39370
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B2">
+            <summary>
+            19685 x 27834
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B3">
+            <summary>
+            13897 x 19685
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B4">
+            <summary>
+            9842 x 13897
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B5">
+            <summary>
+            6929 x 9842
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B6">
+            <summary>
+            4921 x 6929
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B7">
+            <summary>
+            3464 x 4921
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B8">
+            <summary>
+            2440 x 3464
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B9">
+            <summary>
+            1732 x 2440
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_B10">
+            <summary>
+            1220 x 1732
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C0">
+            <summary>
+            36102 x 51062
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C1">
+            <summary>
+            25511 x 36102
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C2">
+            <summary>
+            18031 x 25511
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C3">
+            <summary>
+            12755 x 18031
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C4">
+            <summary>
+            9015 x 12755 (unfolded)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C5">
+            <summary>
+            6377 x 9015 (folded once)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C6">
+            <summary>
+            4488 x 6377 (folded twice)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C7">
+            <summary>
+            3188 x 4488
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C8">
+            <summary>
+            2244 x 3188
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C9">
+            <summary>
+            1574 x 2244
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.ISO_C10">
+            <summary>
+            1102 x 1574
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B0">
+            <summary>
+            40551 x 57322
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B1">
+            <summary>
+            28661 x 40551
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B2">
+            <summary>
+            20275 x 28661
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B3">
+            <summary>
+            14330 x 20275
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B4">
+            <summary>
+            10118 x 14330
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B5">
+            <summary>
+            7165 x 10118
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B6">
+            <summary>
+            5039 x 7165
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B7">
+            <summary>
+            3582 x 5039
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B8">
+            <summary>
+            2519 x 3582
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B9">
+            <summary>
+            1771 x 2519
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_B10">
+            <summary>
+            1259 x 1771
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_2A">
+            <summary>
+            46811 x 66220
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.JIS_4A">
+            <summary>
+            66220 x 93622
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.DIN_2B">
+            <summary>
+            55669 x 78740
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.DIN_4B">
+            <summary>
+            78740 x 111338
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaPageSize.Auto">
+            <summary>
+            Driver automatically detects page size.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaScanRotation">
+            <summary>
+            Specifies available rotations that can be applied to the image after it is scanned, just before the image is transferred to the application.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanRotation.Portrait">
+            <summary>
+            0 degrees.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanRotation.Landscape">
+            <summary>
+            90-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanRotation.Rotation180">
+            <summary>
+            180-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanRotation.Rotation270">
+            <summary>
+            270-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaScanOrientation">
+            <summary>
+            Specifies available orientations of the document relative to the direction of the scan.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanOrientation.Portrait">
+            <summary>
+            0 degrees.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanOrientation.Landscape">
+            <summary>
+            90-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanOrientation.Rotation180">
+            <summary>
+            180-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanOrientation.Rotation270">
+            <summary>
+            270-degree counter-clockwise rotation, relative to the PORTRAIT orientation.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaScanIntent">
+            <summary>
+            Specifies available scan intents for WIA device.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanIntent.None">
+            <summary>
+            Default value. No intent is specified.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanIntent.ColorImage">
+            <summary>
+            The application intends to prepare the device for a color scan.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanIntent.GrayscaleImage">
+            <summary>
+            The application intends to prepare the device for a grayscale scan.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanIntent.Text">
+            <summary>
+            The application intends to prepare the device for scanning text.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.WiaScanIntent.Mask">
+            <summary>
+            Mask for all of the image-type flags.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaDevice">
+            <summary>
+            Represents a WIA device.
+            </summary>
+            <example>This C#/VB.NET code shows how to synchronously acquire images from WIA device.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Synchronously acquire images from WIA image scanner.
+            ''' &lt;/summary&gt;
+            Public Sub SynchronouslyAcquireImagesFromWiaDevice()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim imageIndex As Integer = 0
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                imageIndex += 1
+                                Dim filename As String = String.Format("scannedImage-{0}.png", imageIndex)
+                                If System.IO.File.Exists(filename) Then
+                                    System.IO.File.Delete(filename)
+                                End If
+            
+                                acquiredImage.Save(filename)
+            
+                                System.Console.WriteLine(String.Format("Acquired image is saved to a file '{0}'.", filename))
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Synchronously acquire images from WIA image scanner.
+            /// &lt;/summary&gt;
+            public void SynchronouslyAcquireImagesFromWiaDevice()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    int imageIndex = 0;
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                imageIndex++;
+                                string filename = string.Format("scannedImage-{0}.png", imageIndex);
+                                if (System.IO.File.Exists(filename))
+                                    System.IO.File.Delete(filename);
+            
+                                acquiredImage.Save(filename);
+            
+                                System.Console.WriteLine(string.Format("Acquired image is saved to a file '{0}'.", filename));
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.Name">
+            <summary>
+            Gets the name of this WIA device.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.IsOpened">
+            <summary>
+            Gets a value indicating whether this WIA device is opened.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ShowUI">
+            <summary>
+            Gets or sets a value indicating whether WIA device should show the standard user interface.
+            </summary>
+            <value>
+            <b>True</b> - WIA device should show the standard user interface;<br />
+            <b>false</b> - WIA device should NOT show the standard user interface.<br />
+            Default value is <b>false</b>.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ShowIndicators">
+            <summary>
+            Gets or sets a value indicating whether WIA device should show the progress indicator dialog when images are scanning.
+            </summary>
+            <value>
+            <b>True</b> - WIA device should show the progress indicator dialog when images are scanning;<br />
+            <b>false</b> - WIA device should NOT show the progress indicator dialog when images are scanning.<br />
+            Default value is <b>true</b>.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.HasFlatbed">
+            <summary>
+            Gets or sets a value indicating whether the device has flatbed.
+            </summary>
+            <value>
+            <b>True</b> - device has flatbed;
+            <b>false</b> - device does NOT have flatbed.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.IsFlatbedEnabled">
+            <summary>
+            Gets or sets a value indicating whether the flatbed is enabled.
+            </summary>
+            <value>
+            <b>True</b> - the flatbed is enabled;
+            <b>false</b> - the flatbed is NOT enabled.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.HasFeeder">
+            <summary>
+            Gets or sets a value indicating whether the device has the automatic document feeder.
+            </summary>
+            <value>
+            <b>True</b> - device has automatic document feeder;
+            <b>false</b> - device does NOT have automatic document feeder.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.IsFeederEnabled">
+            <summary>
+            Gets or sets a value indicating whether the automatic document feeder is enabled.
+            </summary>
+            <value>
+            <b>True</b> - the automatic document feeder is enabled;
+            <b>false</b> - the automatic document feeder is NOT enabled.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.HasDuplex">
+            <summary>
+            Gets or sets a value indicating whether the duplex mode is enabled.
+            </summary>
+            <value>
+            <b>True</b> - the duplex mode is enabled;
+            <b>false</b> - the duplex mode is NOT enabled.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.IsDuplexEnabled">
+            <summary>
+            Gets or sets a value indicating whether the device uses the duplex mode.
+            </summary>
+            <value>
+            <b>True</b> - device uses the duplex mode;
+            <b>false</b> - device does not use the duplex mode.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.XferCount">
+            <summary>
+            Gets or set a value that specifies how many images application wants to receive from this WIA device.
+            </summary>
+            <value>
+            Possible values:<br />
+            0 - application wants to receive all available images from the device;<br />
+            N - application wants to receive N images only.<br />
+            Default value is 1.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanAheadPages">
+            <summary>
+            Gets or sets the number of pages, which should be cached in a scanner buffer before sending them to the application.
+            </summary>
+            <value>
+            0 - scan ahead is disabled and no pages will be scanned ahead;
+            N - the maximum number of pages that the document feeder can hold.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.LampWarpUpTime">
+            <summary>
+            Gets the maximum warm-up time, in milliseconds, that the device needs before starting the scanning operation.
+            </summary>
+            <remarks>
+            An application can read this property to determine the maximum warm-up time for this device. It can then present
+            a "waiting for the device to warm up" dialog box, to let the user know that a wait or pause might occur before anything happens.
+            </remarks>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanIntent">
+            <summary>
+            Gets or sets the scan intent for WIA device.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanImagePixelType" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanImagePixelType">
+            <summary>
+            Gets or sets the image data type for for image that should be scanned.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <example>This C#/VB.NET code shows how to acquire black-white images from WIA device.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires black-white images from WIA device.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireBlackWhiteImageFromWiaDevice()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    ' get names of supported scan modes
+                    Dim supportedScanImagePixelTypes As Vintasoft.WiaImageScanning.WiaImagePixelType() = device.GetSupportedImagePixelTypes()
+                    For Each imagePixelType As Vintasoft.WiaImageScanning.WiaImagePixelType In supportedScanImagePixelTypes
+                        If imagePixelType = Vintasoft.WiaImageScanning.WiaImagePixelType.BlackWhite Then
+                            ' specify that black-white images must be acquired from WIA device
+                            device.ScanImagePixelType = imagePixelType
+                            Exit For
+                        End If
+                    Next
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires black-white images from WIA image scanner.
+            /// &lt;/summary&gt;
+            public void AcquireBlackWhiteImageFromWiaDevice()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    // get names of supported scan image pixel types
+                    Vintasoft.WiaImageScanning.WiaImagePixelType[] supportedImagePixelTypes = device.GetSupportedImagePixelTypes();
+                    foreach (Vintasoft.WiaImageScanning.WiaImagePixelType imagePixelType in supportedImagePixelTypes)
+                    {
+                        if (imagePixelType == Vintasoft.WiaImageScanning.WiaImagePixelType.BlackWhite)
+                        {
+                            // specify that black-white images must be acquired from WIA device
+                            device.ScanImagePixelType = imagePixelType;
+                            break;
+                        }
+                    }
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedImagePixelTypes" />
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanIntent" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanOpticalXResolution">
+            <summary>
+            Gets the highest supported horizontal optical resolution in DPI.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanOpticalYResolution">
+            <summary>
+            Gets the highest supported vertical optical resolution in DPI.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanXResolution">
+            <summary>
+            Gets or set the scan X-resolution, in DPI, for this WIA device.
+            </summary>
+            <value>
+            <b>null</b> - information about scan X-resolution is not available; otherwise, scan X-resolution for this WIA device.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanXResolutions" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanYResolution">
+            <summary>
+            Gets or set the scan Y-resolution, in DPI, for this WIA device.
+            </summary>
+            <value>
+            <b>null</b> - information about scan Y-resolution is not available; otherwise, scan Y-resolution for this WIA device.
+            </value>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened or device capabilities are not loaded.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanYResolutions" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanPageSize">
+            <summary>
+            Gets or sets the size of the page that is currently set to be scanned. 
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanPageSizes" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetImageLayout" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.SetImageLayout(Vintasoft.Primitives.VintasoftRect)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanBrightness">
+            <summary>
+            Gets or sets the brightness for image that should be scanned.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanBrightnesses(System.Int32@,System.Int32@,System.Int32@)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanContrast">
+            <summary>
+            Gets or sets the contrast for image that should be scanned.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanContrasts(System.Int32@,System.Int32@,System.Int32@)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanOrientation">
+            <summary>
+            Gets or sets the orientation of document relative to the direction of the scan.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanOrientations" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDevice.ScanRotation">
+            <summary>
+            Gets or sets the rotation that is applied to the image after it is scanned, just before the image is transferred to the application.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanRotations" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.Open">
+            <summary>
+            Opens this WIA device.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is opened already.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.ShowDeviceSettingsDialog">
+            <summary>
+            Displays the WIA device settings dialog so the user can select the WIA device settings.
+            </summary>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanIntents">
+            <summary>
+            Returns the scan intents, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported scan intents.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanIntent" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedXferCounts">
+            <summary>
+            Returns the supported numbers of pages, which be be acquired in one scanning session.
+            </summary>
+            <returns>The supported numbers of pages, which be be acquired in one scanning session.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.XferCount" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanAheadPagesValues">
+            <summary>
+            Returns the scan ahead pages values, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported scan ahead pages values.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanAheadPages" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedImagePixelTypes">
+            <summary>
+            Returns the image pixel types, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported image pixel types.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanImagePixelType" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanBrightnesses(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the scan brightness, which are supported by this WIA device.
+            </summary>
+            <param name="minValue">Minimum value of supported scan brightness.</param>
+            <param name="maxValue">Maximum value of supported scan brightness.</param>
+            <param name="stepSize">The step size in range of supported scan brightness.</param>
+            <returns>
+            <b>True</b> - the supported scan brightness values are received successfully;
+            <b>false</b> = the supported scan brightness values are not received.
+            </returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanBrightness" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanContrasts(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the scan contrasts, which are supported by this WIA device.
+            </summary>
+            <param name="minValue">Minimum value of supported scan contrast.</param>
+            <param name="maxValue">Maximum value of supported scan contrast.</param>
+            <param name="stepSize">The step size in range of supported scan contrast.</param>
+            <returns>
+            <b>True</b> - the supported scan contrast values are received successfully;
+            <b>false</b> = the supported scan contrast values are not received.
+            </returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanContrast" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanXResolutions">
+            <summary>
+            Returns the scan X-resolutions, which are supported by this WIA device.
+            </summary>
+            <returns>An array of supported scan X-resolutions.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanXResolution" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanYResolutions">
+            <summary>
+            Returns the scan Y-resolutions, which are supported by this WIA device.
+            </summary>
+            <returns>An array of supported scan Y-resolutions.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanYResolution" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanPageSizes">
+            <summary>
+            Returns the scan page sizes, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported scan page sizes.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanPageSize" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanOrientations">
+            <summary>
+            Returns the scan orientations, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported scan orientations.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanOrientation" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetSupportedScanRotations">
+            <summary>
+            Returns the scan rotations, which are supported by this WIA device.
+            </summary>
+            <returns>An array with supported scan rotations.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened.</exception>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaDevice.ScanRotation" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetImageLayout">
+            <summary>
+            Returns an image region, in thousandths of an inch, that should be scanned.
+            </summary>
+            <returns>An image region that should be scanned.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetMinimumImageLayout">
+            <summary>
+            Returns the minimum image region, in thousandths of an inch, that can be scanned.
+            </summary>
+            <returns>The minimum image region that can be scanned.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetMaximumImageLayout">
+            <summary>
+            Returns the maximum image region, in thousandths of an inch, that can be scanned.
+            </summary>
+            <returns>The maximum image region that can be scanned.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.SetImageLayout(Vintasoft.Primitives.VintasoftRect)">
+            <summary>
+            Sets an image region, in thousandths of an inch, that should be scanned.
+            </summary>
+            <param name="rect">An image region that should be scanned.</param>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+            <example>This C#/VB.NET code shows how to acquire image region from WIA device.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Acquires image area from WIA device.
+            ''' &lt;/summary&gt;
+            Public Sub AcquireImageRegionFromWiaDevice()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    ' get the image layout
+                    Dim imageLayout As Vintasoft.Primitives.VintasoftRect = device.GetImageLayout()
+                    ' set the image layout
+                    device.SetImageLayout(New Vintasoft.Primitives.VintasoftRect(0, 0, imageLayout.Width, imageLayout.Height / 2))
+            
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                System.Console.WriteLine("Image is acquired.")
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Acquires image area from WIA image scanner.
+            /// &lt;/summary&gt;
+            public void AcquireImageRegionFromWiaDevice()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    // get current image layout
+                    Vintasoft.Primitives.VintasoftRect imageLayout = device.GetImageLayout();
+                    // set new image layout
+                    device.SetImageLayout(new Vintasoft.Primitives.VintasoftRect(0, 0, imageLayout.Width, imageLayout.Height / 2));
+            
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                System.Console.WriteLine("Image is acquired.");
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertyValueInt(System.Int32)">
+            <summary>
+            Returns the integer value for property of this WIA device.
+            </summary>
+            <param name="propertyId">The property identifier.</param>
+            <returns>The integer value of value.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertySupportedValuesInt(System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.SetDevicePropertyValueInt(System.Int32,System.Int32)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertySupportedValuesInt(System.Int32)">
+            <summary>
+            Returns the supported integer values for property of this WIA device.
+            </summary>
+            <param name="propertyId">The property identifier.</param>
+            <returns>The supported integer values for property of this WIA device.</returns>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertyValueInt(System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.SetDevicePropertyValueInt(System.Int32,System.Int32)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.SetDevicePropertyValueInt(System.Int32,System.Int32)">
+            <summary>
+            Sets the integer value for property of this WIA device.
+            </summary>
+            <param name="propertyId">The property identifier.</param>
+            <param name="propertyValue">The integer value of property.</param>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR device does not support this functionality.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertyValueInt(System.Int32)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.GetDevicePropertySupportedValuesInt(System.Int32)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.AcquireImageSync">
+            <summary>
+            Synchronously acquires one image in raw format from this WIA device.
+            </summary>
+            <returns>Current state of the image acquisition process.</returns>
+            <remarks>
+            This method must be called in a loop until method will not return <b>null</b>, i.e. there is no more images to scan.
+            </remarks>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR other image scanning process is already working.</exception>
+            <example>This C#/VB.NET code shows how to synchronously acquire images from WIA device.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Synchronously acquire images from WIA image scanner.
+            ''' &lt;/summary&gt;
+            Public Sub SynchronouslyAcquireImagesFromWiaDevice()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim imageIndex As Integer = 0
+                    Dim acquiredImage As Vintasoft.WiaImageScanning.WiaAcquiredImage = Nothing
+                    Do
+                        Try
+                            ' acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync()
+                            ' if image is received
+                            If acquiredImage IsNot Nothing Then
+                                imageIndex += 1
+                                Dim filename As String = String.Format("scannedImage-{0}.png", imageIndex)
+                                If System.IO.File.Exists(filename) Then
+                                    System.IO.File.Delete(filename)
+                                End If
+            
+                                acquiredImage.Save(filename)
+            
+                                System.Console.WriteLine(String.Format("Acquired image is saved to a file '{0}'.", filename))
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImage IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Synchronously acquire images from WIA image scanner.
+            /// &lt;/summary&gt;
+            public void SynchronouslyAcquireImagesFromWiaDevice()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    int imageIndex = 0;
+                    Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image from WIA device
+                            acquiredImage = device.AcquireImageSync();
+                            // if image is received
+                            if (acquiredImage != null)
+                            {
+                                imageIndex++;
+                                string filename = string.Format("scannedImage-{0}.png", imageIndex);
+                                if (System.IO.File.Exists(filename))
+                                    System.IO.File.Delete(filename);
+            
+                                acquiredImage.Save(filename);
+            
+                                System.Console.WriteLine(string.Format("Acquired image is saved to a file '{0}'.", filename));
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImage != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.AcquireImageSyncAsFileStream(Vintasoft.WiaImageScanning.WiaImageFileFormat)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.AcquireImageSyncAsFileStream(Vintasoft.WiaImageScanning.WiaImageFileFormat)">
+            <summary>
+            Synchronously acquires one image as byte array from this WIA device.
+            </summary>
+            <param name="imageFileFormat">
+            The format of image file that should be returned by this WIA device.<br />
+            If WIA device does not support specified image file format, WIA device will create image file in
+            the device default image file format - in most cases in BMP format.
+            </param>
+            <returns>A byte array that contains data of image file.</returns>
+            <remarks>
+            This method must be called in a loop until method will not return <b>null</b>, i.e. there is no more images to scan.
+            </remarks>
+            <exception cref="T:Vintasoft.WiaImageScanning.WiaException">Thrown if device is not opened OR document feeder is empty OR scan is failed.</exception>
+            <example>This C#/VB.NET code shows how to synchronously acquire images as JPEG stream from WIA device.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Synchronously acquire images as JPEG stream from WIA image scanner.
+            ''' &lt;/summary&gt;
+            Public Sub SynchronouslyAcquireImagesAsJpegStreamFromWiaDevice()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open WIA device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    ' select the first WIA device
+                    Dim device As Vintasoft.WiaImageScanning.WiaDevice = deviceManager.Devices(0)
+            
+                    ' open WIA device
+                    device.Open()
+            
+                    Dim imageIndex As Integer = 0
+                    Dim acquiredImageBytes As Byte() = Nothing
+                    Do
+                        Try
+                            ' acquire image as JPEG stream from WIA device
+                            acquiredImageBytes = device.AcquireImageSyncAsFileStream(Vintasoft.WiaImageScanning.WiaImageFileFormat.JPEG)
+                            ' if image is received
+                            If acquiredImageBytes IsNot Nothing Then
+                                imageIndex += 1
+                                Dim filename As String = String.Format("scannedImage-{0}.jpg", imageIndex)
+                                If System.IO.File.Exists(filename) Then
+                                    System.IO.File.Delete(filename)
+                                End If
+            
+                                System.IO.File.WriteAllBytes(filename, acquiredImageBytes)
+            
+                                System.Console.WriteLine(String.Format("Acquired image is saved to a file '{0}'.", filename))
+                            Else
+                                ' if image is not received
+                                System.Console.WriteLine("Scan is completed.")
+                                Exit Try
+                            End If
+                        Catch ex As System.Exception
+                            System.Console.WriteLine(String.Format("Scan is failed: {0}", ex.Message))
+                            Exit Try
+                        End Try
+                        ' while image is acquired
+                    Loop While acquiredImageBytes IsNot Nothing
+            
+                    ' close WIA device
+                    device.Close()
+            
+                    ' close WIA device manager
+                    deviceManager.Close()
+                End Using
+            
+                System.Console.ReadLine()
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Synchronously acquire images as JPEG stream from WIA image scanner.
+            /// &lt;/summary&gt;
+            public void SynchronouslyAcquireImagesAsJpegStreamFromWiaDevice()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open WIA device manager
+                    deviceManager.Open();
+            
+                    // get count of WIA devices
+                    int deviceCount = deviceManager.Devices.Count;
+                    if (deviceCount == 0)
+                    {
+                        System.Console.WriteLine("Devices are not found.");
+                        return;
+                    }
+            
+                    // select the first WIA device
+                    Vintasoft.WiaImageScanning.WiaDevice device = deviceManager.Devices[0];
+            
+                    // open WIA device
+                    device.Open();
+            
+                    int imageIndex = 0;
+                    byte[] acquiredImageBytes = null;
+                    do
+                    {
+                        try
+                        {
+                            // acquire image as JPEG stream from WIA device
+                            acquiredImageBytes = device.AcquireImageSyncAsFileStream(Vintasoft.WiaImageScanning.WiaImageFileFormat.JPEG);
+                            // if image is received
+                            if (acquiredImageBytes != null)
+                            {
+                                imageIndex++;
+                                string filename = string.Format("scannedImage-{0}.jpg", imageIndex);
+                                if (System.IO.File.Exists(filename))
+                                    System.IO.File.Delete(filename);
+            
+                                System.IO.File.WriteAllBytes(filename, acquiredImageBytes);
+            
+                                System.Console.WriteLine(string.Format("Acquired image is saved to a file '{0}'.", filename));
+                            }
+                            // if image is not received
+                            else
+                            {
+                                System.Console.WriteLine("Scan is completed.");
+                                break;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            System.Console.WriteLine(string.Format("Scan is failed: {0}", ex.Message));
+                            break;
+                        }
+                    }
+                    // while image is acquired
+                    while (acquiredImageBytes != null);
+            
+                    // close WIA device
+                    device.Close();
+            
+                    // close WIA device manager
+                    deviceManager.Close();
+                }
+            
+                System.Console.ReadLine();
+            }
+            </code>
+            </example>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDevice.AcquireImageSync" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDevice.Close">
+            <summary>
+            Closes this WIA device.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaDeviceCollection">
+            <summary>
+            Represents a collection of WIA devices.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDeviceCollection.Item(System.Int32)">
+            <summary>
+            Gets the device at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the device to get.</param>
+            <returns>The device at the specified index.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><i>index</i> is less than zero or
+            <i>index</i> is equal to or greater than <see cref="P:System.Collections.ReadOnlyCollectionBase.Count" />.</exception>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaDeviceCollection.GetDevice(System.Int32)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceCollection.GetDevice(System.Int32)">
+            <summary>
+            Returns the device at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the device.</param>
+            <returns>The device at the specified index.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><i>index</i> is less than zero or
+            <i>index</i> is equal to or greater than <see cref="P:System.Collections.ReadOnlyCollectionBase.Count" />.</exception>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceCollection.FindByName(System.String)">
+            <summary>
+            Finds the first device with specified name.
+            </summary>
+            <param name="deviceName">Name of the device to find.</param>
+            <returns><see cref="T:Vintasoft.WiaImageScanning.WiaDevice" /> if device is found; otherwise, <b>null</b>.</returns>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaDeviceManager">
+            <summary>
+            Represents a manager of WIA devices.
+            </summary>
+            <example>This C#/VB.NET code shows how to open WIA device manager and display information about available WIA image scanners.
+            <code lang="VB.NET">
+            ''' &lt;summary&gt;
+            ''' Opens WIA device manager and displays information about available WIA image scanners.
+            ''' &lt;/summary&gt;
+            Private Sub GetWiaDevicesInfo()
+                ' create WIA device manager
+                Using deviceManager As New Vintasoft.WiaImageScanning.WiaDeviceManager()
+                    ' open device manager
+                    deviceManager.Open()
+            
+                    ' get count of WIA devices
+                    Dim deviceCount As Integer = deviceManager.Devices.Count
+                    If deviceCount = 0 Then
+                        System.Console.WriteLine("Devices are not found.")
+                        Return
+                    End If
+            
+                    Dim devices As Vintasoft.WiaImageScanning.WiaDeviceCollection = deviceManager.Devices
+                    ' for each WIA device
+                    For i As Integer = 0 To devices.Count - 1
+                        ' output the device name
+                        System.Console.WriteLine(String.Format("Device '{0}'", devices(i).Name))
+                    Next
+                End Using
+            End Sub
+            </code>
+            <code lang="C#">
+            /// &lt;summary&gt;
+            /// Opens WIA device manager and displays information about available WIA image scanners.
+            /// &lt;/summary&gt;
+            void GetWiaDevicesInfo()
+            {
+                // create WIA device manager
+                using (Vintasoft.WiaImageScanning.WiaDeviceManager deviceManager = new Vintasoft.WiaImageScanning.WiaDeviceManager())
+                {
+                    // open device manager
+                    deviceManager.Open();
+            
+                    Vintasoft.WiaImageScanning.WiaDeviceCollection devices = deviceManager.Devices;
+                    // for each WIA device
+                    for (int i = 0; i &lt; devices.Count; i++)
+                    {
+                        // output the device name
+                        System.Console.WriteLine(string.Format("Device '{0}'", devices[i].Name));
+                    }
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.WiaDeviceManager" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDeviceManager.IsOpened">
+            <summary>
+            Gets a value indicating whether this WIA device manager is opened.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDeviceManager.Devices">
+            <summary>
+            Gets available WIA devices.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaDeviceManager.OpenedDevice">
+            <summary>
+            Gets the opened WIA device.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceManager.Open">
+            <summary>
+            Opens this WIA device manager.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceManager.Close">
+            <summary>
+            Closes this WIA device manager.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceManager.ShowDeviceSelectionDialog">
+            <summary>
+            Displays the WIA device selection dialog so the user can select the WIA device and returns selected WIA device.
+            </summary>
+            <returns>
+            WIA device is device is selected; otherwise, <b>null</b>.
+            </returns>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaDeviceManager.Dispose">
+            <summary>
+            Disposes this WIA device manager.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaException">
+            <summary>
+            Represents error that occurs during work with the WIA device.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.WiaException" /> class with
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.WiaException" /> class with
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaBmpEncoderSettings">
+            <summary>
+            Class that contains settings of BMP encoder.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaBmpEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaBmpEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings">
+            <summary>
+            Provides the base class for image encoder settings.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegColorSpace">
+            <summary>
+            Specifies available color spaces for JPEG files.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegColorSpace.RGB">
+            <summary>
+            RGB
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegColorSpace.Gray">
+            <summary>
+            Grayscale
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegColorSpace.Auto">
+            <summary>
+            The best color space is used automatically
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings">
+            <summary>
+            Class that contains settings of JPEG encoder.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings.JpegQuality">
+            <summary>
+            Gets or sets the quality of JPEG images.
+            </summary>
+            <value>Default value is 90. Possible values from 10 to 100.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaJpegEncoderSettings.JpegColorSpace">
+            <summary>
+            Get or sets a JPEG color space.
+            </summary>
+            <value>Default value is <b>JpegColorSpace.Auto</b>.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo">
+            <summary>
+            Class that contains information about PDF document.
+            </summary>
+            <remarks>
+            You can set all information about PDF document or specify only necessary
+            information. For example, you must set value of the
+            <see cref="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.ModificationDate" /> property if you want to update the
+            modification date only.
+            </remarks>
+            <example>
+            <code lang="VB.NET">
+            Private Sub SaveLastWiaAcquiredImageToPdf(acquiredImage1 As Vintasoft.WiaImageScanning.WiaAcquiredImage, productName As String)
+                ' set settings of PDF encoder
+                Dim pdfEncoderSettings As New Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings()
+                pdfEncoderSettings.PdfDocumentInfo.Author = "VintaSoft LLC"
+                pdfEncoderSettings.PdfDocumentInfo.Title = String.Format("Documents acquired from {0}", productName)
+                pdfEncoderSettings.PdfDocumentInfo.Creator = "VintaSoft Twain .NET SDK"
+                pdfEncoderSettings.PdfDocumentInfo.CreationDate = System.DateTime.Now
+            
+                ' save image to PDF document
+                acquiredImage1.Save("d:\test.pdf", pdfEncoderSettings)
+            End Sub
+            </code>
+            <code lang="C#">
+            private void SaveLastWiaAcquiredImageToPdf(Vintasoft.WiaImageScanning.WiaAcquiredImage acquiredImage1, string productName)
+            {
+                // set settings of PDF encoder
+                Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings pdfEncoderSettings =
+                    new Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings();
+                pdfEncoderSettings.PdfDocumentInfo.Author = "VintaSoft LLC";
+                pdfEncoderSettings.PdfDocumentInfo.Title = string.Format("Documents acquired from {0}", productName);
+                pdfEncoderSettings.PdfDocumentInfo.Creator = "VintaSoft Twain .NET SDK";
+                pdfEncoderSettings.PdfDocumentInfo.CreationDate = System.DateTime.Now;
+            
+                // save image to PDF document
+                acquiredImage1.Save(@"d:\test.pdf", pdfEncoderSettings);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Author">
+            <summary>
+            The name of the person who created the document.
+            </summary>
+            <value>
+            Author tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            Default value is string.Empty.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Creator">
+            <summary>
+            Application that creates or modifies the document.
+            </summary>
+            <value>
+            Creator tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            Default value is "VintaSoft Twain .NET".
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Keywords">
+            <summary>
+            Keywords associated with the document.
+            </summary>
+            <value>
+            Keywords tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            Default value is string.Empty.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Producer">
+            <summary>
+            Application that converts the document to PDF format.
+            </summary>
+            <value>
+            Producer tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Subject">
+            <summary>
+            The subject of the document.
+            </summary>
+            <value>
+            Subject tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            Default value is string.Empty.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.Title">
+            <summary>
+            The document's title.
+            </summary>
+            <value>
+            Title tag is not saved to PDF document if value of this property
+            is set to string.Empty.<br />
+            Default value is string.Empty.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.CreationDate">
+            <summary>
+            The date and time the document was created.
+            </summary>
+            <value>
+            Creation date tag is not saved to PDF document if value of this property
+            is set to DateTime.MinValue.<br />
+            Default value is DateTime.MinValue.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfDocumentInfo.ModificationDate">
+            <summary>
+            The date and time the document was most recently modified.
+            </summary>
+            <value>
+            Modification date tag is not saved to PDF document if value of this
+            property is set to DateTime.MinValue.<br />
+            Default value is DateTime.MinValue.
+            </value>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings">
+            <summary>
+            Class that contains settings of PDF encoder.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.PdfMultiPage">
+            <summary>
+            Gets or sets a value indicating whether multipage PDF document must be created.
+            </summary>
+            <value>
+            <b>true</b> - multipage PDF file must be created;
+            <b>false</b> - singlepage PDF file must be created.<br />
+            Default value is <b>true</b>.
+            </value>
+            <remarks>
+            New file will be created if this property is set to true and PDF file
+            does not exist.<br />
+            New image will be added to existing file if this property is set to
+            true and the PDF file exists.<br />
+            New file will be created or old file will be replaced if this property
+            is set to false.<br />
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.PdfACompatible">
+            <summary>
+            Gets or sets a value indicating whether PDF/A document must be created.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.PdfImageCompression">
+            <summary>
+            Determines compression format for image added/saved to PDF file.
+            </summary>
+            <remarks>
+            Quality of JPEG image can be set with the <see cref="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.JpegQuality" />
+            property.<br />
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.PdfDocumentInfo">
+            <summary>
+            Information about PDF document (author, creation date, ...).
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.JpegQuality">
+            <summary>
+            Gets or sets the quality of JPEG images.
+            </summary>
+            <value>Default value is 90. Possible values from 10 to 100.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfEncoderSettings.JpegColorSpace">
+            <summary>
+            Get or sets a JPEG color space.
+            </summary>
+            <value>Default value is <b>JpegColorSpace.Auto</b>.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression">
+            <summary>
+            Specifies available compression algorithm which image can be saved to PDF file.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.None">
+            <summary>
+            Image will be saved to PDF document without compression.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.CcittFax">
+            <summary>
+            Image will be saved to PDF document with CCITT Group 4 Fax compression.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.LZW">
+            <summary>
+            Image will be saved to PDF document with LZW compression.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.JPEG">
+            <summary>
+            Image will be saved to PDF document with JPEG compression.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.ZIP">
+            <summary>
+            Image will be saved to PDF document with ZIP compression.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaPdfImageCompression.Auto">
+            <summary>
+            Black-white image will be saved to PDF document with CCITT Group 4 Fax
+            compression,
+            palette and gray image will be saved with LZW compression,
+            color image will be saved with JPEG compression.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPngEncoderSettings">
+            <summary>
+            Class that contains settings of PNG encoder.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaPngEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaPngEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression">
+            <summary>
+            Specifies available compression types for TIFF files.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.None">
+            <summary>
+            No compression
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.CCITGroup4">
+            <summary>
+            CCIT Group 4 Fax compression (for black-white images only)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.LZW">
+            <summary>
+            LZW compression (for any images)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.ZIP">
+            <summary>
+            ZIP compression (for any images)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.JPEG">
+            <summary>
+            JPEG compression (for color images only)
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffCompression.Auto">
+            <summary>
+            The best compression algorithm is used automatically
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings">
+            <summary>
+            Class that contains settings of TIFF encoder.
+            </summary>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.TiffMultiPage">
+            <summary>
+            Gets or sets a value indicating whether multipage TIFF file must be created.
+            </summary>
+            <value>
+            <b>true</b> - multipage TIFF file must be created;
+            <b>false</b> - singlepage TIFF file must be created.<br />
+            Default value is <b>true</b>.
+            </value>
+            <remarks>
+            New file will be created if this property is set to true and TIFF file
+            does not exist.<br />
+            New image will be added to existing file if this property is set to
+            true and the TIFF file exists.<br />
+            New file will be created or old file will be replaced if this
+            property is set to false.<br />
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.TiffCompression">
+            <summary>
+            Gets or sets the compression format for image added/saved to TIFF file.
+            </summary>
+            <value>Default value is <see cref="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.TiffCompression" />.Auto.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.JpegQuality">
+            <summary>
+            Gets or sets the quality of JPEG images.
+            </summary>
+            <value>Default value is 90. Possible values from 10 to 100.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.JpegColorSpace">
+            <summary>
+            Get or sets a JPEG color space.
+            </summary>
+            <value>Default value is <b>JpegColorSpace.Auto</b>.</value>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.String,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.Save(System.IO.Stream,Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaAcquiredImage.GetAsBase64String(Vintasoft.WiaImageScanning.ImageEncoders.WiaImageEncoderSettings)" />
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.RowsPerStrip">
+            <summary>
+            Gets or sets the rows per strip.
+            </summary>
+            <value>
+            0 - rows per strip will be calculated automatically and in most cases
+            will be set to the image height.<br />
+            Default value is 0.
+            </value>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if
+            value is negative.</exception>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.UseTiles">
+            <summary>
+            Gets or sets a value indicating whether image must be encoded using tiles.
+            </summary>
+            <value>Default value is <b>true</b>.</value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageEncoders.WiaTiffEncoderSettings.TileSize">
+            <summary>
+            Gets or sets a tile size.
+            </summary>
+            <value>Default value is 256.</value>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction">
+            <summary>
+            Specifies available actions for processing of image acquired from Wia device.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.None">
+            <summary>
+            No action.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.Deskew">
+            <summary>
+            Image is deskewing, i.e. correct position of image is detecting.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.Despeckle">
+            <summary>
+            Noise is removing from the image.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.BorderDetection">
+            <summary>
+            Border around the image is detecting.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.ImageIsBlankImage">
+            <summary>
+            Detecting that the image is a blank image.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.Rotation">
+            <summary>
+            Image is rotating.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.Invert">
+            <summary>
+            Image is inverting.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.ChangeBrightness">
+            <summary>
+            Brightness of image is changing.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.ChangeContrast">
+            <summary>
+            Contrast of image is changing.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.Crop">
+            <summary>
+            Image is cropping.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction.ResizeCanvas">
+            <summary>
+            Image canvas is changing.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor">
+            <summary>
+            Specifies available types of border colors.
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor.AutoDetect">
+            <summary>
+            Free space around rotated image will be filled with border color of rotated image
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor.Black">
+            <summary>
+            Free space around rotated image will be filled with black color
+            </summary>
+        </member>
+        <member name="F:Vintasoft.WiaImageScanning.ImageProcessing.WiaBorderColor.White">
+            <summary>
+            Free space around rotated image will be filled with white color
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Processed" /> event.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs.#ctor(Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs" />
+            class.
+            </summary>
+            <param name="action">Current action.</param>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessedEventArgs.Action">
+            <summary>
+            Current action.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Processing" /> event.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs.#ctor(Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs" />
+            class.
+            </summary>
+            <param name="action">Current action.</param>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs.Action">
+            <summary>
+            Current action.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingEventArgs.Cancel">
+            <summary>
+            Indicates that current action must be canceled.
+            </summary>
+            <value>
+            <b>true</b> if current action must be canceled;
+            <b>false</b> otherwise.
+            </value>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Vintasoft.WiaImageScanning.WiaAcquiredImage.Progress" /> event.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs.#ctor(Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingAction,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs" />
+            class.
+            </summary>
+            <param name="action">Current action.</param>
+            <param name="progress">Progress of the action.</param>
+            <param name="canCancel">Indicates if action can be canceled.</param>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs.Action">
+            <summary>
+            Current action.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs.Progress">
+            <summary>
+            Gets the progress, in percents, of current action.
+            </summary>
+            <value>Value from 0 to 100.</value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs.CanCancel">
+            <summary>
+            Indicates that current action can be canceled.
+            </summary>
+            <value><b>true</b> if current action can be canceled;
+            <b>false</b> otherwise.
+            </value>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.ImageProcessing.WiaAcquiredImageProcessingProgressEventArgs.Cancel">
+            <summary>
+            Indicates that current action must be canceled.
+            </summary>
+            <value>
+            <b>true</b> if current action must be canceled;
+            <b>false</b> otherwise.
+            </value>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaGlobalSettings">
+            <summary>
+            Contains global settings for VintaSoft TWAIN .NET SDK.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaGlobalSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.WiaGlobalSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaGlobalSettings.ProductVersion">
+            <summary>
+            Gets the product version.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaGlobalSettings.AssemblyVersion">
+            <summary>
+            Gets the assembly version.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaGlobalSettings.Register(System.String,System.String,System.String,System.String)">
+            <summary>
+            Registers the evaluation version of VintaSoft Twain .NET SDK.
+            </summary>
+            <param name="user">User name.</param>
+            <param name="email">Email or server name.</param>
+            <param name="expirationDate">The evaluation license expiration date.</param>
+            <param name="regCode">Registration code.</param>
+        </member>
+        <member name="T:Vintasoft.WiaImageScanning.WiaEnvironment">
+            <summary>
+            Provides information about WIA environment.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaEnvironment.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.WiaImageScanning.WiaEnvironment" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.WiaImageScanning.WiaEnvironment.IsDebuggingEnabled">
+            <summary>
+            Gets a value indicating whether the debug information is written to a log-file.
+            </summary>
+            <value>
+            <b>true</b> - debug information is written to a log-file;
+            <b>false</b> - debug information is not written to a log-file.<br />
+            Default value is <b>false</b>.
+            </value>
+            <remarks>
+            Enable debugging only this is really necessary because debugging can decrease the working speed of your application.
+            </remarks>
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaEnvironment.EnableDebugging(System.String)" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaEnvironment.DisableDebugging" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaEnvironment.EnableDebugging(System.String)">
+            <summary>
+            Enables the debugging.
+            </summary>
+            <param name="filename">Debug information will be written to this file.</param>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown if file is not accessible.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if file does not have write access.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if debugging is already enabled.</exception>
+            <remarks>
+            File must be accessible for writing.<br />
+            <br />
+            Debug information is added to the file, file is not truncated if it exists.
+            </remarks>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaEnvironment.IsDebuggingEnabled" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaEnvironment.DisableDebugging" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaEnvironment.EnableDebugging(System.IO.Stream)">
+            <summary>
+            Enables the debugging.
+            </summary>
+            <param name="stream">Debug information will be written to this stream.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>stream</i> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <i>stream</i> does not have write access.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if debugging is already enabled.</exception>
+            <remarks>
+            Stream must be accessible for writing.<br />
+            <br />
+            Debug information is added to the stream, stream is not truncated if it is not empty.<br />
+            <br />
+            Stream will not be closed when debugging will be disabled.
+            </remarks>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaEnvironment.IsDebuggingEnabled" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaEnvironment.DisableDebugging" />
+        </member>
+        <member name="M:Vintasoft.WiaImageScanning.WiaEnvironment.DisableDebugging">
+            <summary>
+            Disables the debugging.
+            </summary>
+            <remarks>
+            Stream is not closed when debugging is disabled if stream is used as a source of log-file.
+            </remarks>
+            <seealso cref="P:Vintasoft.WiaImageScanning.WiaEnvironment.IsDebuggingEnabled" />
+            <seealso cref="M:Vintasoft.WiaImageScanning.WiaEnvironment.EnableDebugging(System.String)" />
+        </member>
+        </members>
+</doc>

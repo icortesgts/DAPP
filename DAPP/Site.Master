@@ -1,0 +1,260 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="DAPP.SiteMaster" %>
+
+<%@ Import Namespace="DAPP" %>
+<%@ Import Namespace="Microsoft.AspNet.Identity" %>
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAPP</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="<%=ResolveClientUrl("bootstrap/css/bootstrap.min.css")%>">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<%=ResolveClientUrl("dist/css/EstilosIndex.css")%>">   
+    <link rel="stylesheet" href="<%=ResolveClientUrl("dist/css/skins/skin-black.bbc.css")%>">
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />      
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+ <div class="wrapper">
+
+      <!-- Main Header -->
+      <header class="main-header">
+
+        <!-- Logo -->
+          <asp:HyperLink ID="DfGen" runat="server" class="logo" NavigateUrl="~/default.aspx">
+              <!-- mini logo for sidebar mini 50x50 pixels -->
+              <span class="logo-mini"><img src="<%=ResolveClientUrl("dist/img/logo_dapp_thumb.png")%>" ></span>
+              <!-- logo for regular state and mobile devices -->
+              <span class="logo-lg"><img src="<%=ResolveClientUrl("dist/img/logo_dapp.png")%>" ></span>
+          </asp:HyperLink>
+          
+          
+     
+
+          <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Navigation</span>
+          </a>       
+             <div class="logo-sirl" style="right:auto">
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Image id="imglogo" ImageUrl="~/dist/img/escudon.png" runat="server" Width="75" Height="75"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="contenido-login" style="float:right; margin-right: 50px;">
+                                <asp:LoginView  runat="server" ViewStateMode="Disabled">
+                                    <LoggedInTemplate>                                   
+                                    <p><asp:LoginStatus ID="LoginStatus" runat="server" LogoutAction="Redirect"  LogoutText="Cerrar sesión" LogoutPageUrl="~/Default.aspx" /></p>
+                                    </LoggedInTemplate>
+                                </asp:LoginView>
+                            </div>     
+                        </td>
+                    </tr>
+                </table>
+             </div>
+                               
+        </nav>
+
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="<%=ResolveClientUrl("dist/img/user.png")%>" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <!-- Marco Login -->
+                <div class="marcologin">                   
+                    <div class="contenido-login">              
+                      <asp:LoginView  runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>                                         
+                           <a id="loginLink" runat="server" href="~/Account/Login" >Iniciar Sesión</a>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                                    <p> <a id="A1" runat="server" href="~/Account/ChangePassword.aspx" title="Cambiar Contraseña">
+                                            <asp:LoginName ID="logBtt" runat="server" />
+                                        </a>                                                            
+                                    </p>                                    
+                        </LoggedInTemplate>  
+                      </asp:LoginView>
+                    </div>                                              
+                </div>                                              
+            </div>
+          </div>
+
+                     
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            
+            <li class="header">CLIENTE</li>
+            <li class="treeview">
+                <asp:DropDownList ID="txtCliente" runat="server" Font-Size="X-Small" CssClass="newsInputD" DataSourceID="SRC_Clientes" DataTextField="nombre" DataValueField="id" AutoPostBack="True"></asp:DropDownList>  
+            </li>
+             <li class="header">SUCURSAL</li>
+             <li class="treeview">
+                <asp:DropDownList ID="txtsucursal" runat="server" Font-Size="X-Small" CssClass="newsInputD" DataSourceID="SRC_Sucursal" DataTextField="sucursal" DataValueField="Id" AutoPostBack="True"></asp:DropDownList>  
+                 
+            </li>
+            
+            <li class="header" runat="server" id="MenuBBC">MENU</li>
+            <!-- Optionally, you can add icons to the links -->
+            <%--<div id="MenuBBC" runat="server">--%>
+              
+              <%--<li class="treeview">
+              
+                  <a href="#"><i class="fa fa-dashboard"></i> <span>Administracion</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Areas")%>">Areas</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Clientes")%>">Clientes</a></li> 
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Sucursal")%>">Sucursales</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_TablasReferencia")%>">Tablas de Retención</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_ClaseDocumento")%>">Clase de Documento</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_TiposDocumento")%>">Tipos de Documento</a></li>
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_ListaChequeo")%>">Listas de Chequeo</a></li>        
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_TiposUbicacion")%>">Tipos de Ubicacion</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_ActividadTerceros")%>">Actividades Terceros</a></li>   
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_TipoTerceros")%>">Tipos de Terceros</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Terceros")%>">Terceros</a></li>     
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Ubicaciones")%>">Ubicaciones</a></li>   
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Perfiles")%>">Perfiles de Usuario</a></li> 
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Usuarios")%>">Usuarios</a></li> 
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Auditoria")%>">Auditoria</a></li>
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_BackUp")%>">Copias de Seguridad</a></li>
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_Menu")%>">Menú Aplicación</a></li>
+                      <li><a href="<%=ResolveClientUrl("~/Vistas/Admin/Page_MenuCliente")%>">Administración Menú de Transacciones</a></li>                   
+                  </ul>
+                </li>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-book"></i> <span>Gestion Documental</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Archivo")%>">Archivo Virtual</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoArchivo")%>">Estado Archivo</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_MisDocumentos")%>">Mis Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoListas")%>">Estado Listas de Chequeo</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_BuscarDocumentos")%>">Buscar Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Documentos")%>">Ubicar/Editar Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Doc")%>">Indexar Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Transferencias")%>">Transferir Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Solicitudes")%>">Solicitud de Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_Prestamos")%>">Prestamo de Documentos</a></li>
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoPrestamos")%>">Estado Prestamo Documentos</a></li>
+                  </ul>
+                </li>  
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-envelope"></i> <span>Correspondecia</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="<%=ResolveClientUrl("~/Vistas/Correspondencia/Page_Correspondencia")%>">Correspondencia</a></li>                
+                  </ul>
+                </li> --%>
+            <%--</div>--%>
+            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Acerca De</span></a></li>
+            <li><a href="Mailto:correo@dapp.com"><i class="fa fa-envelope"></i> <span>Contactenos</span></a></li>
+            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Notificaciones</span></a></li>
+            <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoPrestamos")%>"><asp:Label runat="server" ID="lblPrestamo" Text="Prestamos"></asp:Label></a></li>
+            <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoListas")%>"><asp:Label runat="server"  ID="lblListas" Text="Listas de Chequeo"></asp:Label></a></li>
+            <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoArchivo")%>"><asp:Label runat="server"  ID="LblArchivo" Text="Archivo"></asp:Label></a></li>
+            <li><a href="<%=ResolveClientUrl("~/Vistas/Correspondencia/Page_MiCorrespondencia")%>"><asp:Label runat="server"  ID="LblCorrespondencia" Text="Correspondencia"></asp:Label></a></li>
+            <li><a href="<%=ResolveClientUrl("http://www.greentechsupply.co/DAPP/WF")%>"><asp:Label runat="server"  ID="lbTareas" Text="Tareas Pendientes WF"></asp:Label></a></li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="background-color:white">      
+        <section class="content" style="background-color:white">
+           <div class="contenedor-navegacion" style="background-color:white">
+                <asp:ContentPlaceHolder ID="FeaturedContent" runat="server">
+                    <section>
+                         <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                    </section>
+                </asp:ContentPlaceHolder>
+            </div>        
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">          
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 archi Gex.</strong> All rights reserved.
+      </footer>
+
+    <asp:SqlDataSource ID="SRC_Clientes" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT Clientes.nombre , Clientes.id FROM Usuarios INNER JOIN Usuario_Cliente ON Usuarios.ID = Usuario_Cliente.id_usuario INNER JOIN Clientes ON Usuario_Cliente.id_cliente = Clientes.Id WHERE Usuarios.usuario = @usuario
+and usuarios.id not in (select id from usuarios where id_perfil=1 and usuario=@usuario and todos=1)
+union all
+SELECT Clientes.nombre, Clientes.id Clientes from clientes
+WHERE 1=(select count(*) from usuarios where usuario = @usuario  and todos=1)
+ORDER BY [nombre]
+">
+        <SelectParameters>
+            <asp:SessionParameter Name="usuario" SessionField="Usuario" DefaultValue="" />
+        </SelectParameters>
+      </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SRC_Sucursal" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Sucursal], [Id] FROM [AdminSucursal] where id_cliente=@id_cliente and 1=(select count(*) from usuarios where usuario=@usuario and todos=1)
+union all
+SELECT [Sucursal], [Id] FROM [AdminSucursal] where id_cliente=@id_cliente and id in (select id_sucursal from usuario_sucursal inner join usuarios on usuario_sucursal.id_usuario=usuarios.id and usuarios.usuario=@usuario)
+union all
+SELECT [Sucursal], [Id] FROM [AdminSucursal] where id_cliente=@id_cliente and 1 = (select count(*) from usuario_cliente inner join usuarios on usuario_cliente.id_usuario=usuarios.id and usuarios.usuario=@usuario and usuario_cliente.id_cliente=@id_cliente and todas=1 and usuarios.id not in (select id from usuarios where id_perfil=1 and usuario=@usuario and todos=1))
+
+ORDER BY [Sucursal]">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="txtCliente" DefaultValue="0" Name="id_cliente" PropertyName="SelectedValue" />
+            <asp:SessionParameter Name="usuario" SessionField="Usuario" DefaultValue="" />
+        </SelectParameters>
+      </asp:SqlDataSource>
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="<%=ResolveClientUrl("plugins/jQuery/jQuery-2.1.4.min.js")%>"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="<%=ResolveClientUrl("bootstrap/js/bootstrap.min.js")%>"></script>
+    <!-- AdminLTE App -->
+    <script src="<%=ResolveClientUrl("dist/js/app.min.js")%>"></script>
+    </form>
+</body>
+</html>

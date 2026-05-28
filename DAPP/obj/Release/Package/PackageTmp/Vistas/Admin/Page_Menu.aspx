@@ -1,0 +1,98 @@
+﻿<%@ Page Title="Menú Aplicación" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_Menu.aspx.vb" Inherits="DAPP.Page_Menu" %>
+
+<%@ Register Assembly="Infragistics4.Web.v14.2, Version=14.2.20142.2590, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics4.Web.v14.2, Version=14.2.20142.2590, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
+    <div class="titular-into-form">
+        <span class="texto-titulo-form">MENÚ DE TRANSACCIONES</span>
+        <ig:WebExcelExporter ID="ExpGrid" runat="server">
+        </ig:WebExcelExporter>
+        <ig:WebDocumentExporter ID="Exppdf" runat="server">
+        </ig:WebDocumentExporter>
+    </div>
+    <br />
+    <br />
+    
+
+
+
+    <div class="DivFormulario">
+        <table style="margin: auto; width: 100%;">
+            <tr>
+                <td style="text-align: center; width: 40px;">
+                    <asp:ImageButton ID="bttNuevo" ToolTip="Nuevo Menu" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoNew.png" BackColor="Transparent" Width="26" Height="26" />
+                </td>
+                <td style="text-align: center; width: 40px;">
+                    <asp:ImageButton ID="bttEditar" ToolTip="Editar Menu" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
+                </td>
+                <td style="text-align: center; width: 40px;">&nbsp;
+                    <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
+                </td>
+                <td style="text-align: center; width: 40px;">&nbsp;
+                    <asp:ImageButton ID="bttPdf" ToolTip="Exportar a Pdf" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/pdf.png" BackColor="Transparent" Width="26" Height="26" />
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" colspan="8">
+                    <ig:WebDataGrid ID="GridTipos" runat="server" Width="100%" AutoGenerateColumns="False" CellSpacing="2" HeaderCaptionCssClass="HeaderCaptionClass" StyleSetName="Office2007Blue" EnableDataViewState="True" DataSourceID="Src_Tipos" DataKeyFields="id">
+                        <Columns>
+                            <ig:BoundDataField DataFieldName="id" Key="id">
+                                <Header Text="ID">
+                                </Header>
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="item" Key="item">
+                                <Header Text="Ítem">
+                                </Header>
+                            </ig:BoundDataField>                                                                      
+                            
+                            <ig:BoundDataField DataFieldName="link" Key="link">
+                                <Header Text="Link">
+                                </Header>
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="nivel" Key="nivel">
+                                <Header Text="Nivel">
+                                </Header>
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="label" Key="label">
+                                <Header Text="Label">
+                                </Header>
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="Padre" Key="Padre">
+                                <Header Text="Asociado A">
+                                </Header>
+                            </ig:BoundDataField>
+                        </Columns>
+                        <Behaviors>
+                            <ig:Selection CellClickAction="Row" SelectedCellCssClass="SelectedCellClass" RowSelectType="Single">
+                            </ig:Selection>
+                            <ig:Sorting SortingMode="Single" Enabled="true">
+                            </ig:Sorting>
+                            <ig:Filtering>
+                            </ig:Filtering>
+                        </Behaviors>
+                    </ig:WebDataGrid>
+                    <asp:SqlDataSource ID="Src_Tipos" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Admin_Menu].[id]
+      ,[Admin_Menu].[item]
+      ,[Admin_Menu].[link]
+      ,[Admin_Menu].[nivel]
+      ,[Admin_Menu].[id_menu]
+      ,[Admin_Menu].[label]
+	  ,isnull(menu.label,'') as Padre
+  FROM [Admin_Menu] left join [Admin_Menu] as menu
+  on [Admin_Menu].[id_menu]=menu.id">
+                    </asp:SqlDataSource>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</asp:Content>
+
+
+

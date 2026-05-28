@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="78ba740c488447caaf6ed0b9fb26d74d" Name="Diagram1">
+        <EntityTypeShape EntityType="DAPPBDModel.Admin_AliasMenu" Width="1.5" PointX="10.5" PointY="86.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Admin_Ciudades" Width="1.5" PointX="3" PointY="59.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Admin_Menu" Width="1.5" PointX="7.5" PointY="66.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Admin_Perfiles" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminActividad" Width="1.5" PointX="15.75" PointY="72.5" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminCamposAdicionales" Width="1.5" PointX="20.25" PointY="87.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminClaseDocumento" Width="1.5" PointX="12.75" PointY="72.5" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminConsecutivo" Width="1.5" PointX="7.5" PointY="82.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminContacto" Width="1.5" PointX="9.75" PointY="71.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminPais" Width="1.5" PointX="0.75" PointY="60.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminPerfiles" Width="1.5" PointX="7.5" PointY="78.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminSucursal" Width="1.5" PointX="7.5" PointY="70.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminTablasReferencia" Width="1.5" PointX="15" PointY="76.625" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminTipoDocumento" Width="1.5" PointX="18" PointY="70.75" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminTipoTercero" Width="1.5" PointX="9.75" PointY="99.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.AdminTipoUbicacion" Width="1.5" PointX="9.75" PointY="95.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Areas" Width="1.5" PointX="12.75" PointY="76.625" />
+        <EntityTypeShape EntityType="DAPPBDModel.Auditoria" Width="1.5" PointX="9.75" PointY="60.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Backups" Width="1.5" PointX="12.75" PointY="82.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Campos_Documentos" Width="1.5" PointX="28.5" PointY="81.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.Clientes" Width="1.5" PointX="5.25" PointY="80.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Comentarios_Correspondencia" Width="1.5" PointX="22.5" PointY="81.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Contratos_Cliente" Width="1.5" PointX="7.5" PointY="90.75" />
+        <EntityTypeShape EntityType="DAPPBDModel.Correspondencia" Width="1.5" PointX="20.25" PointY="74.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos" Width="1.5" PointX="26.25" PointY="75.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos_Area" Width="1.5" PointX="31.5" PointY="74.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos_Correspondencia" Width="1.5" PointX="28.5" PointY="77.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos_Requeridos" Width="1.5" PointX="20.25" PointY="66.75" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos_Solicitud" Width="1.5" PointX="31.5" PointY="77.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Documentos_Terceros" Width="1.5" PointX="20.25" PointY="83.25" />
+        <EntityTypeShape EntityType="DAPPBDModel.DocumentosArchigex" Width="1.5" PointX="28.5" PointY="87.75" />
+        <EntityTypeShape EntityType="DAPPBDModel.Listas_Tipo" Width="1.5" PointX="13" PointY="88" />
+        <EntityTypeShape EntityType="DAPPBDModel.Perfil_Menu" Width="1.5" PointX="9.75" PointY="77.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Procesos" Width="1.5" PointX="9.75" PointY="64.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Solicitudes" Width="1.5" PointX="23.25" PointY="76.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.SucursalTerceros" Width="1.5" PointX="20.25" PointY="69.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Terceros" Width="1.5" PointX="18" PointY="76.5" />
+        <EntityTypeShape EntityType="DAPPBDModel.Terceros_Correspondencia" Width="1.5" PointX="25.5" PointY="84" />
+        <EntityTypeShape EntityType="DAPPBDModel.TipoDoc_TablaRetencion" Width="1.5" PointX="23.25" PointY="70.375" />
+        <EntityTypeShape EntityType="DAPPBDModel.Transferencias" Width="1.5" PointX="31.5" PointY="80.625" />
+        <EntityTypeShape EntityType="DAPPBDModel.Ubicaciones" Width="1.5" PointX="15" PointY="82.625" />
+        <EntityTypeShape EntityType="DAPPBDModel.Usuario_Cliente" Width="1.5" PointX="7.5" PointY="85.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Usuario_Sucursal" Width="1.5" PointX="9.75" PointY="89.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Usuarios_Areas" Width="1.5" PointX="15" PointY="68.875" />
+        <EntityTypeShape EntityType="DAPPBDModel.Usuarios_Terceros" Width="1.5" PointX="20.25" PointY="104" />
+        <EntityTypeShape EntityType="DAPPBDModel.ValidadorDocumentos" Width="1.5" PointX="20.25" PointY="90.125" />
+        <EntityTypeShape EntityType="DAPPBDModel.Version_Documento" Width="1.5" PointX="28.5" PointY="84.625" />
+        <EntityTypeShape EntityType="DAPPBDModel.TERCEROS_temp" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="DAPPBDModel.FK_Admin_AliasMenu_Admin_Menu" />
+        <AssociationConnector Association="DAPPBDModel.FK_Admin_AliasMenu_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Admin_Ciudades_AdminPais" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_Admin_Ciudades" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminSucursal_Admin_Ciudades" />
+        <AssociationConnector Association="DAPPBDModel.FK_Clientes_Admin_Ciudades" />
+        <AssociationConnector Association="DAPPBDModel.FK_SucursalTerceros_Admin_Ciudades" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Admin_Ciudades" />
+        <AssociationConnector Association="DAPPBDModel.FK_Admin_Menu_Admin_Menu" />
+        <AssociationConnector Association="DAPPBDModel.FK_Perfil_Menu_Admin_Menu" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminActividad_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminActividad_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_AdminActividad" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminCamposAdicionales_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_Campos_Documentos_AdminCamposAdicionales" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminClaseDocumento_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminClaseDocumento_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoDocumento_AdminClaseDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminConsecutivo_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_AdminContacto" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_SucursalTerceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminContacto_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminPerfiles_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Perfil_Menu_AdminPerfiles" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminSucursal_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTablasReferencia_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoDocumento_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoTercero_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoUbicacion_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Areas_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Auditoria_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Backups_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Correspondencia_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Procesos_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Solicitudes_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Ubicaciones_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_Usuario_Sucursal_AdminSucursal" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTablasReferencia_Areas" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTablasReferencia_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_TipoDoc_TablaRetencion_AdminTablasReferencia" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoDocumento_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Correspondencia_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Requeridos_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_TipoDoc_TablaRetencion_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_ValidadorDocumentos_AdminTipoDocumento" />
+        <AssociationConnector Association="DAPPBDModel.FK_Listas_Tipo_AdminTipoTercero" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_AdminTipoTercero" />
+        <AssociationConnector Association="DAPPBDModel.FK_AdminTipoUbicacion_AdminTipoUbicacion" />
+        <AssociationConnector Association="DAPPBDModel.FK_Ubicacion_AdminTipoUbicacion" />
+        <AssociationConnector Association="DAPPBDModel.FK_Areas_Areas" />
+        <AssociationConnector Association="DAPPBDModel.FK_Areas_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Area_Areas" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Areas" />
+        <AssociationConnector Association="DAPPBDModel.FK_Usuarios_Areas_Areas" />
+        <AssociationConnector Association="DAPPBDModel.FK_Backups_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Campos_Documentos_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Contratos_Cliente_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Usuario_Cliente_Clientes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Comentarios_Correspondencia_Correspondencia" />
+        <AssociationConnector Association="DAPPBDModel.FK_Comentarios_Correspondencia_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Correspondencia_Correspondencia" />
+        <AssociationConnector Association="DAPPBDModel.FK_Correspondencia_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Correspondencia_Terceros1" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Correspondencia_Correspondencia" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Correspondencia_Correspondencia" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Area_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Correspondencia_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Solicitud_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Terceros_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Ubicacion" />
+        <AssociationConnector Association="DAPPBDModel.FK_DocumentosArchigex_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Transferencias_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Version_Documento_Documentos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Requeridos_Procesos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Solicitud_Solicitudes" />
+        <AssociationConnector Association="DAPPBDModel.FK_Documentos_Terceros_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Listas_Tipo_Procesos" />
+        <AssociationConnector Association="DAPPBDModel.FK_Solicitudes_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Solicitudes_Terceros1" />
+        <AssociationConnector Association="DAPPBDModel.FK_Solicitudes_Ubicaciones" />
+        <AssociationConnector Association="DAPPBDModel.FK_SucursalTerceros_SucursalTerceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_SucursalTerceros_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Correspondencia_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Terceros_Terceros1" />
+        <AssociationConnector Association="DAPPBDModel.FK_Usuarios_Terceros_Terceros" />
+        <AssociationConnector Association="DAPPBDModel.FK_Transferencias_Ubicaciones" />
+        <AssociationConnector Association="DAPPBDModel.FK_Transferencias_Ubicaciones1" />
+        <AssociationConnector Association="DAPPBDModel.FK_Ubicacion_Ubicacion" />
+        <EntityTypeShape EntityType="DAPPBDModel.Usuarios" Width="1.5" PointX="9.75" PointY="80.75" />
+        <AssociationConnector Association="DAPPBDModel.FK_Usuarios_AdminPerfiles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

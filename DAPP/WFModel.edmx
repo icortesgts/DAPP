@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WorkprocessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Segmentos">
+          <Key>
+            <PropertyRef Name="MSysID" />
+          </Key>
+          <Property Name="empresa_id" Type="bigint" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="MSysID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="empresa_id" Type="bigint" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cargo" Type="varchar" MaxLength="50" />
+          <Property Name="rol_id" Type="bigint" Nullable="false" />
+          <Property Name="perfil_id" Type="smallint" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="bloqueado" Type="bit" Nullable="false" />
+          <Property Name="fecha_password" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UsuariosSegmento">
+          <Key>
+            <PropertyRef Name="MSysId" />
+          </Key>
+          <Property Name="segmento_id" Type="int" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MSysId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UsuariosSegmento_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="UsuariosSegmento" Type="Self.UsuariosSegmento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="UsuariosSegmento">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuariosSegmento_UsuariosSegmento">
+          <End Role="Segmentos" Type="Self.Segmentos" Multiplicity="1" />
+          <End Role="UsuariosSegmento" Type="Self.UsuariosSegmento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segmentos">
+              <PropertyRef Name="MSysID" />
+            </Principal>
+            <Dependent Role="UsuariosSegmento">
+              <PropertyRef Name="segmento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkprocessModelStoreContainer">
+          <EntitySet Name="Segmentos" EntityType="Self.Segmentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuariosSegmento" EntityType="Self.UsuariosSegmento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UsuariosSegmento_Usuarios" Association="Self.FK_UsuariosSegmento_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuariosSegmento" EntitySet="UsuariosSegmento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuariosSegmento_UsuariosSegmento" Association="Self.FK_UsuariosSegmento_UsuariosSegmento">
+            <End Role="Segmentos" EntitySet="Segmentos" />
+            <End Role="UsuariosSegmento" EntitySet="UsuariosSegmento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkprocessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Segmentos">
+          <Key>
+            <PropertyRef Name="MSysID" />
+          </Key>
+          <Property Name="empresa_id" Type="Int64" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MSysID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UsuariosSegmento" Relationship="Self.FK_UsuariosSegmento_UsuariosSegmento" FromRole="Segmentos" ToRole="UsuariosSegmento" />
+        </EntityType>
+        <EntityType Name="UsuariosWF">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="empresa_id" Type="Int64" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol_id" Type="Int64" Nullable="false" />
+          <Property Name="perfil_id" Type="Int16" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bloqueado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_password" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UsuariosSegmento" Relationship="Self.FK_UsuariosSegmento_Usuarios" FromRole="Usuarios" ToRole="UsuariosSegmento" />
+        </EntityType>
+        <EntityType Name="UsuariosSegmento">
+          <Key>
+            <PropertyRef Name="MSysId" />
+          </Key>
+          <Property Name="segmento_id" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MSysId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Segmentos" Relationship="Self.FK_UsuariosSegmento_UsuariosSegmento" FromRole="UsuariosSegmento" ToRole="Segmentos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_UsuariosSegmento_Usuarios" FromRole="UsuariosSegmento" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FK_UsuariosSegmento_UsuariosSegmento">
+          <End Role="Segmentos" Type="Self.Segmentos" Multiplicity="1" />
+          <End Role="UsuariosSegmento" Type="Self.UsuariosSegmento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Segmentos">
+              <PropertyRef Name="MSysID" />
+            </Principal>
+            <Dependent Role="UsuariosSegmento">
+              <PropertyRef Name="segmento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuariosSegmento_Usuarios">
+          <End Role="Usuarios" Type="WorkprocessModel.UsuariosWF" Multiplicity="1" />
+          <End Role="UsuariosSegmento" Type="Self.UsuariosSegmento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="UsuariosSegmento">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkprocessEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Segmentos" EntityType="Self.Segmentos" />
+          <EntitySet Name="Usuarios" EntityType="WorkprocessModel.UsuariosWF" />
+          <EntitySet Name="UsuariosSegmento" EntityType="Self.UsuariosSegmento" />
+          <AssociationSet Name="FK_UsuariosSegmento_UsuariosSegmento" Association="Self.FK_UsuariosSegmento_UsuariosSegmento">
+            <End Role="Segmentos" EntitySet="Segmentos" />
+            <End Role="UsuariosSegmento" EntitySet="UsuariosSegmento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuariosSegmento_Usuarios" Association="Self.FK_UsuariosSegmento_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuariosSegmento" EntitySet="UsuariosSegmento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkprocessModelStoreContainer" CdmEntityContainer="WorkprocessEntities">
+          <EntitySetMapping Name="Segmentos">
+            <EntityTypeMapping TypeName="WorkprocessModel.Segmentos">
+              <MappingFragment StoreEntitySet="Segmentos">
+                <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="MSysID" ColumnName="MSysID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="WorkprocessModel.UsuariosWF">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+                <ScalarProperty Name="fecha_password" ColumnName="fecha_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuariosSegmento">
+            <EntityTypeMapping TypeName="WorkprocessModel.UsuariosSegmento">
+              <MappingFragment StoreEntitySet="UsuariosSegmento">
+                <ScalarProperty Name="segmento_id" ColumnName="segmento_id" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="MSysId" ColumnName="MSysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

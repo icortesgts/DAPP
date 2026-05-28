@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WorkprocessModelStoreContainer" CdmEntityContainer="WorkprocessEntities">
+    <EntitySetMapping Name="Segmentos">
+      <EntityTypeMapping TypeName="WorkprocessModel.Segmentos">
+        <MappingFragment StoreEntitySet="Segmentos">
+          <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="MSysID" ColumnName="MSysID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="WorkprocessModel.UsuariosWF">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+          <ScalarProperty Name="fecha_password" ColumnName="fecha_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuariosSegmento">
+      <EntityTypeMapping TypeName="WorkprocessModel.UsuariosSegmento">
+        <MappingFragment StoreEntitySet="UsuariosSegmento">
+          <ScalarProperty Name="segmento_id" ColumnName="segmento_id" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="MSysId" ColumnName="MSysId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
