@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarDocumento.aspx.vb" Inherits="DAPP.EditarDocumento" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarDocumento.aspx.vb" Inherits="DAPP.EditarDocumento" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -40,15 +40,15 @@
                 <div class="form-horizontal fom-border">
                     <div class="tabbable" id="Tabs" role="tabpanel"> <!-- Only required for left/right tabs -->
 					    <ul class="nav nav-tabs" role="tablist">
-					        <li class="active"><a href="#tab1" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n General</a></li>
-					        <li><a href="#tab2" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n Asociada</a></li>
-					        <li><a href="#tab3" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n Adicional</a></li>
+					        <li class="active"><a href="#tab1" aria-controls="personal" role="tab" data-toggle="tab">Información General</a></li>
+					        <li><a href="#tab2" aria-controls="personal" role="tab" data-toggle="tab">Información Asociada</a></li>
+					        <li><a href="#tab3" aria-controls="personal" role="tab" data-toggle="tab">Información Adicional</a></li>
 					    </ul>
 					    <div class="tab-content">
 				    	    <div role="tabpanel" class="tab-pane active" id="tab1">
 					    	    <div class="row-fluid">
 					    		    <div class="span4">
-					    			    <h2>InformaciÃ³n General</h2>
+					    			    <h2>Información General</h2>
                                         <div>
                                             <b class="control-label">
                                                 <asp:Label ID="lbTipoDocumento" runat="server" Text="Tipo Documento:*" Width="180px" />
@@ -58,7 +58,7 @@
                                         </div>
                                         <div>
                                              <b class="control-label">
-                                                <asp:Label ID="Label1" runat="server" Text="UbicaciÃ³n:*" Width="180px" />
+                                                <asp:Label ID="Label1" runat="server" Text="Ubicación:*" Width="180px" />
                                             </b>
                                             <asp:DropDownList ID="TxtUbicacion" runat="server" Font-Overline="False" Height="20px" Width="320px" CssClass="newsInputD" DataSourceID="SqlUbicacion" DataTextField="ubicacion" DataValueField="id">
                                             </asp:DropDownList>
@@ -75,7 +75,7 @@
                                                 <asp:Label ID="lbNombre" runat="server" Text="Descripcion: *" Width="180px" />
                                             </b>
                                             <asp:TextBox runat="server" ID="txtDescripcion" CssClass="input-xlarge" Width="320px" Height="66px" TextMode="MultiLine" />
-                                            <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'DescripciÃ³n' es obligatorio." Width="400px" />
+                                            <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'Descripción' es obligatorio." Width="400px" />
                                         </div>
                                         <div>
                                             <b class="control-label">
@@ -100,11 +100,11 @@
                                         </div>
                                         <div>
                                              <b class="control-label">
-                                                <asp:Label ID="lbTelefono" runat="server" Text="VersiÃ³n:*" Width="180px" />
+                                                <asp:Label ID="lbTelefono" runat="server" Text="Versión:*" Width="180px" />
                                             </b>
-                                            <ig:WebNumericEditor ID="txtVersion" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="VersiÃ³n">
+                                            <ig:WebNumericEditor ID="txtVersion" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="Versión">
                                             </ig:WebNumericEditor>
-                                            <asp:RequiredFieldValidator ID="RQ_Version" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtVersion" ErrorMessage=" * El campo 'VersiÃ³n' es obligatorio." Width="400px" />
+                                            <asp:RequiredFieldValidator ID="RQ_Version" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtVersion" ErrorMessage=" * El campo 'Versión' es obligatorio." Width="400px" />
                                         </div>
                                         <div>
                                             <table>
@@ -118,7 +118,7 @@
                                                     </td>
                                                     <td style="width:90%;align-items:flex-start">
                                                         <b class="control-label">
-                                                            <asp:Label ID="Label8" runat="server" Text="Fecha A. GestiÃ³n:" Width="147px"  />
+                                                            <asp:Label ID="Label8" runat="server" Text="Fecha A. Gestión:" Width="147px"  />
                                                         </b>
                                                         <asp:TextBox runat="server" ID="FGestion" CssClass="input-xlarge" readonly="true"  Width="180px" textmode="Date"  /> 
                                                     </td>
@@ -133,7 +133,7 @@
                                                     </td>
                                                     <td style="width:90%;align-items:flex-start">
                                                         <b class="control-label">
-                                                            <asp:Label ID="Label9" runat="server" Text="Fecha A. HistÃ³rico:" Width="147px" />
+                                                            <asp:Label ID="Label9" runat="server" Text="Fecha A. Histórico:" Width="147px" />
                                                         </b>
                                                         <asp:TextBox runat="server" ID="FHistorico" CssClass="input-xlarge" Width="180px" textmode="Date" readonly="true" /> 
                                                     </td>
@@ -144,7 +144,7 @@
                                 </div> 
                             </div>
                             <div role="tabpanel" class="tab-pane" id="tab2">
-					    	    <h2>InformaciÃ³n Asociada</h2>
+					    	    <h2>Información Asociada</h2>
                                 <div class="cabezote-form">
                                     <span>AREAS ASIGNADAS</span>
                                 </div>
@@ -202,7 +202,7 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="tab3">
 					    	    <div>
-                                    <h2>InformaciÃ³n Adicional</h2>
+                                    <h2>Información Adicional</h2>
                                     <div class="cabezote-form">
                                         <span>CAMPOS ADICIONALES</span>
                                     </div>

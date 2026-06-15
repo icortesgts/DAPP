@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="DAPP.SiteMaster" %>
+<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="DAPP.SiteMaster" %>
 
 <%@ Import Namespace="DAPP" %>
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
@@ -196,6 +196,7 @@
             <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoArchivo")%>"><asp:Label runat="server"  ID="LblArchivo" Text="Archivo"></asp:Label></a></li>
             <li><a href="<%=ResolveClientUrl("~/Vistas/Correspondencia/Page_MiCorrespondencia")%>"><asp:Label runat="server"  ID="LblCorrespondencia" Text="Correspondencia"></asp:Label></a></li>
             <li><a href="<%=ResolveClientUrl("http://www.greentechsupply.co/DAPP/WF")%>"><asp:Label runat="server"  ID="lbTareas" Text="Tareas Pendientes WF"></asp:Label></a></li>
+            <li><a href="<%=ResolveClientUrl("~/Vistas/FlujoProceso.aspx")%>"><i class="fa fa-code-fork"></i> <span>Flujo de Proceso</span></a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarArea.aspx.vb" Inherits="DAPP.EditarArea" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarArea.aspx.vb" Inherits="DAPP.EditarArea" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -35,7 +35,7 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbDescripcion" runat="server" Text="DescripciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="lbDescripcion" runat="server" Text="Descripción:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtDescripcion" CssClass="input-xlarge" Width="180px" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Descripcion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'Descripcion' es obligatorio." Width="400px" />
@@ -49,7 +49,7 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label2" runat="server" Text="CÃ³digo:" Width="180px" />
+                                        <asp:Label ID="Label2" runat="server" Text="Código:" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtCodigo" CssClass="input-xlarge" Width="180px" />                                    
                                 </div>

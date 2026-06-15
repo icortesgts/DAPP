@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="VB" AutoEventWireup="true" CodeBehind="Seleccionar_Documento.aspx.vb" Inherits="DAPP.Seleccionar_Documento" %>
+<%@ Page Title="" Language="VB" AutoEventWireup="true" CodeBehind="Seleccionar_Documento.aspx.vb" Inherits="DAPP.Seleccionar_Documento" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
                             </div>
                             <div>
                                 <b class="control-label">
-                                    <asp:Label ID="Label1" runat="server" Text="UbicaciÃ³n:" Width="180px" />
+                                    <asp:Label ID="Label1" runat="server" Text="Ubicación:" Width="180px" />
                                 </b>
                                 <asp:DropDownList ID="TxtUbicacion" runat="server" Font-Overline="False" Height="20px" Width="320px" CssClass="newsInputD" DataSourceID="SqlUbicacion" DataTextField="ubicacion" DataValueField="id">   
                                     </asp:DropDownList>                                  
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                                 <b class="control-label">
-                                    <asp:Label ID="Label4" runat="server" Text="DescripciÃ³n:" Width="180px" />
+                                    <asp:Label ID="Label4" runat="server" Text="Descripción:" Width="180px" />
                                 </b>
                                 <asp:TextBox runat="server" ID="txtdescipcion" CssClass="input-xlarge" Width="320px" />                                                              
                             </div>

@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarSuc.aspx.vb" Inherits="DAPP.EditarSuc" %>
+<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarSuc.aspx.vb" Inherits="DAPP.EditarSuc" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -27,10 +27,10 @@
                                 
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbDireccion" runat="server" Text="DirecciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="lbDireccion" runat="server" Text="Dirección:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtDireccion" CssClass="input-xlarge" Width="180px" />                                    
-                                    <asp:RequiredFieldValidator ID="RQ_Direccion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDireccion" ErrorMessage=" * El campo 'DirecciÃ³n' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RQ_Direccion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDireccion" ErrorMessage=" * El campo 'Dirección' es obligatorio." Width="400px" />
                                 </div>
                                 <div>
                                     <table style="width:100%;">
@@ -78,7 +78,7 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbTelefono" runat="server" Text="TelÃ©fono:*" Width="180px" />
+                                        <asp:Label ID="lbTelefono" runat="server" Text="Teléfono:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtTelefono" CssClass="input-xlarge" Width="180px" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Telefono" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtTelefono" ErrorMessage=" * El campo 'Telefono' es obligatorio." Width="400px" />

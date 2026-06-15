@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="Listas de Chequeo" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_ListaChequeo.aspx.vb" Inherits="DAPP.Page_ListaChequeo" %>
+<%@ Page Title="Listas de Chequeo" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_ListaChequeo.aspx.vb" Inherits="DAPP.Page_ListaChequeo" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
@@ -26,7 +26,7 @@
                     <asp:ImageButton ID="bttEditar" ToolTip="Editar Lista" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
-                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Lista" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operaciÃ³n?');" />
+                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Lista" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operación?');" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -91,7 +91,7 @@
                     <asp:ImageButton ID="BttEdit" ToolTip="Editar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
-                    <asp:ImageButton ID="BttDelete" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operaciÃ³n?');" />
+                    <asp:ImageButton ID="BttDelete" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operación?');" />
                 </td>                
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="BttExc1" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />

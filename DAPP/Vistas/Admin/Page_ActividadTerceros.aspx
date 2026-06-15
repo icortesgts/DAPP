@@ -1,8 +1,8 @@
-ï»¿<%@ Page Title="Actividades Terceros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_ActividadTerceros.aspx.vb" Inherits="DAPP.Page_ActividadTerceros" %>
+<%@ Page Title="Actividades Terceros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_ActividadTerceros.aspx.vb" Inherits="DAPP.Page_ActividadTerceros" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" namespace="Infragistics.Web.UI.DataSourceControls" tagprefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" namespace="Infragistics.Web.UI.DataSourceControls" tagprefix="ig" %>
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
@@ -28,7 +28,7 @@
                     <asp:ImageButton ID="bttEditar" ToolTip="Editar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
-                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de Realizar esta OperaciÃ³n?');" />
+                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de Realizar esta Operación?');" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -48,7 +48,7 @@
                                 </Header>
                             </ig:BoundDataField>                                                                      
                             <ig:BoundDataField DataFieldName="Descripcion" Key="Descripcion">
-                                <Header Text="DescripciÃ³n">
+                                <Header Text="Descripción">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundCheckBoxField DataFieldName="Activo" Key="Activo">

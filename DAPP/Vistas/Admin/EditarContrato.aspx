@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarContrato.aspx.vb" Inherits="DAPP.EditarContrato" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarContrato.aspx.vb" Inherits="DAPP.EditarContrato" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -18,10 +18,10 @@
                                 <br />
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNombre" runat="server" Text="NÃºmero Cotnrato:*" Width="180px" />
+                                        <asp:Label ID="lbNombre" runat="server" Text="Número Cotnrato:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtNro" CssClass="input-xlarge" Width="320px" />                                    
-                                    <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtNro" ErrorMessage=" * El campo 'NÃºmero de Contrato' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtNro" ErrorMessage=" * El campo 'Número de Contrato' es obligatorio." Width="400px" />
                                 </div>                                
                                 <div>
                                     <b class="control-label">
@@ -46,7 +46,7 @@
                                     <asp:DropDownList ID="TxtTipo" runat="server" Width="320px">
                                         <asp:ListItem>Mensual</asp:ListItem>
                                         <asp:ListItem>Anual</asp:ListItem>
-                                        <asp:ListItem>Ãšnico PAgo</asp:ListItem>
+                                        <asp:ListItem>Único PAgo</asp:ListItem>
                                     </asp:DropDownList>
                                     
                                 </div>

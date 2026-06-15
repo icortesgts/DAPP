@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="Tablas de RetenciÃ³n" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_TablasReferencia.aspx.vb" Inherits="DAPP.Page_TablasReferencia" %>
+<%@ Page Title="Tablas de Retención" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_TablasReferencia.aspx.vb" Inherits="DAPP.Page_TablasReferencia" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">
@@ -27,7 +27,7 @@
                     <asp:ImageButton ID="bttEdit" ToolTip="Editar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">
-                    <asp:ImageButton ID="bttDelete" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operaciÃ³n?');" />
+                    <asp:ImageButton ID="bttDelete" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operación?');" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -111,7 +111,7 @@
                     <asp:ImageButton ID="bttEditar" ToolTip="Editar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">
-                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operaciÃ³n?');" />
+                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Registro" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operación?');" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="bttExc1" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -132,11 +132,11 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="codigo" Key="codigo">
-                                <Header Text="CÃ³digo">
+                                <Header Text="Código">
                                 </Header>
                             </ig:BoundDataField>                                                                      
                             <ig:BoundDataField DataFieldName="gestion" Key="gestion">
-                                <Header Text="Archivo GestiÃ³n">
+                                <Header Text="Archivo Gestión">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="central" Key="central">
@@ -144,7 +144,7 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="historico" Key="historico">
-                                <Header Text="Archivo HistÃ³rico">
+                                <Header Text="Archivo Histórico">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="Original" Key="Original">
@@ -200,8 +200,8 @@
         <b class="control-label">
             <p>
                 CONVENCIONES
-                CT = ConservaciÃ³n Total       M = MicrofilmaciÃ³n        D = DigitalizaciÃ³n
-                E  = EliminaciÃ³n              S = SelecciÃ³n             O = Original
+                CT = Conservación Total       M = Microfilmación        D = Digitalización
+                E  = Eliminación              S = Selección             O = Original
                 C  = Copia
             </p>
 

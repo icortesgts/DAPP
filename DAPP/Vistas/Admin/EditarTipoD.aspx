@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="TIPO DOCUMENTO ASOCIADO A LISTAS DE CHEQUEO" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTipoD.aspx.vb" Inherits="DAPP.EditarTipoD" %>
+<%@ Page Title="TIPO DOCUMENTO ASOCIADO A LISTAS DE CHEQUEO" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTipoD.aspx.vb" Inherits="DAPP.EditarTipoD" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -38,7 +38,7 @@ SELECT [nombre], [id] FROM [AdminTipoDocumento] WHERE ([id_sucursal] = @id_sucur
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNombre" runat="server" Text="DescripciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="lbNombre" runat="server" Text="Descripción:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtDescipcion" CssClass="input-xlarge" Width="360px" Height="56px" TextMode="MultiLine" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Descripcion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescipcion" ErrorMessage=" * El campo 'Descripcion' es obligatorio." Width="400px" />
@@ -47,7 +47,7 @@ SELECT [nombre], [id] FROM [AdminTipoDocumento] WHERE ([id_sucursal] = @id_sucur
                                     <b class="control-label">
                                         <asp:Label ID="Label2" runat="server" Text="Cantidad:*" Width="180px" />
                                     </b>
-                                    <ig:WebNumericEditor ID="txtCantidad" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="VersiÃ³n">
+                                    <ig:WebNumericEditor ID="txtCantidad" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="Versión">
                                     </ig:WebNumericEditor>
                                     <asp:RequiredFieldValidator ID="RQ_Version" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtCantidad" ErrorMessage=" * El campo 'Cantidad' es obligatorio." Width="400px" />
                                 </div>                                

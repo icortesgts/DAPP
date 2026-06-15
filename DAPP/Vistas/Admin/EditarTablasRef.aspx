@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTablasRef.aspx.vb" Inherits="DAPP.EditarTablasRef" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTablasRef.aspx.vb" Inherits="DAPP.EditarTablasRef" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -22,7 +22,7 @@
     <div class="container mrgnBotMd">
         <div class="row noPadding">
             <div class="col-sm-12 noPadding colHeight">
-                <h3>ADMINISTRACIÃ“N TABLAS DE RETENCIÃ“N</h3>               
+                <h3>ADMINISTRACIÓN TABLAS DE RETENCIÓN</h3>               
                     <div class="form-horizontal fom-border">                        
                                 <br />
                                 <br />
@@ -64,10 +64,10 @@ order by nombre">
                                 </div>                                
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNumDocumento" runat="server" Text="CÃ³digo:*" Width="180px" />
+                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Código:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtCodigo" CssClass="input-xlarge" Width="180px" />                                                                   
-                                    <asp:RequiredFieldValidator ID="RQ_Codigo" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtCodigo" ErrorMessage=" * El campo 'CÃ³digo' es obligatorio." Width="400px" />  
+                                    <asp:RequiredFieldValidator ID="RQ_Codigo" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtCodigo" ErrorMessage=" * El campo 'Código' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <table>

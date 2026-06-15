@@ -1,9 +1,9 @@
-ï»¿<%@ Page Title="Contactos" Language="VB" AutoEventWireup="true" CodeBehind="Comentarios.aspx.vb" Inherits="DAPP.Comentarios" %>
+<%@ Page Title="Contactos" Language="VB" AutoEventWireup="true" CodeBehind="Comentarios.aspx.vb" Inherits="DAPP.Comentarios" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@
                                             <asp:ImageButton ID="bttEditar" ToolTip="Editar Contacto" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                                         </td>
                                         <td style="text-align: center; width: 40px;">&nbsp;
-                                            <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Contacto" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de Realizar esta OperaciÃ³n?');" />
+                                            <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Contacto" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de Realizar esta Operación?');" />
                                         </td>
                                         <td style="text-align: center; width: 40px;">&nbsp;
                                             <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -61,7 +61,7 @@
                                             <ig:WebDataGrid ID="GridContactos" runat="server" Width="100%" AutoGenerateColumns="False" CellSpacing="2" HeaderCaptionCssClass="HeaderCaptionClass" StyleSetName="Office2007Blue" EnableDataViewState="True" DataSourceID="Src_Contactos" EnableAjax="False" DataKeyFields="id">
                                                 <Columns>
                                                     <ig:BoundDataField DataFieldName="numero_radicado" Key="numero_radicado">
-                                                        <Header Text="NÃºmero Radicado">
+                                                        <Header Text="Número Radicado">
                                                         </Header>
                                                     </ig:BoundDataField>
                                                

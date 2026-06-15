@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarUsuario.aspx.vb" Inherits="DAPP.EditarUsuario" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarUsuario.aspx.vb" Inherits="DAPP.EditarUsuario" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -61,7 +61,7 @@ ORDER BY [nombre]">
                                         <asp:Label ID="lbConfirmarPassword" runat="server" Text="Confirmar Password:" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtConfirmarPassword" TextMode="Password" CssClass="input-xlarge" Width="180px" />
-                                    <asp:RequiredFieldValidator ID="RQ_ConfirmarPassword" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtConfirmarPassword" ErrorMessage=" * El campo 'Confirmación de Password' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RQ_ConfirmarPassword" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtConfirmarPassword" ErrorMessage=" * El campo 'Confirmaci�n de Password' es obligatorio." Width="400px" />
                                 </div>
 
                                 <div>

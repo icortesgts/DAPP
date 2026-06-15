@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="ScannearDocumento.aspx.vb" Inherits="DAPP.ScannearDocumento" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="ScannearDocumento.aspx.vb" Inherits="DAPP.ScannearDocumento" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -66,7 +66,7 @@
                             <asp:Label ID="lbNombre" runat="server" Text="Descripcion:/" Width="180px" />
                         </b>
                         <asp:TextBox runat="server" ID="txtDescripcion" CssClass="input-xlarge" Width="320px" Height="66px" TextMode="MultiLine" />
-                        <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'DescripciÃ³n' es obligatorio." Width="400px" />
+                        <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'Descripción' es obligatorio." Width="400px" />
                     </div>
                     <div>
                         <b class="control-label">
@@ -97,11 +97,11 @@
                     </div>
                     <div>
                         <b class="control-label">
-                            <asp:Label ID="lbTelefono" runat="server" Text="VersiÃ³n:*" Width="180px" />
+                            <asp:Label ID="lbTelefono" runat="server" Text="Versión:*" Width="180px" />
                         </b>
-                        <ig:WebNumericEditor ID="txtVersion" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="VersiÃ³n">
+                        <ig:WebNumericEditor ID="txtVersion" Width="180px" runat="server" CssClass="input-xlarge" NullValue="1" NullText="1" Nullable="False" BorderStyle="None" DataMode="Int" MinValue="1" ToolTip="Versión">
                         </ig:WebNumericEditor>
-                        <asp:RequiredFieldValidator ID="RQ_Version" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtVersion" ErrorMessage=" * El campo 'VersiÃ³n' es obligatorio." Width="400px" />
+                        <asp:RequiredFieldValidator ID="RQ_Version" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtVersion" ErrorMessage=" * El campo 'Versión' es obligatorio." Width="400px" />
                     </div>
 
                     <br />

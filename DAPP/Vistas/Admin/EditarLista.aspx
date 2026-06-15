@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Listas de Chequeo" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarLista.aspx.vb" Inherits="DAPP.EditarLista" %>
+<%@ Page Title="Listas de Chequeo" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarLista.aspx.vb" Inherits="DAPP.EditarLista" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -26,7 +26,7 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNombre" runat="server" Text="Descripción: *" Width="180px" />
+                                        <asp:Label ID="lbNombre" runat="server" Text="Descripci�n: *" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtDescipcion" CssClass="input-xlarge" Width="360px" Height="56px" TextMode="MultiLine" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Descripcion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescipcion" ErrorMessage=" * El campo 'Descripcion' es obligatorio." Width="400px" />

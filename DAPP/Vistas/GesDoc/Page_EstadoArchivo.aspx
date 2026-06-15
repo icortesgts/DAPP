@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="Documentos" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_EstadoArchivo.aspx.vb" Inherits="DAPP.Page_EstadoArchivo" %>
+<%@ Page Title="Documentos" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_EstadoArchivo.aspx.vb" Inherits="DAPP.Page_EstadoArchivo" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
@@ -47,7 +47,7 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="fgestion" Key="fgestion">
-                                <Header Text="Fecha A. GestiÃ³n">
+                                <Header Text="Fecha A. Gestión">
                                 </Header>
                             </ig:BoundDataField>                           
                             <ig:BoundDataField DataFieldName="fcentral" Key="fcentral">
@@ -55,11 +55,11 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="fhistorico" Key="fhistorico">
-                                <Header Text="Fecha A. HistÃ³rico">
+                                <Header Text="Fecha A. Histórico">
                                 </Header>
                             </ig:BoundDataField> 
                             <ig:BoundDataField DataFieldName="ubicacion" Key="ubicacion">
-                                <Header Text="UbicaciÃ³n">
+                                <Header Text="Ubicación">
                                 </Header>
                             </ig:BoundDataField>                                                 
                             <ig:BoundDataField DataFieldName="archivo" Key="archivo">
@@ -67,7 +67,7 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="gest" Key="gest">
-                                <Header Text="Tiempo A. GestiÃ³n">
+                                <Header Text="Tiempo A. Gestión">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="central" Key="central">
@@ -75,11 +75,11 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="hist" Key="hist">
-                                <Header Text="Tiempo A. HistÃ³rico">
+                                <Header Text="Tiempo A. Histórico">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="DifGestion" Key="DifGestion">
-                                <Header Text="Permanecia Adicional A. GestiÃ³n">
+                                <Header Text="Permanecia Adicional A. Gestión">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="DifCentral" Key="DifCentral">
@@ -87,7 +87,7 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="DifHistorico" Key="DifHistorico">
-                                <Header Text="Permanecia Adicional A. HistÃ³rico">
+                                <Header Text="Permanecia Adicional A. Histórico">
                                 </Header>
                             </ig:BoundDataField>
                         </Columns>
@@ -108,9 +108,9 @@
   convert(varchar(10),central) + ' ' + tcentral as central,
   convert(varchar(10),historico) + ' ' + thistorico as hist,
   admintipodocumento.nombre as tipodoc,
-  gestion-iif(tgestion='AÃ±os',DATEDIFF(year ,documentos.fechadoc,getdate()),DATEDIFF(month , documentos.fechadoc,getdate())) DifGestion,
-  central-iif(tcentral='AÃ±os',DATEDIFF(year , isnull(documentos.fgestion,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fgestion,getdate()),getdate())) DifCentral,
-  historico-iif(thistorico='AÃ±os',DATEDIFF(year , isnull(documentos.fcentral,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fcentral,getdate()),getdate())) DifHistorico
+  gestion-iif(tgestion='Años',DATEDIFF(year ,documentos.fechadoc,getdate()),DATEDIFF(month , documentos.fechadoc,getdate())) DifGestion,
+  central-iif(tcentral='Años',DATEDIFF(year , isnull(documentos.fgestion,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fgestion,getdate()),getdate())) DifCentral,
+  historico-iif(thistorico='Años',DATEDIFF(year , isnull(documentos.fcentral,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fcentral,getdate()),getdate())) DifHistorico
   from tipoDoc_TablaRetencion
   inner join admintipodocumento
   on tipoDoc_TablaRetencion.id_tipo=admintipodocumento.id
@@ -118,9 +118,9 @@
   on documentos.id_tipo=admintipodocumento.id 
   inner join ubicaciones
   on documentos.id_ubicacion=ubicaciones.id
-  where gestion-iif(tgestion='AÃ±os',DATEDIFF(year ,documentos.fechadoc,getdate()),DATEDIFF(month , documentos.fechadoc,getdate())) &lt;= 0 or
-  central-iif(tcentral='AÃ±os',DATEDIFF(year , isnull(documentos.fgestion,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fgestion,getdate()),getdate())) &lt;=0 or
-  historico-iif(thistorico='AÃ±os',DATEDIFF(year , isnull(documentos.fcentral,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fcentral,getdate()),getdate())) &lt;=0
+  where gestion-iif(tgestion='Años',DATEDIFF(year ,documentos.fechadoc,getdate()),DATEDIFF(month , documentos.fechadoc,getdate())) &lt;= 0 or
+  central-iif(tcentral='Años',DATEDIFF(year , isnull(documentos.fgestion,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fgestion,getdate()),getdate())) &lt;=0 or
+  historico-iif(thistorico='Años',DATEDIFF(year , isnull(documentos.fcentral,getdate()),getdate()),DATEDIFF(month , isnull(documentos.fcentral,getdate()),getdate())) &lt;=0
 and documentos.id_sucursal=@sucursal">
                         <SelectParameters>
                             <asp:SessionParameter DefaultValue="0" Name="sucursal" SessionField="id_sucursal" />

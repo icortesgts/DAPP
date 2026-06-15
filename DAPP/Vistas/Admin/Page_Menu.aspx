@@ -1,12 +1,12 @@
-ï»¿<%@ Page Title="MenÃº AplicaciÃ³n" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_Menu.aspx.vb" Inherits="DAPP.Page_Menu" %>
+<%@ Page Title="Menú Aplicación" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_Menu.aspx.vb" Inherits="DAPP.Page_Menu" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
     <div class="titular-into-form">
-        <span class="texto-titulo-form">MENÃš DE TRANSACCIONES</span>
+        <span class="texto-titulo-form">MENÚ DE TRANSACCIONES</span>
         <ig:WebExcelExporter ID="ExpGrid" runat="server">
         </ig:WebExcelExporter>
         <ig:WebDocumentExporter ID="Exppdf" runat="server">
@@ -47,7 +47,7 @@
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="item" Key="item">
-                                <Header Text="Ãtem">
+                                <Header Text="Ítem">
                                 </Header>
                             </ig:BoundDataField>                                                                      
                             

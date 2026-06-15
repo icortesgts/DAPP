@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="Edita MenÃº" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarMenuCliente.aspx.vb" Inherits="DAPP.EditarMenuCliente" %>
+<%@ Page Title="Edita Menú" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarMenuCliente.aspx.vb" Inherits="DAPP.EditarMenuCliente" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -12,23 +12,23 @@
     <div class="container mrgnBotMd">
         <div class="row noPadding">
             <div class="col-sm-12 noPadding colHeight">
-                <h3>MenÃº AplicaciÃ³n</h3>               
+                <h3>Menú Aplicación</h3>               
                     <div class="form-horizontal fom-border" >                        
                                 <br />
                                 <br />
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label1" runat="server" Text="OpciÃ³n MenÃº:*" Width="180px" />
+                                        <asp:Label ID="Label1" runat="server" Text="Opción Menú:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="TxtLabel" CssClass="input-xlarge" Width="320px" ReadOnly="true"  />                                    
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtLabel" ErrorMessage=" * El campo 'OpciÃ³n MenÃº' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtLabel" ErrorMessage=" * El campo 'Opción Menú' es obligatorio." Width="400px" />
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNombre" runat="server" Text="AlÃ­as:*" Width="180px" />
+                                        <asp:Label ID="lbNombre" runat="server" Text="Alías:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtAlias" CssClass="input-xlarge" Width="320px" />                                    
-                                    <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtAlias" ErrorMessage=" * El campo 'AlÃ­as' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RQ_Nombre" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtAlias" ErrorMessage=" * El campo 'Alías' es obligatorio." Width="400px" />
                                 </div>
                                 
                                                                                                                

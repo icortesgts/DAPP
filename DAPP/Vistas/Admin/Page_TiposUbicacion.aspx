@@ -1,12 +1,12 @@
-ï»¿<%@ Page Title="Tipos de UbicaciÃ³n" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_TiposUbicacion.aspx.vb" Inherits="DAPP.Page_TiposUbicacion" %>
+<%@ Page Title="Tipos de Ubicación" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_TiposUbicacion.aspx.vb" Inherits="DAPP.Page_TiposUbicacion" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
     <div class="titular-into-form">
-        <span class="texto-titulo-form">ADMINISTRACION DE TIPOS DE UBICACIÃ“N </span>
+        <span class="texto-titulo-form">ADMINISTRACION DE TIPOS DE UBICACIÓN </span>
         <ig:WebExcelExporter ID="ExpGrid" runat="server">
         </ig:WebExcelExporter>
         <ig:WebDocumentExporter ID="Exppdf" runat="server">
@@ -25,7 +25,7 @@
                     <asp:ImageButton ID="bttEditar" ToolTip="Editar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoEdit.png" BackColor="Transparent" Width="26" Height="26" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
-                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operaciÃ³n?');" />
+                    <asp:ImageButton ID="bttEliminar" ToolTip="Eliminar Tipo" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoDelete.png" BackColor="Transparent" Width="26" Height="26" OnClientClick="return confirm('Esta Seguro de realizar esta operación?');" />
                 </td>
                 <td style="text-align: center; width: 40px;">&nbsp;
                     <asp:ImageButton ID="bttExcel" ToolTip="Exportar a Excel" ValidationGroup="Ninguno" runat="server" ImageUrl="~/Images/icoExcel.png" BackColor="Transparent" Width="26" Height="26" />
@@ -41,7 +41,7 @@
                     <ig:WebDataGrid ID="GridTipos" runat="server" Width="100%" AutoGenerateColumns="False" CellSpacing="2" HeaderCaptionCssClass="HeaderCaptionClass" StyleSetName="Office2007Blue" EnableDataViewState="True" DataSourceID="Src_Tipos" DataKeyFields="id">
                         <Columns>
                             <ig:BoundDataField DataFieldName="nombre" Key="nombre">
-                                <Header Text="Tipo UbicaciÃ³n">
+                                <Header Text="Tipo Ubicación">
                                 </Header>
                             </ig:BoundDataField>                                                                                              
                             <ig:BoundDataField DataFieldName="Clase" Key="Clase">

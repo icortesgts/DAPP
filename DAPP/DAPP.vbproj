@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -421,6 +421,9 @@
     </Content>
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vistas\FlujoProceso.aspx">
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="WFModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1750,6 +1753,13 @@
     </Compile>
     <Compile Include="Vistas\EditarContacto.aspx.vb">
       <DependentUpon>EditarContacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\FlujoProceso.aspx.designer.vb">
+      <DependentUpon>FlujoProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FlujoProceso.aspx.vb">
+      <DependentUpon>FlujoProceso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vistas\GesDoc\EditarPrestamo.aspx.designer.vb">

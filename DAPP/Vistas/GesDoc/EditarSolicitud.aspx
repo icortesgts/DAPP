@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarSolicitud.aspx.vb" Inherits="DAPP.EditarSolicitud" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarSolicitud.aspx.vb" Inherits="DAPP.EditarSolicitud" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -97,7 +97,7 @@
                     </div>
                     <div>
                         <b class="control-label">
-                            <asp:Label ID="Label2" runat="server" Text="DuraciÃ³n (DÃ­as):*" Width="180px"  />
+                            <asp:Label ID="Label2" runat="server" Text="Duración (Días):*" Width="180px"  />
                         </b>
                         <asp:TextBox runat="server" ID="TxtDuracion" CssClass="input-xlarge" Width="320px" TextMode="Number" >1</asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="TxtDuracion" ErrorMessage=" * El campo 'Duracion' es obligatorio." Width="400px" />                      
@@ -139,14 +139,14 @@
                             <tr>
                                 <td style="width:50%;">
                                     <b class="control-label">
-                                        <asp:Label ID="Label12" runat="server" Text="Fecha Estimada DevoluciÃ³n:" Width="180px"  />
+                                        <asp:Label ID="Label12" runat="server" Text="Fecha Estimada Devolución:" Width="180px"  />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtFEdevolucion" CssClass="input-xlarge" Width="180px" textmode="Date" readonly="true" /> 
                                     
                                 </td>
                                 <td style="width:50%;">
                                     <b class="control-label">
-                                        <asp:Label ID="Label13" runat="server" Text="Fecha DevoluciÃ³n:" Width="180px" />
+                                        <asp:Label ID="Label13" runat="server" Text="Fecha Devolución:" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtFdevolucion" CssClass="input-xlarge" Width="180px" textmode="Date" readonly="true" /> 
                                 </td>

@@ -1,12 +1,12 @@
-ï»¿<%@ Page Title="AdminitraciÃ³n de MenÃº de Transacciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_MenuCliente.aspx.vb" Inherits="DAPP.Page_MenuCliente" %>
+<%@ Page Title="Adminitración de Menú de Transacciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Page_MenuCliente.aspx.vb" Inherits="DAPP.Page_MenuCliente" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" type="text/css" href="../../Styles/Grids.css">    
     <div class="titular-into-form">
-        <span class="texto-titulo-form">AdminitraciÃ³n de MenÃº de Transacciones</span>
+        <span class="texto-titulo-form">Adminitración de Menú de Transacciones</span>
         <ig:WebExcelExporter ID="ExpGrid" runat="server">
         </ig:WebExcelExporter>
         <ig:WebDocumentExporter ID="Exppdf" runat="server">
@@ -38,11 +38,11 @@
                     <ig:WebDataGrid ID="GridTipos" runat="server" Width="100%" AutoGenerateColumns="False" CellSpacing="2" HeaderCaptionCssClass="HeaderCaptionClass" StyleSetName="Office2007Blue" EnableDataViewState="True" DataSourceID="Src_Tipos" DataKeyFields="id">
                         <Columns>
                             <ig:BoundDataField DataFieldName="Label" Key="Label">
-                                <Header Text="OpciÃ³n MenÃº">
+                                <Header Text="Opción Menú">
                                 </Header>
                             </ig:BoundDataField>
                             <ig:BoundDataField DataFieldName="Alias" Key="Alias">
-                                <Header Text="AlÃ­as">
+                                <Header Text="Alías">
                                 </Header>
                             </ig:BoundDataField>
                             

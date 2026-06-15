@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTipoUbicacion.aspx.vb" Inherits="DAPP.EditarTipoUbicacion" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTipoUbicacion.aspx.vb" Inherits="DAPP.EditarTipoUbicacion" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -12,17 +12,17 @@
     <div class="container mrgnBotMd">
         <div class="row noPadding">
             <div class="col-sm-12 noPadding colHeight">
-                <h3>TIPO UBICACIÃ“N</h3>               
+                <h3>TIPO UBICACIÓN</h3>               
                     <div class="form-horizontal fom-border">                        
                                 <br />
                                 <br />                                
                                 
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Tipo UbicaciÃ³n:" Width="180px" />
+                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Tipo Ubicación:" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtTipoDocumento" CssClass="input-xlarge" Width="320px" />                                                                    
-                                    <asp:RequiredFieldValidator ID="RQ_TipoDocumento" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtTipoDocumento" ErrorMessage=" * El campo 'Tipo UbicaciÃ³n' es obligatorio." Width="400px" />  
+                                    <asp:RequiredFieldValidator ID="RQ_TipoDocumento" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtTipoDocumento" ErrorMessage=" * El campo 'Tipo Ubicación' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <b class="control-label">
@@ -34,7 +34,7 @@
                                         <asp:ListItem>CAJA</asp:ListItem>
                                         <asp:ListItem>CARPETA</asp:ListItem>
                                         <asp:ListItem>CONTENEDOR</asp:ListItem>
-                                        <asp:ListItem>EDIFICACIÃ“N</asp:ListItem>
+                                        <asp:ListItem>EDIFICACIÓN</asp:ListItem>
                                         <asp:ListItem>LEGAJO</asp:ListItem>
                                     </asp:DropDownList>                                  
                                     
@@ -84,9 +84,9 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                         <asp:Label ID="Lblcalculo" runat="server" Text="MÃ©todo de CÃ¡lculo de Capacidad" Width="180px" />
+                                         <asp:Label ID="Lblcalculo" runat="server" Text="Método de Cálculo de Capacidad" Width="180px" />
                                     </b>
-                                    <asp:DropDownList ID="txtmetodo" runat="server" Font-Overline="False" Height="22px" Width="360px" CssClass="newsInputD" ToolTip="MÃ©todo de CÃ¡lculo de Capacidad basado en Profundidad, Ancho o Alto">
+                                    <asp:DropDownList ID="txtmetodo" runat="server" Font-Overline="False" Height="22px" Width="360px" CssClass="newsInputD" ToolTip="Método de Cálculo de Capacidad basado en Profundidad, Ancho o Alto">
                                         <asp:ListItem>Profundidad</asp:ListItem>
                                         <asp:ListItem>Ancho</asp:ListItem>
                                         <asp:ListItem>Alto</asp:ListItem>

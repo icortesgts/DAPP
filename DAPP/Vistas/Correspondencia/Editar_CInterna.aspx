@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="CORRESPONDENCIA" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Editar_CInterna.aspx.vb" Inherits="DAPP.Editar_CInterna" %>
+<%@ Page Title="CORRESPONDENCIA" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Editar_CInterna.aspx.vb" Inherits="DAPP.Editar_CInterna" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -59,15 +59,15 @@
                 <div class="form-horizontal fom-border">
                      <div class="tabbable" id="Tabs" role="tabpanel"> <!-- Only required for left/right tabs -->
 					    <ul class="nav nav-tabs" role="tablist">
-					        <li class="active"><a href="#tab1" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n General</a></li>
-					        <li><a href="#tab2" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n Complementaria</a></li>
-					        <li><a href="#tab3" aria-controls="personal" role="tab" data-toggle="tab">InformaciÃ³n EnvÃ­o/Recibo</a></li>
+					        <li class="active"><a href="#tab1" aria-controls="personal" role="tab" data-toggle="tab">Información General</a></li>
+					        <li><a href="#tab2" aria-controls="personal" role="tab" data-toggle="tab">Información Complementaria</a></li>
+					        <li><a href="#tab3" aria-controls="personal" role="tab" data-toggle="tab">Información Envío/Recibo</a></li>
 					      </ul>
 					    <div class="tab-content">
 				    	    <div role="tabpanel" class="tab-pane active" id="tab1">
 					    	    <div class="row-fluid">
 					    		    <div class="span4">
-					    			    <h2>InformaciÃ³n General</h2>
+					    			    <h2>Información General</h2>
                                         <div>
                                             <b class="control-label">
                                                 <asp:Label ID="Label10" runat="server" Text="Tipo Correspondencia:*" Width="180px" />
@@ -180,7 +180,7 @@ SELECT [numero_radicado], [id] FROM [Correspondencia] WHERE (([id_sucursal] = @i
 				    		    </div>
 				    	    </div>
 					        <div role="tabpanel" class="tab-pane" id="tab2">
-					    	    <h2>InformaciÃ³n Complementaria</h2>
+					    	    <h2>Información Complementaria</h2>
                                 <div class="cabezote-form">
                                     <span>DOCUMENTOS ASOCIADOS</span>
                                 </div>
@@ -276,17 +276,17 @@ SELECT [numero_radicado], [id] FROM [Correspondencia] WHERE (([id_sucursal] = @i
 					        </div>
 					        <div role="tabpanel" class="tab-pane" id="tab3">
 					    	    <div>
-                                    <h2>InformaciÃ³n EnviÃ³/Recibo</h2>
+                                    <h2>Información Envió/Recibo</h2>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Tipo Recibo/EnviÃ³:" Width="180px" />
+                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Tipo Recibo/Envió:" Width="180px" />
                                     </b>
                                     <asp:DropDownList ID="txtTipoEnvio" runat="server" Font-Overline="False" Height="20px" Width="180px" CssClass="newsInputD">
                                         <asp:ListItem>Interna</asp:ListItem>
                                         <asp:ListItem>Privada</asp:ListItem>
-                                        <asp:ListItem>Courrier MensajerÃ­a</asp:ListItem>
+                                        <asp:ListItem>Courrier Mensajería</asp:ListItem>
                                     </asp:DropDownList>
                                     <b class="control-label">
-                                        <asp:Label ID="Label16" runat="server" Text="GuÃ­a:" Width="90px" />
+                                        <asp:Label ID="Label16" runat="server" Text="Guía:" Width="90px" />
                                     </b> 
                                     <asp:TextBox runat="server" ID="txtGuia" CssClass="input-xlarge" Width="180px"  /> 
                         
@@ -323,7 +323,7 @@ SELECT [numero_radicado], [id] FROM [Correspondencia] WHERE (([id_sucursal] = @i
                             <asp:Label ID="Label20" runat="server" Text="Sticker:*" Width="180px" />
                         </b>
                         <asp:DropDownList ID="txtSticker" runat="server" Font-Overline="False" Height="20px" Width="320px" CssClass="newsInputD" AutoPostBack="True">
-                            <asp:ListItem>PequeÃ±o</asp:ListItem>
+                            <asp:ListItem>Pequeño</asp:ListItem>
                             <asp:ListItem>Carta</asp:ListItem>
                         </asp:DropDownList>
                     </div>

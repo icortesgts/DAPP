@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="EdiciÃ³n Tipos Documentales" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTablasReferencia.aspx.vb" Inherits="DAPP.EditarTablasReferencia" %>
+<%@ Page Title="Edición Tipos Documentales" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarTablasReferencia.aspx.vb" Inherits="DAPP.EditarTablasReferencia" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -18,10 +18,10 @@
                                 <br />                                
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbNumDocumento" runat="server" Text="CÃ³digo:*" Width="180px" />
+                                        <asp:Label ID="lbNumDocumento" runat="server" Text="Código:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="Txtcodigo" CssClass="input-xlarge" Width="180px" />          
-                                    <asp:RequiredFieldValidator ID="RQ_Codigo" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtCodigo" ErrorMessage=" * El campo 'CÃ³digo' es obligatorio." Width="400px" />  
+                                    <asp:RequiredFieldValidator ID="RQ_Codigo" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtCodigo" ErrorMessage=" * El campo 'Código' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <b class="control-label">
@@ -38,36 +38,36 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label3" runat="server" Text="Archivo de GestiÃ³n:*" Width="180px" ToolTip="Tiempo de ConservaciÃ³n es Archivo en AÃ±os" />
+                                        <asp:Label ID="Label3" runat="server" Text="Archivo de Gestión:*" Width="180px" ToolTip="Tiempo de Conservación es Archivo en Años" />
                                     </b>
                                     <ig:WebNumericEditor ID="txtgestion" Width="90px" runat="server" CssClass="input-xlarge" NullValue="0" NullText="0" Nullable="False"></ig:WebNumericEditor> 
                                     <asp:DropDownList ID="txtTime" runat="server" CssClass="input-xlarge" Width="90px">
-                                        <asp:ListItem>AÃ±os</asp:ListItem>
+                                        <asp:ListItem>Años</asp:ListItem>
                                         <asp:ListItem>Meses</asp:ListItem>
                                     </asp:DropDownList>                                              
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtgestion" ErrorMessage=" * El campo 'Archivo de GestiÃ³n' es obligatorio." Width="400px" />  
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtgestion" ErrorMessage=" * El campo 'Archivo de Gestión' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label4" runat="server" Text="Archivo Central:*" Width="180px" ToolTip="Tiempo de ConservaciÃ³n es Archivo en AÃ±os" />
+                                        <asp:Label ID="Label4" runat="server" Text="Archivo Central:*" Width="180px" ToolTip="Tiempo de Conservación es Archivo en Años" />
                                     </b>
                                     <ig:WebNumericEditor ID="txtcentral" Width="90px" runat="server" CssClass="input-xlarge" NullValue="0" NullText="0" Nullable="False"></ig:WebNumericEditor> 
                                     <asp:DropDownList ID="txttime2" runat="server" CssClass="input-xlarge" Width="90px">
-                                        <asp:ListItem>AÃ±os</asp:ListItem>
+                                        <asp:ListItem>Años</asp:ListItem>
                                         <asp:ListItem>Meses</asp:ListItem>
                                     </asp:DropDownList>                                                                                                               
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtcentral" ErrorMessage=" * El campo 'Archivo Central' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label5" runat="server" Text="Archivo HistÃ³rico:*" Width="180px" ToolTip="Tiempo de ConservaciÃ³n es Archivo en AÃ±os"  />
+                                        <asp:Label ID="Label5" runat="server" Text="Archivo Histórico:*" Width="180px" ToolTip="Tiempo de Conservación es Archivo en Años"  />
                                     </b>
                                     <ig:WebNumericEditor ID="txthistorico" Width="90px" runat="server" CssClass="input-xlarge" NullValue="0" NullText="0" Nullable="False"></ig:WebNumericEditor>   
                                     <asp:DropDownList ID="txttime3" runat="server" CssClass="input-xlarge" Width="90px">
-                                        <asp:ListItem>AÃ±os</asp:ListItem>
+                                        <asp:ListItem>Años</asp:ListItem>
                                         <asp:ListItem>Meses</asp:ListItem>
                                     </asp:DropDownList>                                                                                                             
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txthistorico" ErrorMessage=" * El campo 'Archivo HistÃ³rico' es obligatorio." Width="400px" />  
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txthistorico" ErrorMessage=" * El campo 'Archivo Histórico' es obligatorio." Width="400px" />  
                                 </div>
                                 <div>
                                     <b class="control-label">
@@ -78,17 +78,17 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label2" runat="server" Text="DisposiciÃ³n Final:" Width="180px" />
+                                        <asp:Label ID="Label2" runat="server" Text="Disposición Final:" Width="180px" />
                                     </b>
-                                    <asp:CheckBox ID="ChkCT" runat="server" Text="CT" CssClass="input-xlarge" ToolTip="ConservaciÃ³n Total" />
-                                    <asp:CheckBox ID="ChkE" runat="server" Text="E" CssClass="input-xlarge"  ToolTip="EliminaciÃ³n" />
-                                    <asp:CheckBox ID="ChkD" runat="server" Text="D" CssClass="input-xlarge" ToolTip="DigitalizaciÃ³n" />
-                                    <asp:CheckBox ID="ChkM" runat="server" Text="M" CssClass="input-xlarge"  ToolTip="MicrofilmaciÃ³n" />
-                                    <asp:CheckBox ID="ChkS" runat="server" Text="S" CssClass="input-xlarge"  ToolTip="SelecciÃ³n" />
+                                    <asp:CheckBox ID="ChkCT" runat="server" Text="CT" CssClass="input-xlarge" ToolTip="Conservación Total" />
+                                    <asp:CheckBox ID="ChkE" runat="server" Text="E" CssClass="input-xlarge"  ToolTip="Eliminación" />
+                                    <asp:CheckBox ID="ChkD" runat="server" Text="D" CssClass="input-xlarge" ToolTip="Digitalización" />
+                                    <asp:CheckBox ID="ChkM" runat="server" Text="M" CssClass="input-xlarge"  ToolTip="Microfilmación" />
+                                    <asp:CheckBox ID="ChkS" runat="server" Text="S" CssClass="input-xlarge"  ToolTip="Selección" />
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbTelefono" runat="server" Text="Procedimientos:" Width="180px" ToolTip="Referencia a los procedimientos de conservaciÃ³n" />
+                                        <asp:Label ID="lbTelefono" runat="server" Text="Procedimientos:" Width="180px" ToolTip="Referencia a los procedimientos de conservación" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtProcedimiento" CssClass="input-xlarge" Width="360px" TextMode="MultiLine" Height="61px" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Procedimiento" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtProcedimiento" ErrorMessage=" * El campo 'Procedimientos' es obligatorio." Width="400px" />
@@ -97,8 +97,8 @@
                                     <b class="control-label">
                                         <p>
                                             CONVENCIONES
-                                            CT = ConservaciÃ³n Total       M = MicrofilmaciÃ³n        D = DigitalizaciÃ³n
-                                            E  = EliminaciÃ³n              S = SelecciÃ³n            
+                                            CT = Conservación Total       M = Microfilmación        D = Digitalización
+                                            E  = Eliminación              S = Selección            
                                         </p>
                                     </b>
                                 </div>

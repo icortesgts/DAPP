@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="EdiciÃ³n Ubicaciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarUbicacion.aspx.vb" Inherits="DAPP.EditarUbicacion" %>
+<%@ Page Title="Edición Ubicaciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarUbicacion.aspx.vb" Inherits="DAPP.EditarUbicacion" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -35,25 +35,25 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbDescripcion" runat="server" Text="DescripciÃ³n:" Width="180px" />
+                                        <asp:Label ID="lbDescripcion" runat="server" Text="Descripción:" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtDescripcion" CssClass="input-xlarge" Width="320px" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Descripcion" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtDescripcion" ErrorMessage=" * El campo 'Descripcion' es obligatorio." Width="400px" />
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label1" runat="server" Text="Archivo VÃ­nculado:" Width="180px" />
+                                        <asp:Label ID="Label1" runat="server" Text="Archivo Vínculado:" Width="180px" />
                                     </b>
                                     <asp:DropDownList ID="txtArchivo" runat="server" Font-Overline="False" Height="22px" Width="320px" CssClass="newsInputD">
-                                        <asp:ListItem>Archivo de GestiÃ³n</asp:ListItem>
+                                        <asp:ListItem>Archivo de Gestión</asp:ListItem>
                                         <asp:ListItem>Archivo Central</asp:ListItem>
-                                        <asp:ListItem>Archivo HistÃ³rico</asp:ListItem>
+                                        <asp:ListItem>Archivo Histórico</asp:ListItem>
                                     </asp:DropDownList>                                  
                                     
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label5" runat="server" Text="Tipo UbicaciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="Label5" runat="server" Text="Tipo Ubicación:*" Width="180px" />
                                     </b>
                                     <asp:DropDownList ID="txttipo" runat="server" Font-Overline="False" Height="22px" Width="320px" CssClass="newsInputD" DataSourceID="SqlTipoU" DataTextField="nombre" DataValueField="id" AutoPostBack="True">
                                     </asp:DropDownList>                                  

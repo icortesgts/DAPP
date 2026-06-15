@@ -1,7 +1,7 @@
-ï»¿<%@ Page Title="EdiciÃ³n Clase Documento" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarPermiso.aspx.vb" Inherits="DAPP.EditarPermiso" %>
+<%@ Page Title="Edición Clase Documento" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EditarPermiso.aspx.vb" Inherits="DAPP.EditarPermiso" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
@@ -44,7 +44,7 @@ order by Admin_AliasMenu.Alias
                                 <div>
                                     
                                      <b class="control-label">
-                                        <asp:Label ID="Label1" runat="server" Text="AdiciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="Label1" runat="server" Text="Adición:*" Width="180px" />
                                     </b>                                
                                     
                                     <asp:CheckBox ID="Chkactivo" runat="server" CssClass="control-label" Text="    " TextAlign="Left"/>
@@ -53,7 +53,7 @@ order by Admin_AliasMenu.Alias
                                 <div>
                                     
                                      <b class="control-label">
-                                        <asp:Label ID="Label2" runat="server" Text="EdiciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="Label2" runat="server" Text="Edición:*" Width="180px" />
                                     </b>                                
                                     
                                     <asp:CheckBox ID="Chkedit" runat="server" CssClass="control-label" Text="    " TextAlign="Left"/>
@@ -62,7 +62,7 @@ order by Admin_AliasMenu.Alias
                                 <div>
                                     
                                      <b class="control-label">
-                                        <asp:Label ID="Label3" runat="server" Text="EliminaciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="Label3" runat="server" Text="Eliminación:*" Width="180px" />
                                     </b>                                
                                     
                                     <asp:CheckBox ID="Chkdel" runat="server" CssClass="control-label" Text="    " TextAlign="Left"/>

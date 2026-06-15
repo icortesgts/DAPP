@@ -1,9 +1,9 @@
-ï»¿<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" CodeBehind="EditarContacto.aspx.vb" Inherits="DAPP.EditarContacto" %>
+<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" CodeBehind="EditarContacto.aspx.vb" Inherits="DAPP.EditarContacto" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="lbTelefono" runat="server" Text="TelÃ©fono:*" Width="180px" />
+                                        <asp:Label ID="lbTelefono" runat="server" Text="Teléfono:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtTelefono" CssClass="input-xlarge" Width="180px" />                                    
                                     <asp:RequiredFieldValidator ID="RQ_Telefono" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtTelefono" ErrorMessage=" * El campo 'Telefono' es obligatorio." Width="400px" />
@@ -63,10 +63,10 @@
                                 </div>
                                 <div>
                                     <b class="control-label">
-                                        <asp:Label ID="Label2" runat="server" Text="DirecciÃ³n:*" Width="180px" />
+                                        <asp:Label ID="Label2" runat="server" Text="Dirección:*" Width="180px" />
                                     </b>
                                     <asp:TextBox runat="server" ID="txtdir" CssClass="input-xlarge" Width="320px" />                                    
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtdir" ErrorMessage=" * El campo 'DirecciÃ³n' es obligatorio." Width="400px" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Errores" CssClass="help-block" ControlToValidate="txtdir" ErrorMessage=" * El campo 'Dirección' es obligatorio." Width="400px" />
                                 </div>
                                 <div>
                                     <table style="width:100%;">

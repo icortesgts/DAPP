@@ -1,15 +1,15 @@
-ï»¿<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" CodeBehind="EditarInfo.aspx.vb" Inherits="DAPP.EditarInfo" %>
+<%@ Page Title="SucursalTerceros" Language="vb" AutoEventWireup="false" CodeBehind="EditarInfo.aspx.vb" Inherits="DAPP.EditarInfo" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
 
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
-<%@ Register Assembly="Infragistics4.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v15.2, Version=15.2.20152.2273, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>EDITAR INFORMACIÃ“N USUARIOS</title>
+    <title>EDITAR INFORMACIÓN USUARIOS</title>
     <link rel="stylesheet" type="text/css" href="../Styles/Grids.css">
     <link rel="stylesheet" type="text/css" href="../Styles/styles_form.css">    
     <style type="text/css">
@@ -27,7 +27,7 @@
     <div class="container mrgnBotMd">
         <div class="row noPadding">
             <div class="col-sm-12 noPadding colHeight">
-                <h3>INFORMACIÃ“N ASOCIADA</h3>               
+                <h3>INFORMACIÓN ASOCIADA</h3>               
                     <div class="form-horizontal fom-border">                        
                     <br />
                     <br />                                
