@@ -1,0 +1,75 @@
+#########################################################
+# Visual Studio / ASP.NET / WebForms
+#########################################################
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+Build/
+[Bb]in/
+[Oo]bj/
+
+# ASP.NET Cache
+Temporary ASP.NET Files/
+
+# NuGet
+packages/
+!packages/build/
+*.nupkg
+
+# Logs
+*.log
+
+# IIS Express
+.vsconfig
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Publish
+publish/
+Publish/
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Node
+node_modules/
+
+# Temp
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+#########################################################
+# Git
+#########################################################
+
+.git/
+.gitignore.bak
