@@ -14669,6 +14669,42 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
+<member name="F:DAPP.Dashboard._lblFechaActualizacion">
+<summary>Control lblFechaActualizacion.</summary>
+</member>
+<member name="F:DAPP.Dashboard._btnActualizar">
+<summary>Control btnActualizar.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litKpiPrestamosVigentes">
+<summary>Control litKpiPrestamosVigentes.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litKpiPrestamosVencidos">
+<summary>Control litKpiPrestamosVencidos.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litKpiArchivosPendientes">
+<summary>Control litKpiArchivosPendientes.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litKpiChequeosPendientes">
+<summary>Control litKpiChequeosPendientes.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonEstadoPrestamos">
+<summary>Control litJsonEstadoPrestamos — emite JSON para Chart.js.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonTopRetraso">
+<summary>Control litJsonTopRetraso — emite JSON para Chart.js.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonPendientesEtapa">
+<summary>Control litJsonPendientesEtapa — emite JSON para Chart.js.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonTopPermanencia">
+<summary>Control litJsonTopPermanencia — emite JSON para Chart.js.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonEstadoChequeos">
+<summary>Control litJsonEstadoChequeos — emite JSON para Chart.js.</summary>
+</member>
+<member name="F:DAPP.Dashboard._litJsonFaltantesProceso">
+<summary>Control litJsonFaltantesProceso — emite JSON para Chart.js.</summary>
+</member>
 <member name="F:DAPP.Seleccionar_Area._form1">
 <summary>
 Control form1.

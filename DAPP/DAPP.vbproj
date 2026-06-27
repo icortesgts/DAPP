@@ -1049,6 +1049,7 @@
     <Content Include="Vistas\Seleccionar_Area.aspx" />
     <Content Include="Vistas\Seleccionar_Tercero.aspx" />
     <Content Include="Vistas\Seleccionar_Cliente.aspx" />
+    <Content Include="Vistas\Dashboard.aspx" />
     <Content Include="Vistas\SinAcceso.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1914,6 +1915,14 @@
     </Compile>
     <Compile Include="Vistas\Seleccionar_Ubicacion.aspx.vb">
       <DependentUpon>Seleccionar_Ubicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vistas\Dashboard_DTOs.vb" />
+    <Compile Include="Vistas\Dashboard.aspx.designer.vb">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Dashboard.aspx.vb">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vistas\Seleccionar_Area.aspx.designer.vb">

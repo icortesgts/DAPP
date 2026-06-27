@@ -800,7 +800,7 @@
                 <div class="f-alert f-info" style="display:block; margin-bottom:10px;">
                     <i class="fa fa-circle-info"></i>
                     La firma electrónica permite al firmante autorizar documentos mediante un PIN personal.
-                    &nbsp;<strong>[Datos demo — no se almacenan en BD]</strong>
+                    &nbsp;<strong>[Datos almacenan en BD]</strong>
                 </div>
 
                 <div class="fmg">

@@ -191,6 +191,7 @@
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Acerca De</span></a></li>
             <li><a href="Mailto:correo@dapp.com"><i class="fa fa-envelope"></i> <span>Contactenos</span></a></li>
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Notificaciones</span></a></li>
+              <li><a href="<%=ResolveClientUrl("~/Vistas/Dashboard.aspx")%>"><i class="fa fa-code-fork"></i> <span>Dashboard</span></a></li>
             <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoPrestamos")%>"><asp:Label runat="server" ID="lblPrestamo" Text="Prestamos"></asp:Label></a></li>
             <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoListas")%>"><asp:Label runat="server"  ID="lblListas" Text="Listas de Chequeo"></asp:Label></a></li>
             <li><a href="<%=ResolveClientUrl("~/Vistas/GesDoc/Page_EstadoArchivo")%>"><asp:Label runat="server"  ID="LblArchivo" Text="Archivo"></asp:Label></a></li>
